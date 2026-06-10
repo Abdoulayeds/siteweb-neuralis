@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: neuralis-site
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./out
+    pullRequestPreviewsEnabled: false
