@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHero } from "@/components/page-hero";
 import { SectionHeader } from "@/components/section-header";
 import { values } from "@/lib/site-data";
@@ -33,14 +32,25 @@ export default function AProposPage() {
               construire des solutions utiles, professionnelles et adaptees aux realites locales.
             </p>
           </div>
-          <div className="overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 p-6 shadow-xl shadow-slate-950/10">
-            <Image
-              src="/logo-neuralis.jpeg"
-              alt="Logo NEURALIS"
-              width={1600}
-              height={800}
-              className="h-auto w-full rounded-3xl"
-            />
+          <div className="rounded-[2rem] border border-cyan-300/20 bg-white/[0.055] p-6 shadow-xl shadow-slate-950/10">
+            <div className="rounded-[1.5rem] bg-slate-950 p-8 text-white">
+              <div className="flex items-center gap-5">
+                <span className="neuralis-mark relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-3xl border border-cyan-300/40 bg-slate-950 text-4xl font-black text-cyan-200 shadow-[0_0_44px_rgba(6,182,212,0.36)]">
+                  N
+                </span>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">NEURALIS</p>
+                  <p className="mt-2 text-2xl font-semibold">Digital partner</p>
+                </div>
+              </div>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {["Web & Mobile", "Plateformes metiers", "Data & IA", "Formation"].map((item) => (
+                  <div key={item} className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 text-sm text-slate-200">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
