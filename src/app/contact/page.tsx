@@ -4,6 +4,8 @@ import { ButtonLink } from "@/components/button-link";
 import { PageHero } from "@/components/page-hero";
 import { contactProjectTypes } from "@/lib/site-data";
 
+const web3FormsAccessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+
 export const metadata: Metadata = {
   title: "Contact",
   description:
@@ -38,11 +40,11 @@ export default function ContactPage() {
               </span>
               <span className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-cyan-300" aria-hidden />
-                +223 00 00 00 00
+                Rendez-vous sur demande
               </span>
               <span className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-cyan-300" aria-hidden />
-                contact@neuralis.ml
+                contact@neuralis-mali.com
               </span>
               <span className="flex items-center gap-3">
                 <MessageCircle className="h-5 w-5 text-cyan-300" aria-hidden />
@@ -55,11 +57,20 @@ export default function ContactPage() {
               </ButtonLink>
             </div>
           </aside>
-          <form className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          <form
+            action="https://api.web3forms.com/submit"
+            method="POST"
+            className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8"
+          >
+            <input type="hidden" name="access_key" value={web3FormsAccessKey} />
+            <input type="hidden" name="subject" value="Nouvelle demande de devis NEURALIS" />
+            <input type="hidden" name="from_name" value="Site web NEURALIS" />
+            <input type="hidden" name="redirect" value="https://neuralis-mali.com/merci" />
+            <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
             <div className="grid gap-5 md:grid-cols-2">
               <label className="grid gap-2 text-sm font-medium text-slate-700">
                 Nom et prenom
-                <input className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="name" placeholder="Votre nom" />
+                <input className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="name" placeholder="Votre nom" required />
               </label>
               <label className="grid gap-2 text-sm font-medium text-slate-700">
                 Organisation
@@ -67,15 +78,15 @@ export default function ContactPage() {
               </label>
               <label className="grid gap-2 text-sm font-medium text-slate-700">
                 Telephone
-                <input className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="phone" placeholder="+223 ..." />
+                <input className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="phone" placeholder="+223 ..." required />
               </label>
               <label className="grid gap-2 text-sm font-medium text-slate-700">
                 Email
-                <input className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="email" placeholder="vous@email.com" type="email" />
+                <input className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="email" placeholder="vous@email.com" type="email" required />
               </label>
               <label className="grid gap-2 text-sm font-medium text-slate-700">
                 Type de projet
-                <select className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="projectType" defaultValue="">
+                <select className="min-h-12 rounded-2xl border border-slate-200 px-4 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="projectType" defaultValue="" required>
                   <option value="" disabled>
                     Selectionner
                   </option>
@@ -90,7 +101,7 @@ export default function ContactPage() {
               </label>
               <label className="grid gap-2 text-sm font-medium text-slate-700 md:col-span-2">
                 Message
-                <textarea className="min-h-36 rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="message" placeholder="Decrivez votre besoin, vos objectifs et votre delai." />
+                <textarea className="min-h-36 rounded-2xl border border-slate-200 px-4 py-3 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" name="message" placeholder="Decrivez votre besoin, vos objectifs et votre delai." required />
               </label>
             </div>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -101,7 +112,7 @@ export default function ContactPage() {
                 Envoyer ma demande
               </button>
               <p className="text-sm text-slate-500">
-                Le formulaire est pret pour une integration email ou CRM future.
+                Votre demande sera envoyee directement a l&apos;equipe NEURALIS.
               </p>
             </div>
           </form>
@@ -110,4 +121,3 @@ export default function ContactPage() {
     </>
   );
 }
-

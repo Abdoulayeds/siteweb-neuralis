@@ -46,9 +46,9 @@ export function Footer() {
               <MapPin className="h-4 w-4 text-cyan-300" aria-hidden />
               Bamako, Mali
             </span>
-            <Link className="flex items-center gap-3 hover:text-cyan-200" href="mailto:contact@neuralis.ml">
+            <Link className="flex items-center gap-3 hover:text-cyan-200" href="mailto:contact@neuralis-mali.com">
               <Mail className="h-4 w-4 text-cyan-300" aria-hidden />
-              contact@neuralis.ml
+              contact@neuralis-mali.com
             </Link>
             <Link className="flex items-center gap-3 hover:text-cyan-200" href="/contact">
               <Phone className="h-4 w-4 text-cyan-300" aria-hidden />
@@ -70,4 +70,3 @@ export function Footer() {
     </footer>
   );
 }
-

@@ -1,4 +1,16 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEURALIS website
+
+Site vitrine Next.js statique deploye sur Render pour `neuralis-mali.com`.
+
+## Formulaire de contact
+
+Le formulaire `/contact` utilise Web3Forms. Ajouter cette variable dans Render avant de redeployer :
+
+```bash
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_key
+```
+
+La page de confirmation est `/merci`.
 
 ## Getting Started
 
