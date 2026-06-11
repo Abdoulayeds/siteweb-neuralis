@@ -204,27 +204,8 @@ main > section.bg-slate-50 textarea::placeholder {
   position: relative;
 }
 
-.neuralis-data-flow span {
-  position: absolute;
-  left: 0;
-  width: max-content;
-  min-width: 100%;
-  transform: translateX(58%);
-  color: rgba(165, 243, 252, 0.16);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  animation: neuralis-flow 28s linear infinite;
-}
-
-.animation-delay-2 {
-  animation-delay: -9s !important;
-}
-
-.animation-delay-4 {
-  animation-delay: -18s !important;
+.neuralis-pulse-ring {
+  animation: neuralis-pulse 2.8s ease-in-out infinite;
 }
 
 @keyframes neuralis-spin {
@@ -233,13 +214,16 @@ main > section.bg-slate-50 textarea::placeholder {
   }
 }
 
-@keyframes neuralis-flow {
-  from {
-    transform: translateX(58%);
+@keyframes neuralis-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.94);
   }
 
-  to {
-    transform: translateX(-100%);
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
   }
 }
 
