@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { PageHero } from "@/components/page-hero";
+import { businessInfo } from "@/lib/business-info";
 import { contactProjectTypes } from "@/lib/site-data";
 
 const web3FormsAccessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
@@ -40,11 +41,11 @@ export default function ContactPage() {
               </span>
               <span className="flex items-center gap-3">
                 <Phone className="h-5 w-5 text-cyan-300" aria-hidden />
-                Rendez-vous sur demande
+                {businessInfo.phoneDisplay}
               </span>
               <span className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-cyan-300" aria-hidden />
-                contact@neuralis-mali.com
+                {businessInfo.email}
               </span>
               <span className="flex items-center gap-3">
                 <MessageCircle className="h-5 w-5 text-cyan-300" aria-hidden />
@@ -52,7 +53,7 @@ export default function ContactPage() {
               </span>
             </div>
             <div className="mt-8">
-              <ButtonLink href="https://wa.me/22300000000" variant="ghost" whatsapp>
+              <ButtonLink href={businessInfo.whatsappUrl} variant="ghost" whatsapp>
                 Contacter sur WhatsApp
               </ButtonLink>
             </div>

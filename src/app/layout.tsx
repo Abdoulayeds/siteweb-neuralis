@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { businessInfo } from "@/lib/business-info";
 import "./globals.css";
-
-const siteUrl = "https://neuralis-mali.com";
 
 export const metadata: Metadata = {
   title: {
@@ -28,7 +27,7 @@ export const metadata: Metadata = {
     "intelligence artificielle Mali",
     "formation digitale Bamako",
   ],
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(businessInfo.siteUrl),
   alternates: {
     canonical: "/",
   },
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
     title: "NEURALIS - Solutions digitales professionnelles au Mali",
     description:
       "Sites web, applications, plateformes metiers, communication digitale, data, IA et formation pour les organisations au Mali.",
-    url: siteUrl,
+    url: businessInfo.siteUrl,
     siteName: "NEURALIS",
     locale: "fr_ML",
     type: "website",
@@ -61,16 +60,17 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
-  name: "NEURALIS",
-  url: siteUrl,
-  logo: `${siteUrl}/logo-neuralis.jpeg`,
-  email: "contact@neuralis-mali.com",
+  name: businessInfo.name,
+  url: businessInfo.siteUrl,
+  logo: `${businessInfo.siteUrl}/logo-neuralis.jpeg`,
+  email: businessInfo.email,
+  telephone: businessInfo.phoneInternational,
   description:
     "NEURALIS accompagne les entreprises, ecoles, PME et organisations au Mali dans la creation de sites web, applications, plateformes metiers, data, IA, automatisation et formation.",
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Bamako",
-    addressCountry: "ML",
+    addressLocality: businessInfo.city,
+    addressCountry: businessInfo.countryCode,
   },
   areaServed: [
     { "@type": "Country", name: "Mali" },
@@ -89,9 +89,10 @@ const jsonLd = {
   ],
   contactPoint: {
     "@type": "ContactPoint",
-    email: "contact@neuralis-mali.com",
+    email: businessInfo.email,
+    telephone: businessInfo.phoneInternational,
     contactType: "customer service",
-    areaServed: "ML",
+    areaServed: businessInfo.countryCode,
     availableLanguage: ["fr"],
   },
 };

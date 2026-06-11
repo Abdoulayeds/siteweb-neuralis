@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Logo } from "./logo";
+import { businessInfo } from "@/lib/business-info";
 import { navItems } from "@/lib/site-data";
 import { seoLandingPages } from "@/lib/seo-landing-pages";
 
@@ -45,17 +46,17 @@ export function Footer() {
           <div className="mt-5 grid gap-4 text-sm text-slate-300">
             <span className="flex items-center gap-3">
               <MapPin className="h-4 w-4 text-cyan-300" aria-hidden />
-              Bamako, Mali
+              {businessInfo.city}, {businessInfo.country}
             </span>
-            <Link className="flex items-center gap-3 hover:text-cyan-200" href="mailto:contact@neuralis-mali.com">
+            <Link className="flex items-center gap-3 hover:text-cyan-200" href={`mailto:${businessInfo.email}`}>
               <Mail className="h-4 w-4 text-cyan-300" aria-hidden />
-              contact@neuralis-mali.com
+              {businessInfo.email}
             </Link>
-            <Link className="flex items-center gap-3 hover:text-cyan-200" href="/contact">
+            <Link className="flex items-center gap-3 hover:text-cyan-200" href={`tel:${businessInfo.phoneInternational}`}>
               <Phone className="h-4 w-4 text-cyan-300" aria-hidden />
-              Rendez-vous sur demande
+              {businessInfo.phoneDisplay}
             </Link>
-            <Link className="flex items-center gap-3 hover:text-cyan-200" href="/contact">
+            <Link className="flex items-center gap-3 hover:text-cyan-200" href={businessInfo.whatsappUrl}>
               <MessageCircle className="h-4 w-4 text-cyan-300" aria-hidden />
               WhatsApp Business
             </Link>

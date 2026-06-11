@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowRight, CheckCircle2, Search, Sparkles } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
+import { businessInfo } from "@/lib/business-info";
 import { seoLandingPages, getSeoLandingPage } from "@/lib/seo-landing-pages";
 
 type PageProps = {
@@ -60,9 +61,10 @@ export default async function SeoLandingPage({ params }: PageProps) {
     description: page.metaDescription,
     provider: {
       "@type": "Organization",
-      name: "NEURALIS",
-      url: "https://neuralis-mali.com",
-      email: "contact@neuralis-mali.com",
+      name: businessInfo.name,
+      url: businessInfo.siteUrl,
+      email: businessInfo.email,
+      telephone: businessInfo.phoneInternational,
     },
     areaServed: [
       { "@type": "Country", name: "Mali" },
