@@ -5,6 +5,10 @@ import { ButtonLink } from "@/components/button-link";
 export const metadata: Metadata = {
   title: "Demande envoyee",
   description: "Confirmation d'envoi de demande de devis NEURALIS.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function MerciPage() {

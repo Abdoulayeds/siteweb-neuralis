@@ -7,7 +7,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/merci"],
     },
-    sitemap: "https://neuralis.ml/sitemap.xml",
+    sitemap: "https://neuralis-mali.com/sitemap.xml",
   };
 }

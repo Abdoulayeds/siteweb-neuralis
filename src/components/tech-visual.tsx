@@ -5,6 +5,11 @@ export function TechVisual() {
     <div className="relative min-h-[430px] rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 shadow-2xl shadow-cyan-950/30 backdrop-blur">
       <div className="absolute -inset-px rounded-[2rem] bg-gradient-to-br from-cyan-300/30 via-transparent to-white/10 opacity-70" />
       <div className="relative overflow-hidden rounded-[1.55rem] border border-white/10 bg-slate-950">
+        <div className="neuralis-data-flow pointer-events-none absolute inset-0 opacity-70" aria-hidden>
+          <span className="top-[18%]">Audit digital - Site web - LMS - ERP - Data - IA</span>
+          <span className="top-[50%] animation-delay-2">Bamako - PME - Ecoles - Organisations - Automatisation</span>
+          <span className="top-[76%] animation-delay-4">Design - Code - Deploiement - Formation - Croissance</span>
+        </div>
         <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
           <div className="flex items-center gap-2">
             <span className="h-3 w-3 rounded-full bg-cyan-400" />
@@ -69,4 +74,3 @@ export function TechVisual() {
     </div>
   );
 }
-

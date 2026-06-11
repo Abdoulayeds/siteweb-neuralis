@@ -13,10 +13,14 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-cyan-300/10 bg-slate-950/88 text-white shadow-[0_12px_50px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-cyan-300/10 bg-slate-950/82 text-white shadow-[0_12px_50px_rgba(2,6,23,0.35)] backdrop-blur-xl">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent" />
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Navigation principale">
+        <nav
+          className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.045] p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] lg:flex"
+          aria-label="Navigation principale"
+        >
           {navItems.map((item) => {
             const active = pathname === item.href;
             return (
@@ -25,11 +29,12 @@ export function Header() {
                 href={item.href}
                 className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition duration-300 ${
                   active
-                    ? "bg-cyan-400 text-slate-950 shadow-[0_10px_28px_rgba(6,182,212,0.25)]"
-                    : "text-slate-300 hover:bg-white/5 hover:text-white"
+                    ? "bg-white text-slate-950 shadow-[0_10px_28px_rgba(6,182,212,0.18)]"
+                    : "text-slate-300 hover:bg-cyan-300/10 hover:text-white"
                 }`}
               >
                 <span className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-cyan-300 transition duration-300 group-hover:scale-x-100" />
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/12 to-transparent transition duration-700 group-hover:translate-x-full" />
                 <span className="relative">{item.label}</span>
               </Link>
             );
