@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Logo } from "./logo";
 import { navItems } from "@/lib/site-data";
+import { seoLandingPages } from "@/lib/seo-landing-pages";
 
 export function Footer() {
   return (
@@ -58,6 +59,22 @@ export function Footer() {
               <MessageCircle className="h-4 w-4 text-cyan-300" aria-hidden />
               WhatsApp Business
             </Link>
+          </div>
+        </div>
+      </div>
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Recherches populaires</h2>
+          <div className="mt-5 flex flex-wrap gap-3">
+            {seoLandingPages.map((page) => (
+              <Link
+                key={page.slug}
+                href={`/${page.slug}`}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-white"
+              >
+                {page.title}
+              </Link>
+            ))}
           </div>
         </div>
       </div>
