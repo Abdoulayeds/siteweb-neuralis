@@ -1,9 +1,15 @@
 import Link from "next/link";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { BriefcaseBusiness, Camera, Mail, MapPin, MessageCircle, Music2, Phone } from "lucide-react";
 import { Logo } from "./logo";
 import { businessInfo } from "@/lib/business-info";
 import { navItems } from "@/lib/site-data";
 import { seoLandingPages } from "@/lib/seo-landing-pages";
+
+const socialIcons = {
+  Instagram: Camera,
+  LinkedIn: BriefcaseBusiness,
+  TikTok: Music2,
+};
 
 export function Footer() {
   return (
@@ -18,6 +24,23 @@ export function Footer() {
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-300">
             <span className="rounded-full border border-white/10 px-3 py-1">Bamako, Mali</span>
             <span className="rounded-full border border-white/10 px-3 py-1">Afrique de l&apos;Ouest</span>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {businessInfo.socials.map((social) => {
+              const Icon = socialIcons[social.label as keyof typeof socialIcons];
+              return (
+                <Link
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Suivre NEURALIS sur ${social.label}`}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-cyan-100"
+                >
+                  <Icon className="h-4 w-4" aria-hidden />
+                </Link>
+              );
+            })}
           </div>
         </div>
         <div>
@@ -60,6 +83,21 @@ export function Footer() {
               <MessageCircle className="h-4 w-4 text-cyan-300" aria-hidden />
               WhatsApp Business
             </Link>
+            {businessInfo.socials.map((social) => {
+              const Icon = socialIcons[social.label as keyof typeof socialIcons];
+              return (
+                <Link
+                  key={social.label}
+                  className="flex items-center gap-3 hover:text-cyan-200"
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon className="h-4 w-4 text-cyan-300" aria-hidden />
+                  {social.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

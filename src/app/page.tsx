@@ -34,9 +34,8 @@ export default function Home() {
               NEURALIS, le partenaire digital des entreprises ambitieuses.
             </h1>
             <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-slate-300">
-              Nous accompagnons les entreprises, ecoles, organisations et porteurs de projets dans leur
-              transformation digitale grace au developpement web et mobile, aux plateformes metiers, a la
-              communication digitale, a la data, a l&apos;automatisation et a l&apos;intelligence artificielle.
+              Sites web, applications, plateformes metiers, communication digitale, data et IA : NEURALIS aide les
+              organisations au Mali a passer de l&apos;idee a une solution digitale claire et utile.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact">Demander un devis</ButtonLink>
@@ -63,12 +62,11 @@ export default function Home() {
             <SectionHeader
               eyebrow="Le probleme"
               title="Votre entreprise a besoin d'une presence digitale solide."
-              description="Aujourd'hui, une entreprise qui n'est pas visible en ligne perd des opportunites. Beaucoup d'organisations utilisent encore des methodes manuelles, des outils disperses ou une communication peu structuree."
+              description="Sans presence en ligne claire ni outils adaptes, une organisation perd des opportunites et du temps."
             />
             <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
               <p className="text-lg font-medium leading-8 text-slate-900">
-                NEURALIS aide les entreprises a passer a un niveau superieur en construisant des solutions
-                digitales utiles, modernes et faciles a utiliser.
+                NEURALIS construit des solutions digitales modernes, utiles et faciles a utiliser.
               </p>
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 {[
@@ -135,7 +133,7 @@ export default function Home() {
             <SectionHeader
               eyebrow="Ecosysteme NEURALIS"
               title="Une marque, plusieurs expertises connectees."
-              description="NEURALIS ne se limite pas a la creation de sites web. La marque est pensee comme un ecosysteme capable d'accompagner une organisation de sa premiere presence digitale jusqu'a l'IA et la data."
+              description="De la presence digitale aux solutions data et IA, NEURALIS accompagne les organisations par etapes."
               inverted
             />
             <div className="grid gap-4 sm:grid-cols-2">
@@ -152,7 +150,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Vision avancee"
             title="Data, automatisation et IA comme prochaine etape naturelle."
-            description="Les services avances enrichissent l'offre sans brouiller le message commercial. Ils deviennent une suite logique une fois que le client a une base digitale solide."
+            description="Une fois la base digitale en place, les donnees, l'automatisation et l'IA aident a aller plus vite."
             align="center"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -170,7 +168,7 @@ export default function Home() {
               <SectionHeader
                 eyebrow="Solutions par secteur"
                 title="Chaque client doit se reconnaitre rapidement."
-                description="Beaucoup de prospects ne demandent pas un ERP ou un LMS. Ils veulent mieux gerer leur ecole, suivre leurs ventes, attirer plus de clients ou automatiser une tache."
+                description="Ecoles, PME, commerces, ONG ou startups : chaque besoin peut devenir une solution simple."
               />
               <div className="mt-8">
                 <ButtonLink href="/solutions" variant="light">
@@ -223,7 +221,7 @@ export default function Home() {
               <SectionHeader
                 eyebrow="Portfolio"
                 title="Des demonstrations pour construire la credibilite des le lancement."
-                description="Le portfolio client se construira progressivement. En attendant, NEURALIS presente des prototypes et demonstrations pour illustrer ses capacites."
+                description="Nos prototypes montrent concretement ce que NEURALIS peut concevoir pour ses clients."
                 inverted
               />
               <div className="mt-8">
@@ -283,7 +281,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Questions frequentes"
             title="Des reponses simples avant le premier rendez-vous."
-            description="Le site doit rassurer les visiteurs non techniques. Cette section aide a comprendre comment demarrer sans jargon."
+            description="Des reponses directes pour demarrer sans jargon."
           />
           <AccordionList items={faqItems} />
         </div>

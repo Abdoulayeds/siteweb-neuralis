@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { BriefcaseBusiness, Camera, Mail, MapPin, MessageCircle, Music2, Phone } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { PageHero } from "@/components/page-hero";
 import { businessInfo } from "@/lib/business-info";
 import { contactProjectTypes } from "@/lib/site-data";
 
 const web3FormsAccessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+
+const socialIcons = {
+  Instagram: Camera,
+  LinkedIn: BriefcaseBusiness,
+  TikTok: Music2,
+};
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -19,7 +25,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Parlons de votre projet digital."
-        description="Vous souhaitez creer un site web, developper une application, digitaliser votre gestion, ameliorer votre communication ou explorer l'IA pour votre organisation ? Contactez NEURALIS."
+        description="Site web, application, gestion, communication, data ou IA : envoyez votre besoin et l'equipe NEURALIS vous repond."
         primaryLabel="Envoyer une demande"
         primaryHref="#formulaire"
         secondaryLabel="Voir les offres"
@@ -31,8 +37,7 @@ export default function ContactPage() {
             <p className="section-eyebrow text-cyan-200">Coordonnees</p>
             <h2 className="mt-4 text-3xl font-semibold">Un premier echange simple pour cadrer le besoin.</h2>
             <p className="mt-5 text-sm leading-7 text-slate-300">
-              Expliquez votre projet, votre organisation et votre priorite. NEURALIS vous proposera une premiere
-              direction claire.
+              Expliquez votre projet et votre priorite. NEURALIS vous proposera une premiere direction claire.
             </p>
             <div className="mt-8 grid gap-5 text-sm text-slate-300">
               <span className="flex items-center gap-3">
@@ -56,6 +61,26 @@ export default function ContactPage() {
               <ButtonLink href={businessInfo.whatsappUrl} variant="ghost" whatsapp>
                 Contacter sur WhatsApp
               </ButtonLink>
+            </div>
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">Reseaux sociaux</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {businessInfo.socials.map((social) => {
+                  const Icon = socialIcons[social.label as keyof typeof socialIcons];
+                  return (
+                    <a
+                      key={social.label}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white"
+                    >
+                      <Icon className="h-4 w-4" aria-hidden />
+                      {social.label}
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </aside>
           <form

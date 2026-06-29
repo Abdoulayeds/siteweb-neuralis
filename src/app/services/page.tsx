@@ -17,7 +17,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Des solutions digitales pour chaque etape de votre croissance."
-        description="Certaines organisations veulent etre plus visibles, d'autres veulent automatiser leur gestion, mieux exploiter leurs donnees ou former leurs equipes. NEURALIS propose des services complementaires pour accompagner cette evolution."
+        description="NEURALIS aide votre organisation a gagner en visibilite, automatiser sa gestion, exploiter ses donnees et former ses equipes."
         secondaryLabel="Voir les offres"
         secondaryHref="/offres"
       />
@@ -44,7 +44,7 @@ export default function ServicesPage() {
                     <h2 className="mt-6 text-balance text-3xl font-semibold text-slate-950 md:text-4xl">
                       {service.title}
                     </h2>
-                    <p className="mt-4 text-lg leading-8 text-slate-600">{service.description}</p>
+                    <p className="mt-4 text-base leading-7 text-slate-600">{service.description}</p>
                     <div className="mt-7">
                       <ButtonLink href="/contact" variant="light">
                         {service.cta}
@@ -86,7 +86,7 @@ export default function ServicesPage() {
           <SectionHeader
             eyebrow="Prochaine etape"
             title="Vous ne savez pas encore quel service choisir ?"
-            description="Expliquez votre situation. NEURALIS vous aide a transformer votre besoin en solution claire, priorisee et realiste."
+            description="Expliquez votre situation. Nous vous aidons a choisir la bonne premiere etape."
             align="center"
           />
           <div className="mt-8">
@@ -97,4 +97,3 @@ export default function ServicesPage() {
     </>
   );
 }
-

@@ -103,7 +103,7 @@ export const allServices = [
     title: "Sites web modernes et professionnels",
     eyebrow: "Creation web",
     description:
-      "Votre site web est souvent le premier contact entre votre organisation et vos futurs clients. NEURALIS cree des sites clairs, rapides, responsive et adaptes a votre secteur d'activite.",
+      "NEURALIS cree des sites clairs, rapides, responsive et adaptes a votre secteur d'activite.",
     icon: MonitorSmartphone,
     forWho: ["Entreprises", "Ecoles", "ONG", "Commerces", "Cabinets", "Entrepreneurs", "Institutions"],
     deliverables: [
@@ -122,7 +122,7 @@ export const allServices = [
     title: "Applications web et mobiles",
     eyebrow: "Developpement sur mesure",
     description:
-      "Quand les outils classiques ne suffisent plus, NEURALIS developpe des applications pour gerer vos clients, vos formations, vos stocks, vos ventes, vos etudiants ou vos activites internes.",
+      "Des applications sur mesure pour gerer clients, formations, stocks, ventes ou activites internes.",
     icon: Code2,
     forWho: ["PME", "Ecoles", "Startups", "Commerces", "Organisations"],
     deliverables: [
@@ -161,7 +161,7 @@ export const allServices = [
     title: "Communication digitale et branding",
     eyebrow: "Image et visibilite",
     description:
-      "Une bonne communication donne confiance et attire les bons clients. NEURALIS aide les marques a construire une presence coherente sur les reseaux sociaux et les supports professionnels.",
+      "Une presence coherente sur les reseaux sociaux et les supports professionnels pour inspirer confiance.",
     icon: Megaphone,
     forWho: ["Entreprises", "Commerces", "Restaurants", "Cabinets", "Entrepreneurs"],
     deliverables: [
@@ -181,7 +181,7 @@ export const allServices = [
     title: "Data, dashboards et reporting",
     eyebrow: "Pilotage par la donnee",
     description:
-      "Les donnees deviennent utiles lorsqu'elles sont bien organisees et faciles a comprendre. NEURALIS cree des tableaux de bord et rapports pour aider les responsables a suivre leurs performances.",
+      "Des tableaux de bord et rapports clairs pour suivre les performances et mieux decider.",
     icon: ChartNoAxesCombined,
     forWho: ["PME", "Ecoles", "Directions", "Equipes commerciales", "Organisations"],
     deliverables: [
@@ -200,7 +200,7 @@ export const allServices = [
     title: "IA et automatisation",
     eyebrow: "Productivite augmentee",
     description:
-      "L'intelligence artificielle peut aider les organisations a gagner du temps, repondre plus vite aux clients, analyser des documents et automatiser certaines taches.",
+      "Chatbots, assistants et automatisations pour gagner du temps et repondre plus vite.",
     icon: Bot,
     forWho: ["Services clients", "Ecoles", "PME", "Equipes administratives", "Entrepreneurs"],
     deliverables: [

@@ -17,7 +17,7 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Solutions"
         title="Des solutions pensees par besoin client, pas seulement par technologie."
-        description="Un client ne demande pas toujours un LMS, un ERP ou un dashboard. Il veut mieux gerer son ecole, suivre ses ventes, attirer plus de clients ou automatiser une tache. NEURALIS traduit ces besoins en solutions digitales concretes."
+        description="Mieux gerer une ecole, suivre les ventes, attirer des clients ou automatiser une tache : NEURALIS transforme ces besoins en solutions concretes."
         secondaryLabel="Voir les services"
         secondaryHref="/services"
       />
@@ -26,7 +26,7 @@ export default function SolutionsPage() {
           <SectionHeader
             eyebrow="Secteurs"
             title="Chaque organisation trouve un chemin clair vers le digital."
-            description="Les solutions NEURALIS s'adaptent au niveau de maturite, aux objectifs et aux realites de chaque client."
+            description="Nos solutions s'adaptent au niveau, aux objectifs et aux realites de chaque client."
             align="center"
           />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -57,8 +57,7 @@ export default function SolutionsPage() {
             La bonne solution commence par le bon diagnostic.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-300">
-            NEURALIS peut commencer par un audit rapide de votre presence digitale, de vos outils ou de votre
-            processus actuel pour proposer une premiere etape concrete.
+            Un audit rapide permet d&apos;identifier la premiere action utile pour votre organisation.
           </p>
           <div className="mt-9">
             <ButtonLink href="/contact">Demander un diagnostic</ButtonLink>
@@ -68,4 +67,3 @@ export default function SolutionsPage() {
     </>
   );
 }
-

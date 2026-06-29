@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | NEURALIS",
   },
   description:
-    "NEURALIS accompagne les entreprises, ecoles et organisations a Bamako et au Mali : sites web, applications, LMS, ERP, data, IA, automatisation et formation.",
+    "NEURALIS accompagne les entreprises, ecoles et organisations a Bamako et au Mali : sites web, applications, LMS, ERP, dashboards, data, IA, automatisation et formation.",
   keywords: [
     "NEURALIS",
     "NEURALIS Mali",
@@ -26,10 +26,14 @@ export const metadata: Metadata = {
     "dashboard Mali",
     "intelligence artificielle Mali",
     "formation digitale Bamako",
+    "concepteur de sites web Bamako",
+    "meilleure agence digitale Mali",
+    "chatbot IA Mali",
+    "dashboard entreprise Mali",
   ],
   metadataBase: new URL(businessInfo.siteUrl),
   alternates: {
-    canonical: "/",
+    canonical: businessInfo.siteUrl,
   },
   openGraph: {
     title: "NEURALIS - Solutions digitales professionnelles au Mali",
@@ -63,8 +67,11 @@ const jsonLd = {
   name: businessInfo.name,
   url: businessInfo.siteUrl,
   logo: `${businessInfo.siteUrl}/logo-neuralis.jpeg`,
+  image: `${businessInfo.siteUrl}/logo-neuralis.jpeg`,
+  sameAs: businessInfo.socials.map((social) => social.href),
   email: businessInfo.email,
   telephone: businessInfo.phoneInternational,
+  priceRange: "$$",
   description:
     "NEURALIS accompagne les entreprises, ecoles, PME et organisations au Mali dans la creation de sites web, applications, plateformes metiers, data, IA, automatisation et formation.",
   address: {
@@ -87,6 +94,26 @@ const jsonLd = {
     "Automatisation",
     "Formation digitale",
   ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Services digitaux NEURALIS",
+    itemListElement: [
+      "Creation de sites web a Bamako",
+      "Developpement d'applications web et mobiles au Mali",
+      "LMS et ERP pour ecoles",
+      "ERP et outils de gestion PME",
+      "Dashboards, data et reporting",
+      "Chatbots IA et automatisation",
+      "Formation et conseil digital",
+    ].map((name) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name,
+        areaServed: businessInfo.country,
+      },
+    })),
+  },
   contactPoint: {
     "@type": "ContactPoint",
     email: businessInfo.email,
