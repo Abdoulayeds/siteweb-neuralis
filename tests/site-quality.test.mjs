@@ -35,6 +35,7 @@ test("publishes complete share, indexing, and web-app metadata", async () => {
   assert.match(layout, /applicationName:\s*"NEURALIS"/);
   assert.match(manifest, /theme_color/);
   assert.match(manifest, /display:\s*"standalone"/);
+  assert.match(manifest, /export const dynamic = "force-static"/);
   assert.match(openGraphImage, /export const dynamic = "force-static"/);
   assert.match(sitemap, /businessInfo\.siteUrl/);
 });
