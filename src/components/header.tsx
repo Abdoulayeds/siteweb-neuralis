@@ -1,19 +1,14 @@
 "use client";
 
-import { BriefcaseBusiness, Camera, Menu, Music2, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ButtonLink } from "./button-link";
 import { Logo } from "./logo";
+import { SocialIcon } from "./social-icon";
 import { businessInfo } from "@/lib/business-info";
 import { navItems } from "@/lib/site-data";
-
-const socialIcons = {
-  Instagram: Camera,
-  LinkedIn: BriefcaseBusiness,
-  TikTok: Music2,
-};
 
 export function Header() {
   const pathname = usePathname();
@@ -49,7 +44,6 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-2 lg:flex">
           {businessInfo.socials.map((social) => {
-            const Icon = socialIcons[social.label as keyof typeof socialIcons];
             return (
               <Link
                 key={social.label}
@@ -59,7 +53,7 @@ export function Header() {
                 aria-label={`NEURALIS sur ${social.label}`}
                 className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-white"
               >
-                <Icon className="h-4 w-4" aria-hidden />
+                <SocialIcon name={social.label as "Instagram" | "LinkedIn" | "TikTok"} className="h-4 w-4" />
               </Link>
             );
           })}
@@ -97,7 +91,6 @@ export function Header() {
             </div>
             <div className="flex gap-3 pt-2">
               {businessInfo.socials.map((social) => {
-                const Icon = socialIcons[social.label as keyof typeof socialIcons];
                 return (
                   <Link
                     key={social.label}
@@ -107,7 +100,7 @@ export function Header() {
                     aria-label={`NEURALIS sur ${social.label}`}
                     className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-white"
                   >
-                    <Icon className="h-4 w-4" aria-hidden />
+                    <SocialIcon name={social.label as "Instagram" | "LinkedIn" | "TikTok"} className="h-4 w-4" />
                   </Link>
                 );
               })}

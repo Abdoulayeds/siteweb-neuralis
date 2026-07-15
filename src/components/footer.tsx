@@ -1,15 +1,10 @@
 import Link from "next/link";
-import { BriefcaseBusiness, Camera, Mail, MapPin, MessageCircle, Music2, Phone } from "lucide-react";
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Logo } from "./logo";
 import { businessInfo } from "@/lib/business-info";
 import { navItems } from "@/lib/site-data";
 import { seoLandingPages } from "@/lib/seo-landing-pages";
-
-const socialIcons = {
-  Instagram: Camera,
-  LinkedIn: BriefcaseBusiness,
-  TikTok: Music2,
-};
+import { SocialIcon } from "./social-icon";
 
 export function Footer() {
   return (
@@ -27,7 +22,6 @@ export function Footer() {
           </div>
           <div className="mt-6 flex flex-wrap gap-3">
             {businessInfo.socials.map((social) => {
-              const Icon = socialIcons[social.label as keyof typeof socialIcons];
               return (
                 <Link
                   key={social.label}
@@ -37,7 +31,7 @@ export function Footer() {
                   aria-label={`Suivre NEURALIS sur ${social.label}`}
                   className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-cyan-100"
                 >
-                  <Icon className="h-4 w-4" aria-hidden />
+                  <SocialIcon name={social.label as "Instagram" | "LinkedIn" | "TikTok"} className="h-4 w-4" />
                 </Link>
               );
             })}
@@ -84,7 +78,6 @@ export function Footer() {
               WhatsApp Business
             </Link>
             {businessInfo.socials.map((social) => {
-              const Icon = socialIcons[social.label as keyof typeof socialIcons];
               return (
                 <Link
                   key={social.label}
@@ -93,7 +86,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Icon className="h-4 w-4 text-cyan-300" aria-hidden />
+                  <SocialIcon name={social.label as "Instagram" | "LinkedIn" | "TikTok"} className="h-4 w-4 text-cyan-300" />
                   {social.label}
                 </Link>
               );

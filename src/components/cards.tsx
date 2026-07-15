@@ -16,7 +16,7 @@ export function ServiceCard({ title, description, icon: Icon, href, items = [], 
       className={
         dark
           ? "group relative h-full overflow-hidden rounded-3xl border border-white/10 bg-white/[0.045] p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:bg-white/[0.08] hover:shadow-[0_22px_70px_rgba(6,182,212,0.16)]"
-          : "group relative h-full overflow-hidden rounded-3xl border border-cyan-200/20 bg-white/[0.055] p-6 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:bg-white/[0.08] hover:shadow-[0_22px_70px_rgba(6,182,212,0.14)]"
+          : "group relative h-full overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_38px_rgba(15,23,42,0.05)] transition duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:shadow-[0_22px_70px_rgba(15,23,42,0.1)]"
       }
     >
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
@@ -60,7 +60,7 @@ type OfferCardProps = {
 
 export function OfferCard({ title, audience, result, includes, icon: Icon, featured = false }: OfferCardProps) {
   return (
-    <article className={featured ? "group relative overflow-hidden rounded-3xl border border-cyan-300 bg-slate-950 p-6 text-white shadow-2xl shadow-cyan-950/20 transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_80px_rgba(6,182,212,0.2)]" : "group relative overflow-hidden rounded-3xl border border-cyan-200/20 bg-white/[0.055] p-6 shadow-sm backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:bg-white/[0.08] hover:shadow-[0_22px_70px_rgba(6,182,212,0.14)]"}>
+    <article className={featured ? "group relative overflow-hidden rounded-3xl border border-cyan-300 bg-slate-950 p-6 text-white shadow-2xl shadow-cyan-950/20 transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_80px_rgba(6,182,212,0.2)]" : "group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_12px_38px_rgba(15,23,42,0.05)] transition duration-300 hover:-translate-y-1 hover:border-cyan-300/60 hover:shadow-[0_22px_70px_rgba(15,23,42,0.1)]"}>
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
       {featured ? (
         <span className="absolute right-5 top-5 rounded-full bg-cyan-400 px-3 py-1 text-xs font-semibold text-slate-950">

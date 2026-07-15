@@ -18,35 +18,60 @@ import {
   stats,
 } from "@/lib/site-data";
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.title,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.description,
+    },
+  })),
+};
+
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden bg-slate-950 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(6,182,212,0.28),transparent_30%),radial-gradient(circle_at_85%_20%,rgba(255,255,255,0.08),transparent_24%),linear-gradient(135deg,#0F172A,#020617_72%)]" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+      />
+      <section className="relative isolate overflow-hidden bg-slate-950 text-white">
+        <div className="hero-grid absolute inset-0 opacity-45" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(6,182,212,0.3),transparent_30%),radial-gradient(circle_at_82%_28%,rgba(14,116,144,0.2),transparent_28%),linear-gradient(135deg,rgba(15,23,42,.35),#020617_76%)]" />
+        <div className="absolute -left-24 top-28 h-72 w-72 rounded-full border border-cyan-300/10" />
+        <div className="absolute -left-12 top-40 h-44 w-44 rounded-full border border-cyan-300/15" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-cyan-300/50 to-transparent" />
-        <div className="relative mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/10 px-4 py-2 text-sm font-medium text-cyan-100">
-              <span className="h-2 w-2 rounded-full bg-cyan-300" />
-              Basee a Bamako, construite pour l&apos;Afrique digitale
+        <div className="relative mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-16 px-4 py-20 sm:px-6 lg:grid-cols-[1.04fr_0.96fr] lg:px-8 lg:py-24">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-3 rounded-full border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100 backdrop-blur">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-50" />
+                <span className="relative h-2 w-2 rounded-full bg-cyan-300" />
+              </span>
+              {"De l'idee au lancement"} · Bamako
             </div>
-            <h1 className="mt-7 max-w-3xl text-balance text-5xl font-semibold leading-[1.02] md:text-6xl xl:text-7xl">
-              NEURALIS, le partenaire digital des entreprises ambitieuses.
+            <h1 className="mt-8 max-w-3xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.04em] sm:text-6xl xl:text-[4.65rem]">
+              Des solutions digitales qui font <span className="text-cyan-300">avancer</span> votre entreprise.
             </h1>
-            <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-slate-300">
-              Sites web, applications, plateformes metiers, communication digitale, data et IA : NEURALIS aide les
-              organisations au Mali a passer de l&apos;idee a une solution digitale claire et utile.
+            <p className="mt-7 max-w-2xl text-pretty text-lg leading-8 text-slate-300 sm:text-xl sm:leading-9">
+              Création de sites web, applications, plateformes métiers, data et IA : NEURALIS transforme vos idées
+              en outils utiles, performants et pensés pour les réalités du Mali.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact">Demander un devis</ButtonLink>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact">Démarrer mon projet</ButtonLink>
               <ButtonLink href="/services" variant="ghost">
-                Decouvrir nos services
+                Explorer nos expertises
               </ButtonLink>
             </div>
-            <div className="mt-10 grid gap-3 sm:grid-cols-2">
+            <div className="mt-11 grid gap-x-6 gap-y-3 border-t border-white/10 pt-7 sm:grid-cols-2">
               {socialProof.map((item) => (
                 <div key={item} className="flex items-center gap-3 text-sm text-slate-300">
-                  <CheckCircle2 className="h-4 w-4 text-cyan-300" aria-hidden />
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-300/10">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-cyan-300" aria-hidden />
+                  </span>
                   <span>{item}</span>
                 </div>
               ))}

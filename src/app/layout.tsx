@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ContactRail } from "@/components/contact-rail";
 import { businessInfo } from "@/lib/business-info";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  applicationName: "NEURALIS",
   title: {
     default: "NEURALIS - Creation de sites web, applications et solutions digitales au Mali",
     template: "%s | NEURALIS",
@@ -32,6 +34,26 @@ export const metadata: Metadata = {
     "dashboard entreprise Mali",
   ],
   metadataBase: new URL(businessInfo.siteUrl),
+  authors: [{ name: "NEURALIS", url: businessInfo.siteUrl }],
+  creator: "NEURALIS",
+  publisher: "NEURALIS",
+  category: "technology",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   alternates: {
     canonical: businessInfo.siteUrl,
   },
@@ -45,10 +67,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo-neuralis.jpeg",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "NEURALIS Mali",
+        alt: "NEURALIS, partenaire digital des entreprises au Mali",
       },
     ],
   },
@@ -57,7 +79,12 @@ export const metadata: Metadata = {
     title: "NEURALIS - Solutions digitales professionnelles au Mali",
     description:
       "Creation de sites web, applications, LMS, ERP, data, IA et formation pour les organisations au Mali.",
-    images: ["/logo-neuralis.jpeg"],
+    images: ["/opengraph-image.png"],
+  },
+  other: {
+    "geo.region": "ML-BKO",
+    "geo.placename": "Bamako",
+    "content-language": "fr-ML",
   },
 };
 
@@ -132,12 +159,16 @@ export default function RootLayout({
   return (
     <html lang="fr" className="scroll-smooth">
       <body>
+        <a href="#contenu" className="skip-link">
+          Aller au contenu
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
         <Header />
-        <main>{children}</main>
+        <main id="contenu">{children}</main>
+        <ContactRail />
         <Footer />
       </body>
     </html>

@@ -16,7 +16,7 @@ export const businessInfo = {
     },
     {
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/neuralis-mali-443293419?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+      href: "https://www.linkedin.com/in/neuralis-mali-443293419/",
       handle: "NEURALIS Mali",
     },
     {
