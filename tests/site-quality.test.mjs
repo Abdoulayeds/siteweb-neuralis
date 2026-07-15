@@ -22,9 +22,10 @@ test("uses reusable official social brand marks in every navigation surface", as
 });
 
 test("publishes complete share, indexing, and web-app metadata", async () => {
-  const [layout, manifest, sitemap] = await Promise.all([
+  const [layout, manifest, openGraphImage, sitemap] = await Promise.all([
     read("src/app/layout.tsx"),
     read("src/app/manifest.ts"),
+    read("src/app/opengraph-image.tsx"),
     read("src/app/sitemap.ts"),
   ]);
 
@@ -34,6 +35,7 @@ test("publishes complete share, indexing, and web-app metadata", async () => {
   assert.match(layout, /applicationName:\s*"NEURALIS"/);
   assert.match(manifest, /theme_color/);
   assert.match(manifest, /display:\s*"standalone"/);
+  assert.match(openGraphImage, /export const dynamic = "force-static"/);
   assert.match(sitemap, /businessInfo\.siteUrl/);
 });
 
