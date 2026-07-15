@@ -32,6 +32,7 @@ test("publishes complete share, indexing, and web-app metadata", async () => {
   assert.match(layout, /robots:\s*\{/);
   assert.match(layout, /formatDetection:\s*\{/);
   assert.match(layout, /\/opengraph-image/);
+  assert.doesNotMatch(layout, /opengraph-image\.png/);
   assert.match(layout, /applicationName:\s*"NEURALIS"/);
   assert.match(manifest, /theme_color/);
   assert.match(manifest, /display:\s*"standalone"/);
