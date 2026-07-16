@@ -112,3 +112,16 @@ test("adds progressive page motion while preserving reduced-motion safety", asyn
   assert.match(styles, /animation-timeline:\s*view\(\)/);
   assert.match(styles, /@media \(prefers-reduced-motion:\s*reduce\)/);
 });
+
+test("keeps the guided homepage journey dark without white-on-white fallbacks", async () => {
+  const [homepage, accordion] = await Promise.all([
+    read("src/app/page.tsx"),
+    read("src/components/accordion-list.tsx"),
+  ]);
+
+  assert.doesNotMatch(homepage, /border-cyan-300\/20 bg-white p-6 text-slate-950/);
+  assert.doesNotMatch(accordion, /border-slate-200 bg-white/);
+  assert.doesNotMatch(accordion, /font-semibold text-slate-950/);
+  assert.match(homepage, /bg-slate-900\/90/);
+  assert.match(accordion, /bg-slate-950\/40/);
+});
