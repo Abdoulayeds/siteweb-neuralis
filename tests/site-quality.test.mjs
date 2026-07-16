@@ -125,3 +125,10 @@ test("keeps the guided homepage journey dark without white-on-white fallbacks", 
   assert.match(homepage, /bg-slate-900\/90/);
   assert.match(accordion, /bg-slate-950\/40/);
 });
+
+test("keeps absolute hero decorations out of the document flow", async () => {
+  const styles = await read("src/app/globals.css");
+
+  assert.doesNotMatch(styles, /main > section > \*\s*\{[^}]*position:\s*relative/s);
+  assert.match(styles, /main > section > :not\(\.absolute\)/);
+});
