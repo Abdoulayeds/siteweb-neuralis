@@ -69,3 +69,46 @@ test("homepage hero states a concrete outcome and avoids fabricated progress met
   assert.match(visual, /Livraison/);
   assert.match(visual, /Accompagnement/);
 });
+
+test("keeps every legacy light surface readable inside the dark premium theme", async () => {
+  const [layout, styles, landing] = await Promise.all([
+    read("src/app/layout.tsx"),
+    read("src/app/globals.css"),
+    read("src/app/[landing]/page.tsx"),
+  ]);
+
+  assert.match(layout, /className="theme-dark/);
+  assert.match(styles, /--surface-base:/);
+  assert.match(styles, /--surface-raised:/);
+  assert.match(styles, /\.theme-dark main \.bg-white/);
+  assert.match(styles, /\.theme-dark main \.text-slate-950/);
+  assert.match(styles, /\.theme-dark main \.text-white/);
+  assert.match(styles, /\.theme-dark main input/);
+  assert.match(landing, /bg-white[\s\S]*text-white/);
+});
+
+test("renders a performant and accessible neural network background", async () => {
+  const [layout, neuralBackground, styles] = await Promise.all([
+    read("src/app/layout.tsx"),
+    read("src/components/neural-background.tsx"),
+    read("src/app/globals.css"),
+  ]);
+
+  assert.match(layout, /<NeuralBackground\s*\/>/);
+  assert.match(neuralBackground, /<canvas/);
+  assert.match(neuralBackground, /aria-hidden="true"/);
+  assert.match(neuralBackground, /prefers-reduced-motion/);
+  assert.match(neuralBackground, /visibilitychange/);
+  assert.match(neuralBackground, /pointermove/);
+  assert.match(neuralBackground, /Math\.min\(window\.devicePixelRatio[^,]*,\s*1\.5\)/);
+  assert.match(neuralBackground, /FRAME_INTERVAL\s*=\s*1000\s*\/\s*30/);
+  assert.match(styles, /\.neural-background/);
+});
+
+test("adds progressive page motion while preserving reduced-motion safety", async () => {
+  const styles = await read("src/app/globals.css");
+
+  assert.match(styles, /@supports \(animation-timeline:\s*view\(\)\)/);
+  assert.match(styles, /animation-timeline:\s*view\(\)/);
+  assert.match(styles, /@media \(prefers-reduced-motion:\s*reduce\)/);
+});
