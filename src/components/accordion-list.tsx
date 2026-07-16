@@ -37,7 +37,7 @@ export function AccordionList({ items, variant = "dark" }: AccordionListProps) {
             key={item.title}
             className={
               light
-                ? "overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:border-cyan-300"
+                ? "overflow-hidden rounded-3xl border border-cyan-300/15 bg-slate-950/40 shadow-sm transition hover:border-cyan-300/60 hover:bg-slate-950/60"
                 : "overflow-hidden rounded-3xl border border-white/10 bg-white/[0.055] shadow-sm transition hover:border-cyan-300/50"
             }
           >
@@ -48,30 +48,22 @@ export function AccordionList({ items, variant = "dark" }: AccordionListProps) {
               aria-expanded={open}
             >
               {Icon ? (
-                <span
-                  className={
-                    light
-                      ? "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-700"
-                      : "flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cyan-300/10 text-cyan-200"
-                  }
-                >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-cyan-300/10 text-cyan-200">
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
               ) : null}
               <span className="min-w-0 flex-1">
-                <span className={light ? "block text-base font-semibold text-slate-950" : "block text-base font-semibold text-white"}>
+                <span className="block text-base font-semibold text-white">
                   {item.title}
                 </span>
                 {item.action ? (
-                  <span className={light ? "mt-1 block text-xs font-semibold text-cyan-700" : "mt-1 block text-xs font-semibold text-cyan-200"}>
+                  <span className="mt-1 block text-xs font-semibold text-cyan-200">
                     {item.action}
                   </span>
                 ) : null}
               </span>
               <ChevronDown
-                className={`h-5 w-5 shrink-0 transition duration-300 ${open ? "rotate-180" : ""} ${
-                  light ? "text-slate-500" : "text-cyan-200"
-                }`}
+                className={`h-5 w-5 shrink-0 text-cyan-200 transition duration-300 ${open ? "rotate-180" : ""}`}
                 aria-hidden
               />
             </button>
@@ -79,7 +71,7 @@ export function AccordionList({ items, variant = "dark" }: AccordionListProps) {
               className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
             >
               <div className="overflow-hidden">
-                <p className={light ? "px-5 pb-5 pl-20 text-sm leading-7 text-slate-600" : "px-5 pb-5 pl-20 text-sm leading-7 text-slate-300"}>
+                <p className="px-5 pb-5 pl-20 text-sm leading-7 text-slate-300">
                   {item.description}
                 </p>
               </div>

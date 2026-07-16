@@ -112,13 +112,13 @@ export default function Home() {
 
       <section className="section-padding bg-slate-950 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-10 rounded-[2rem] border border-cyan-300/20 bg-white p-6 text-slate-950 shadow-[0_30px_100px_rgba(6,182,212,0.16)] md:p-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div className="grid gap-10 rounded-[2rem] border border-cyan-300/20 bg-slate-900/90 p-6 text-white shadow-[0_30px_100px_rgba(6,182,212,0.16)] backdrop-blur-xl md:p-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
             <div>
-              <p className="section-eyebrow text-cyan-700">Parcours simple</p>
-              <h2 className="mt-3 text-balance text-3xl font-semibold text-slate-950 md:text-5xl">
+              <p className="section-eyebrow text-cyan-300">Parcours simple</p>
+              <h2 className="mt-3 text-balance text-3xl font-semibold text-white md:text-5xl">
                 Pas besoin d&apos;etre technique pour demarrer.
               </h2>
-              <p className="mt-5 text-lg leading-8 text-slate-600">
+              <p className="mt-5 text-lg leading-8 text-slate-300">
                 Choisissez votre situation. NEURALIS traduit votre besoin en solution claire, avec les bonnes
                 priorites et les prochaines etapes.
               </p>
