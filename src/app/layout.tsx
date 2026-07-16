@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ContactRail } from "@/components/contact-rail";
+import { NeuralBackground } from "@/components/neural-background";
 import { businessInfo } from "@/lib/business-info";
 import "./globals.css";
 
@@ -158,10 +159,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body>
+      <body className="theme-dark">
         <a href="#contenu" className="skip-link">
           Aller au contenu
         </a>
+        <NeuralBackground />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
