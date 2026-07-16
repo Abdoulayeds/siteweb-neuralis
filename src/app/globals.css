@@ -161,7 +161,7 @@ textarea {
   mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
 }
 
-.theme-dark main > section > * {
+.theme-dark main > section > :not(.absolute) {
   position: relative;
   z-index: 1;
 }
@@ -365,7 +365,7 @@ textarea {
 }
 
 @supports (animation-timeline: view()) {
-  .theme-dark main > section > div {
+  .theme-dark main > section > :not(.absolute) {
     animation: neuralis-rise both linear;
     animation-timeline: view();
     animation-range: entry 2% cover 28%;
