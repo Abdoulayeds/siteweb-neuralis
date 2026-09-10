@@ -1,119 +1,109 @@
 import Link from "next/link";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "./logo";
 import { businessInfo } from "@/lib/business-info";
 import { navItems } from "@/lib/site-data";
 import { seoLandingPages } from "@/lib/seo-landing-pages";
 import { SocialIcon } from "./social-icon";
 
+const expertiseLinks = [
+  { id: "sites-web", label: "Sites web" },
+  { id: "applications", label: "Applications web et mobiles" },
+  { id: "plateformes", label: "Plateformes métiers" },
+  { id: "communication", label: "Communication digitale" },
+  { id: "data", label: "Data et tableaux de bord" },
+  { id: "ia", label: "IA et automatisation" },
+  { id: "formation", label: "Formation" },
+  { id: "consulting", label: "Conseil et audit" },
+];
+
+const footerLink = "w-fit rounded-sm text-sm leading-6 text-slate-400 transition-colors hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 motion-reduce:transition-none";
+
 export function Footer() {
   return (
-    <footer className="bg-slate-950 text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
+    <footer className="border-t border-white/10 bg-[#07111f] text-white">
+      <div className="studio-container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_1.1fr_1.15fr] lg:gap-8 lg:py-20">
         <div>
           <Logo dark />
-          <p className="mt-6 max-w-sm text-sm leading-7 text-slate-300">
-            NEURALIS accompagne les entreprises, ecoles et organisations dans leur transformation digitale :
-            sites web, applications, plateformes metiers, communication, data, IA et formation.
+          <p className="mt-6 max-w-xs text-sm leading-7 text-slate-400">
+            Des outils numériques utiles, conçus pour les entreprises et les organisations qui font avancer le Mali.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-300">
-            <span className="rounded-full border border-white/10 px-3 py-1">Bamako, Mali</span>
-            <span className="rounded-full border border-white/10 px-3 py-1">Afrique de l&apos;Ouest</span>
-          </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            {businessInfo.socials.map((social) => {
-              return (
-                <Link
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Suivre NEURALIS sur ${social.label}`}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-slate-300 transition hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-cyan-100"
-                >
-                  <SocialIcon name={social.label as "Instagram" | "LinkedIn" | "TikTok"} className="h-4 w-4" />
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Navigation</h2>
-          <div className="mt-5 grid gap-3">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className="text-sm text-slate-300 hover:text-cyan-200">
-                {item.label}
+          <p className="mt-4 text-xs leading-6 text-slate-400">Bamako, Mali · Afrique de l&apos;Ouest</p>
+          <div className="mt-6 flex gap-3">
+            {businessInfo.socials.map((social) => (
+              <Link
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`NEURALIS sur ${social.label} (nouvel onglet)`}
+                className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 text-slate-400 transition-colors hover:border-cyan-300/40 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 motion-reduce:transition-none"
+              >
+                <SocialIcon name={social.label as "Instagram" | "LinkedIn" | "TikTok"} className="h-4 w-4" />
               </Link>
             ))}
           </div>
         </div>
+        <nav aria-label="Navigation de pied de page">
+          <h2 className="text-sm font-semibold text-white">Explorer</h2>
+          <ul className="mt-5 grid gap-2.5">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className={footerLink}>
+                  {item.href === "/a-propos" ? "À propos" : item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <nav aria-label="Nos expertises">
+          <h2 className="text-sm font-semibold text-white">Nos expertises</h2>
+          <ul className="mt-5 grid gap-2.5">
+            {expertiseLinks.map((expertise) => (
+              <li key={expertise.id}>
+                <Link href={`/services/${expertise.id}`} className={footerLink}>{expertise.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <div>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Expertises</h2>
-          <div className="mt-5 grid gap-3 text-sm text-slate-300">
-            <span>Sites web</span>
-            <span>Applications web/mobile</span>
-            <span>Plateformes metiers</span>
-            <span>Data et dashboards</span>
-            <span>IA et automatisation</span>
-            <span>Formation</span>
-          </div>
-        </div>
-        <div>
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Contact</h2>
-          <div className="mt-5 grid gap-4 text-sm text-slate-300">
-            <span className="flex items-center gap-3">
-              <MapPin className="h-4 w-4 text-cyan-300" aria-hidden />
+          <h2 className="text-sm font-semibold text-white">Parlons de votre projet</h2>
+          <address className="mt-5 grid gap-4 not-italic">
+            <p className="flex items-center gap-3 text-sm text-slate-400">
+              <MapPin className="h-4 w-4 shrink-0 text-cyan-200/70" aria-hidden="true" />
               {businessInfo.city}, {businessInfo.country}
-            </span>
-            <Link className="flex items-center gap-3 hover:text-cyan-200" href={`mailto:${businessInfo.email}`}>
-              <Mail className="h-4 w-4 text-cyan-300" aria-hidden />
-              {businessInfo.email}
+            </p>
+            <Link className={`${footerLink} flex items-start gap-3`} href={`mailto:${businessInfo.email}`}>
+              <Mail className="mt-1 h-4 w-4 shrink-0 text-cyan-200/70" aria-hidden="true" />
+              <span className="break-all">{businessInfo.email}</span>
             </Link>
-            <Link className="flex items-center gap-3 hover:text-cyan-200" href={`tel:${businessInfo.phoneInternational}`}>
-              <Phone className="h-4 w-4 text-cyan-300" aria-hidden />
+            <Link className={`${footerLink} flex items-center gap-3`} href={`tel:${businessInfo.phoneInternational}`}>
+              <Phone className="h-4 w-4 shrink-0 text-cyan-200/70" aria-hidden="true" />
               {businessInfo.phoneDisplay}
             </Link>
-            <Link className="flex items-center gap-3 hover:text-cyan-200" href={businessInfo.whatsappUrl}>
-              <MessageCircle className="h-4 w-4 text-cyan-300" aria-hidden />
+            <Link className={`${footerLink} flex items-center gap-3`} href={businessInfo.whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <SocialIcon name="WhatsApp" className="h-4 w-4 shrink-0 text-cyan-200/70" />
               WhatsApp Business
             </Link>
-            {businessInfo.socials.map((social) => {
-              return (
-                <Link
-                  key={social.label}
-                  className="flex items-center gap-3 hover:text-cyan-200"
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <SocialIcon name={social.label as "Instagram" | "LinkedIn" | "TikTok"} className="h-4 w-4 text-cyan-300" />
-                  {social.label}
-                </Link>
-              );
-            })}
-          </div>
+          </address>
         </div>
       </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200">Recherches populaires</h2>
-          <div className="mt-5 flex flex-wrap gap-3">
+      <div className="studio-container">
+        <details className="border-t border-white/10 py-5">
+          <summary className="w-fit cursor-pointer rounded-sm text-xs font-medium text-slate-400 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300">
+            Expertises au Mali
+          </summary>
+          <nav className="mt-5 grid gap-3 pb-2 sm:grid-cols-2 lg:grid-cols-3" aria-label="Expertises locales">
             {seoLandingPages.map((page) => (
-              <Link
-                key={page.slug}
-                href={`/${page.slug}`}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-300/40 hover:bg-cyan-300/10 hover:text-white"
-              >
-                {page.title}
+              <Link key={page.slug} href={`/${page.slug}`} className={footerLink}>
+                {page.title.replace("Creation", "Création").replace("Developpement", "Développement").replace("ecoles", "écoles")}
               </Link>
             ))}
-          </div>
-        </div>
-      </div>
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-          <p>2026 NEURALIS. Tous droits reserves.</p>
-          <p>Le partenaire digital des entreprises ambitieuses.</p>
+          </nav>
+        </details>
+        <div className="flex flex-col gap-2 border-t border-white/10 py-6 text-xs leading-6 text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 NEURALIS. Tous droits réservés.</p>
+          <p>Le numérique, au service de vos ambitions.</p>
         </div>
       </div>
     </footer>

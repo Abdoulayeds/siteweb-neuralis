@@ -21,46 +21,46 @@ export type SeoLandingPage = {
 export const seoLandingPages: SeoLandingPage[] = [
   {
     slug: "creation-site-web-bamako",
-    title: "Creation site web Bamako",
-    metaTitle: "Creation site web a Bamako et au Mali",
+    title: "Création de sites web à Bamako",
+    metaTitle: "Création de sites web à Bamako et au Mali",
     metaDescription:
-      "NEURALIS cree des sites web professionnels a Bamako : site vitrine, institutionnel, e-commerce, landing page, SEO local, formulaire et WhatsApp.",
+      "NEURALIS crée des sites web à Bamako : sites vitrines, institutionnels et marchands, adaptés au mobile, avec formulaire de contact et WhatsApp.",
     eyebrow: "Site web professionnel",
-    h1: "Creation de sites web professionnels a Bamako.",
+    h1: "Création de sites web professionnels à Bamako.",
     intro:
-      "NEURALIS aide les entreprises, ecoles, cabinets, ONG et entrepreneurs au Mali a lancer un site clair, rapide, credible et pense pour convertir les visiteurs en contacts.",
-    searchIntent: "Etre visible sur Google, rassurer les clients et recevoir des demandes qualifiees.",
-    audience: ["PME", "Ecoles", "ONG", "Cabinets", "Commerces", "Entrepreneurs"],
+      "NEURALIS accompagne les entreprises, écoles, cabinets, ONG et entrepreneurs au Mali dans la création d’un site clair et professionnel. Les contenus et les parcours sont pensés pour présenter votre activité et faciliter la prise de contact.",
+    searchIntent: "Présenter votre activité en ligne, préparer votre référencement local et faciliter les demandes de vos visiteurs.",
+    audience: ["PME", "Écoles", "ONG", "Cabinets", "Commerces", "Entrepreneurs"],
     outcomes: [
       "Une image professionnelle en ligne",
-      "Des pages claires pour presenter vos services",
-      "Un formulaire de devis et une integration WhatsApp",
-      "Une base SEO locale pour Bamako et le Mali",
+      "Des pages claires pour présenter vos services",
+      "Un parcours de demande de devis avec formulaire ou WhatsApp",
+      "Des bases de référencement local pour Bamako et le Mali",
     ],
     deliverables: [
-      "Design responsive",
-      "Pages Accueil, Services, A propos et Contact",
+      "Mise en page adaptée au mobile, à la tablette et à l’ordinateur",
+      "Pages Accueil, Services, À propos et Contact",
       "Formulaire de demande",
-      "Optimisation SEO de base",
-      "Configuration domaine et hebergement",
-      "Accompagnement apres mise en ligne",
+      "Paramétrage des éléments essentiels du référencement",
+      "Configuration du domaine et de l’hébergement selon le devis",
+      "Accompagnement après mise en ligne selon le périmètre convenu",
     ],
-    process: ["Cadrage du besoin", "Maquette et contenus", "Developpement", "Mise en ligne", "Suivi"],
+    process: ["Cadrage du besoin", "Maquette et contenus", "Développement", "Mise en ligne", "Suivi convenu"],
     faq: [
       {
-        question: "Combien de temps faut-il pour creer un site web a Bamako ?",
+        question: "Combien de temps faut-il pour créer un site web à Bamako ?",
         answer:
-          "Un site vitrine professionnel peut souvent etre cadre et lance en quelques semaines selon le nombre de pages, les contenus disponibles et les integrations demandees.",
+          "Le calendrier dépend du nombre de pages, des contenus disponibles et des fonctionnalités retenues. Nous précisons les étapes et les validations nécessaires après le cadrage du projet.",
       },
       {
-        question: "NEURALIS peut-il gerer le domaine et l'hebergement ?",
+        question: "NEURALIS peut-il gérer le domaine et l’hébergement ?",
         answer:
-          "Oui. NEURALIS peut accompagner le choix du nom de domaine, la configuration DNS, l'hebergement, le certificat HTTPS et la mise en ligne.",
+          "Oui. Nous pouvons accompagner le choix du nom de domaine, sa configuration, l’hébergement et la mise en ligne en HTTPS. Les accès, les frais récurrents et les responsabilités sont précisés dans la proposition.",
       },
       {
-        question: "Le site sera-t-il adapte au telephone ?",
+        question: "Le site sera-t-il adapté au téléphone ?",
         answer:
-          "Oui. Les sites NEURALIS sont concus en responsive design pour fonctionner proprement sur mobile, tablette et ordinateur.",
+          "Oui. La présentation et la navigation sont conçues pour s’adapter au mobile, à la tablette et à l’ordinateur. Les parcours essentiels sont vérifiés sur plusieurs tailles d’écran avant la livraison.",
       },
     ],
     keywords: [
@@ -73,46 +73,46 @@ export const seoLandingPages: SeoLandingPage[] = [
   },
   {
     slug: "developpement-application-mali",
-    title: "Developpement application Mali",
-    metaTitle: "Developpement d'applications web et mobiles au Mali",
+    title: "Développement d’applications au Mali",
+    metaTitle: "Développement d’applications web et mobiles au Mali",
     metaDescription:
-      "NEURALIS developpe des applications web et mobiles au Mali pour gerer clients, ventes, operations, reservations, utilisateurs et processus internes.",
+      "NEURALIS développe des applications web et mobiles au Mali pour gérer vos clients, réservations, ventes et opérations avec des parcours adaptés.",
     eyebrow: "Application web et mobile",
-    h1: "Developpement d'applications web et mobiles au Mali.",
+    h1: "Développement d’applications web et mobiles au Mali.",
     intro:
-      "Quand un simple site ne suffit plus, NEURALIS construit des applications sur mesure pour digitaliser les operations et simplifier le travail des equipes.",
-    searchIntent: "Transformer un processus manuel en outil digital fiable, utilisable et evolutif.",
-    audience: ["PME", "Startups", "Ecoles", "Institutions", "Services internes"],
+      "NEURALIS conçoit des applications sur mesure pour suivre vos opérations et simplifier le travail des équipes. Les fonctions prioritaires sont définies à partir des tâches, des utilisateurs et des contraintes de votre activité.",
+    searchIntent: "Transformer un processus manuel en un outil numérique adapté aux personnes qui l’utilisent.",
+    audience: ["PME", "Startups", "Écoles", "Institutions", "Services internes"],
     outcomes: [
-      "Moins de fichiers disperses",
-      "Une meilleure gestion des utilisateurs et donnees",
-      "Des workflows adaptes a votre metier",
-      "Une solution capable d'evoluer avec l'organisation",
+      "Des informations regroupées dans un même outil",
+      "Des accès et des données organisés par rôle",
+      "Des parcours adaptés à votre métier",
+      "Une première version dont les évolutions peuvent être planifiées",
     ],
     deliverables: [
       "Analyse fonctionnelle",
-      "Interface web responsive",
+      "Interface web adaptée aux différents écrans",
       "Tableaux de bord",
-      "Gestion des roles",
+      "Gestion des rôles et des accès",
       "Notifications et formulaires",
-      "Documentation d'utilisation",
+      "Documentation d’utilisation",
     ],
-    process: ["Diagnostic", "Prototype", "Developpement", "Tests utilisateurs", "Formation"],
+    process: ["Diagnostic", "Prototype", "Développement", "Tests utilisateurs", "Formation"],
     faq: [
       {
-        question: "Quelle difference entre un site web et une application web ?",
+        question: "Quelle différence entre un site web et une application web ?",
         answer:
-          "Un site presente votre activite. Une application permet aux utilisateurs de se connecter, saisir des donnees, suivre des operations et automatiser des actions.",
+          "Un site présente principalement votre activité. Une application permet d’effectuer des tâches : se connecter, saisir des données, suivre une demande ou gérer une opération. Certains projets réunissent ces deux usages.",
       },
       {
         question: "Peut-on commencer petit puis ajouter des modules ?",
         answer:
-          "Oui. NEURALIS recommande souvent de lancer un premier module utile, puis d'ajouter les fonctionnalites avec les retours des utilisateurs.",
+          "Oui. Nous pouvons définir une première version centrée sur les fonctions essentielles. Les retours des utilisateurs servent ensuite à prioriser les modules suivants, selon le budget et les choix techniques retenus.",
       },
       {
-        question: "L'application peut-elle etre utilisee sur mobile ?",
+        question: "L’application peut-elle être utilisée sur mobile ?",
         answer:
-          "Oui. Une application web responsive peut fonctionner dans le navigateur mobile. Une application mobile native peut aussi etre envisagee selon le besoin.",
+          "Oui. Une application web peut être conçue pour un navigateur mobile. Une application mobile dédiée peut aussi être envisagée lorsque les usages et les fonctions attendues le justifient.",
       },
     ],
     keywords: [
@@ -125,21 +125,21 @@ export const seoLandingPages: SeoLandingPage[] = [
   },
   {
     slug: "lms-erp-ecoles-mali",
-    title: "LMS et ERP pour ecoles au Mali",
-    metaTitle: "LMS et ERP pour ecoles, instituts et centres de formation au Mali",
+    title: "LMS et ERP pour écoles au Mali",
+    metaTitle: "LMS et ERP pour écoles et centres de formation au Mali",
     metaDescription:
-      "NEURALIS cree des plateformes LMS et ERP pour ecoles au Mali : cours, inscriptions, etudiants, notes, paiements, communication et tableaux de bord.",
-    eyebrow: "Education digitale",
-    h1: "Plateformes LMS et ERP pour ecoles au Mali.",
+      "NEURALIS accompagne les écoles au Mali avec des plateformes LMS et ERP pour organiser cours, inscriptions, suivi des apprenants et administration.",
+    eyebrow: "Éducation et outils numériques",
+    h1: "Plateformes LMS et ERP pour écoles au Mali.",
     intro:
-      "NEURALIS accompagne les ecoles, instituts et centres de formation qui veulent organiser les cours, les inscriptions, les etudiants et la communication dans un outil clair.",
-    searchIntent: "Digitaliser une ecole avec une plateforme simple pour l'administration, les enseignants et les apprenants.",
-    audience: ["Ecoles", "Instituts", "Centres de formation", "Universites privees", "Programmes ONG"],
+      "NEURALIS accompagne les écoles, instituts et centres de formation qui souhaitent centraliser leurs cours, leurs inscriptions et le suivi des apprenants. Les espaces et les modules sont définis selon les besoins de l’administration et des équipes pédagogiques.",
+    searchIntent: "Organiser les activités d’un établissement dans une plateforme adaptée à l’administration, aux enseignants et aux apprenants.",
+    audience: ["Écoles", "Instituts", "Centres de formation", "Universités privées", "Programmes d’ONG"],
     outcomes: [
-      "Cours et ressources mieux organises",
-      "Suivi des apprenants et inscriptions",
-      "Communication plus structuree",
-      "Dashboards pour la direction",
+      "Cours et ressources mieux organisés",
+      "Suivi des apprenants et des inscriptions",
+      "Communication structurée entre les profils",
+      "Tableaux de bord pour la direction",
     ],
     deliverables: [
       "Portail apprenant",
@@ -147,24 +147,24 @@ export const seoLandingPages: SeoLandingPage[] = [
       "Gestion des cours",
       "Gestion administrative",
       "Rapports et indicateurs",
-      "Formation des equipes",
+      "Formation des équipes",
     ],
-    process: ["Analyse pedagogique", "Choix des modules", "Configuration", "Tests", "Accompagnement"],
+    process: ["Analyse pédagogique et administrative", "Choix des modules", "Configuration", "Tests", "Accompagnement"],
     faq: [
       {
-        question: "Un LMS remplace-t-il les cours en presentiel ?",
+        question: "Un LMS remplace-t-il les cours en présentiel ?",
         answer:
-          "Pas forcement. Un LMS peut completer les cours en presentiel avec des supports, devoirs, communications, quiz et suivis.",
+          "Pas nécessairement. Un LMS, ou plateforme de formation, peut compléter les cours en présentiel avec des supports, des devoirs, des questionnaires et un suivi des activités. Le format dépend de votre organisation pédagogique.",
       },
       {
-        question: "Peut-on avoir un LMS et une partie ERP dans la meme plateforme ?",
+        question: "Peut-on réunir un LMS et des fonctions de gestion dans la même plateforme ?",
         answer:
-          "Oui. Une plateforme peut combiner apprentissage, administration, inscriptions, paiements, notes et reporting.",
+          "C’est possible selon la solution retenue. Les modules peuvent couvrir la formation, les inscriptions, les notes, le suivi des paiements et les rapports ; leur articulation et les droits d’accès sont étudiés au cadrage.",
       },
       {
-        question: "Les enseignants peuvent-ils etre formes ?",
+        question: "Les enseignants peuvent-ils être formés ?",
         answer:
-          "Oui. NEURALIS peut accompagner les equipes pour que la solution soit comprise et reellement utilisee.",
+          "Oui. Une prise en main peut être prévue pour les enseignants et les référents administratifs, avec des exercices sur les tâches qu’ils effectueront dans la plateforme.",
       },
     ],
     keywords: [
@@ -180,89 +180,89 @@ export const seoLandingPages: SeoLandingPage[] = [
     title: "ERP pour PME au Mali",
     metaTitle: "ERP et outils de gestion pour PME au Mali",
     metaDescription:
-      "NEURALIS cree des mini ERP et outils de gestion pour PME au Mali : stock, clients, facturation, utilisateurs, ventes, reporting et automatisation.",
-    eyebrow: "Gestion PME",
+      "NEURALIS conçoit des ERP ciblés et des outils de gestion pour PME au Mali : clients, stocks, facturation, ventes et tableaux de bord.",
+    eyebrow: "Gestion des PME",
     h1: "ERP et outils de gestion pour PME au Mali.",
     intro:
-      "NEURALIS aide les PME a remplacer les fichiers disperses par une plateforme metier adaptee a leur realite : stock, clients, factures, ventes et indicateurs.",
-    searchIntent: "Mieux gerer une activite avec une solution simple, locale et adaptee au budget.",
-    audience: ["PME", "Commerces", "Distributeurs", "Services", "Equipes operationnelles"],
+      "NEURALIS aide les PME à centraliser les informations aujourd’hui réparties dans plusieurs fichiers. Clients, stocks, factures et ventes peuvent être regroupés dans une plateforme métier dont les modules suivent vos priorités.",
+    searchIntent: "Mieux suivre votre activité avec un outil de gestion choisi selon vos usages, vos contraintes et votre budget.",
+    audience: ["PME", "Commerces", "Distributeurs", "Entreprises de services", "Équipes opérationnelles"],
     outcomes: [
-      "Meilleure visibilite sur l'activite",
+      "Une vue d’ensemble de l’activité",
       "Suivi du stock et des ventes",
-      "Donnees centralisees",
-      "Rapports pour prendre des decisions",
+      "Des données centralisées avec des accès définis",
+      "Des rapports pour éclairer les décisions",
     ],
     deliverables: [
       "Module clients",
       "Module stock",
       "Facturation",
-      "Gestion utilisateurs",
-      "Dashboard direction",
+      "Gestion des utilisateurs et des accès",
+      "Tableau de bord de direction",
       "Export de rapports",
     ],
-    process: ["Audit des processus", "Priorisation modules", "Developpement", "Migration simple", "Formation"],
+    process: ["Audit des processus", "Priorisation des modules", "Développement", "Reprise des données retenues", "Formation"],
     faq: [
       {
-        question: "Faut-il un gros ERP pour commencer ?",
+        question: "Faut-il un ERP complet pour commencer ?",
         answer:
-          "Non. Une PME peut commencer avec un mini ERP centre sur les modules les plus utiles, puis evoluer progressivement.",
+          "Non. Une PME peut commencer par les modules les plus utiles, par exemple les clients et les stocks. Le périmètre initial et les possibilités d’évolution sont définis avant la réalisation.",
       },
       {
-        question: "Peut-on adapter l'outil aux pratiques locales ?",
+        question: "Peut-on adapter l’outil aux pratiques locales ?",
         answer:
-          "Oui. L'objectif est de creer un outil simple, compatible avec les habitudes de l'equipe et les contraintes du terrain.",
+          "Les habitudes des équipes, les équipements et les contraintes du terrain sont examinés au cadrage. Ces éléments orientent les parcours, les règles de gestion et les choix techniques.",
       },
       {
-        question: "Peut-on ajouter des dashboards plus tard ?",
+        question: "Peut-on ajouter des tableaux de bord plus tard ?",
         answer:
-          "Oui. Les dashboards peuvent etre ajoutes quand les donnees deviennent assez structurees pour produire des indicateurs fiables.",
+          "Oui, selon les possibilités de la solution retenue. Il faut d’abord disposer de données structurées et définir les règles de calcul des indicateurs que vous souhaitez suivre.",
       },
     ],
     keywords: ["ERP Mali", "ERP PME Mali", "logiciel gestion Mali", "gestion stock Bamako", "mini ERP Bamako"],
   },
   {
     slug: "dashboard-data-mali",
-    title: "Dashboards et data au Mali",
-    metaTitle: "Dashboards, data et Business Intelligence au Mali",
+    title: "Tableaux de bord et data au Mali",
+    metaTitle: "Tableaux de bord, data et Business Intelligence au Mali",
     metaDescription:
-      "NEURALIS cree des dashboards et rapports data au Mali pour suivre ventes, operations, ecoles, projets, KPIs et performances.",
+      "NEURALIS crée des tableaux de bord et des rapports au Mali pour suivre ventes, inscriptions, opérations et projets à partir de vos données.",
     eyebrow: "Data et pilotage",
-    h1: "Dashboards et Business Intelligence au Mali.",
+    h1: "Tableaux de bord et Business Intelligence au Mali.",
     intro:
-      "NEURALIS transforme les donnees disperses en tableaux de bord simples pour aider les dirigeants, ecoles et organisations a suivre leurs performances.",
-    searchIntent: "Comprendre les chiffres de l'activite et prendre des decisions plus rapides.",
-    audience: ["Directions", "PME", "Ecoles", "ONG", "Equipes commerciales", "Projets"],
+      "NEURALIS organise vos données pour construire des tableaux de bord utiles aux dirigeants, aux écoles et aux organisations. Les indicateurs, leurs sources et leur fréquence de mise à jour sont définis avec les équipes qui les utiliseront.",
+    searchIntent: "Comprendre les chiffres de votre activité et disposer de repères partagés pour prendre vos décisions.",
+    audience: ["Directions", "PME", "Écoles", "ONG", "Équipes commerciales", "Équipes projet"],
     outcomes: [
-      "KPIs visibles en un coup d'oeil",
-      "Moins de reporting manuel",
-      "Meilleur suivi des objectifs",
-      "Decisions basees sur des donnees fiables",
+      "Des indicateurs essentiels visibles d’un coup d’œil",
+      "Une préparation des rapports mieux organisée",
+      "Un suivi des objectifs par période",
+      "Des décisions éclairées par des données dont les limites sont connues",
     ],
     deliverables: [
-      "Audit des donnees",
-      "Nettoyage simple",
-      "Dashboard web",
-      "Rapports par periode",
-      "Indicateurs personnalises",
-      "Formation a la lecture des donnees",
+      "Audit des sources et de la qualité des données",
+      "Nettoyage des données dans le périmètre retenu",
+      "Tableau de bord web",
+      "Rapports par période",
+      "Indicateurs personnalisés et règles de calcul",
+      "Formation à la lecture des données",
     ],
-    process: ["Inventaire donnees", "Choix KPIs", "Prototype dashboard", "Validation", "Suivi"],
+    process: ["Inventaire des données", "Choix des indicateurs", "Prototype du tableau de bord", "Validation des calculs", "Suivi"],
     faq: [
       {
-        question: "Faut-il deja avoir beaucoup de donnees ?",
+        question: "Faut-il déjà avoir beaucoup de données ?",
         answer:
-          "Non. On peut commencer avec les donnees existantes, puis structurer progressivement la collecte pour ameliorer les rapports.",
+          "Pas nécessairement. Nous examinons les données disponibles et les questions auxquelles elles peuvent répondre. La qualité et la régularité de la collecte comptent autant que le volume.",
       },
       {
-        question: "Un dashboard peut-il suivre une ecole ou une PME ?",
+        question: "Un tableau de bord peut-il suivre une école ou une PME ?",
         answer:
-          "Oui. Les indicateurs peuvent couvrir inscriptions, ventes, stock, clients, projets, paiements ou performances d'equipe.",
+          "Oui. Les indicateurs peuvent porter sur les inscriptions, les ventes, les stocks, les clients, les projets ou les paiements. Leur définition dépend des objectifs de l’organisation et des données disponibles.",
       },
       {
-        question: "Les rapports peuvent-ils etre automatises ?",
+        question: "Les rapports peuvent-ils être automatisés ?",
         answer:
-          "Oui. Selon les sources de donnees, certains rapports peuvent etre generes automatiquement ou semi-automatiquement.",
+          "Une actualisation automatique ou une importation périodique peut être prévue selon les sources et leurs possibilités de connexion. La fréquence, les vérifications et les interventions manuelles restantes sont précisées.",
       },
     ],
     keywords: ["dashboard Mali", "data Mali", "Business Intelligence Mali", "KPI Bamako", "reporting Mali"],
@@ -272,43 +272,43 @@ export const seoLandingPages: SeoLandingPage[] = [
     title: "Chatbot IA au Mali",
     metaTitle: "Chatbots IA et automatisation pour entreprises au Mali",
     metaDescription:
-      "NEURALIS accompagne les entreprises au Mali avec chatbots, assistants IA, automatisation de formulaires, analyse de documents et support client.",
+      "NEURALIS accompagne les entreprises au Mali avec des chatbots, assistants IA et automatisations ciblées, testés sur leurs usages et leurs données.",
     eyebrow: "IA et automatisation",
     h1: "Chatbots IA et automatisation pour entreprises au Mali.",
     intro:
-      "NEURALIS aide les organisations a utiliser l'intelligence artificielle de maniere utile : repondre aux clients, qualifier les demandes, analyser des documents et automatiser des taches.",
-    searchIntent: "Gagner du temps et ameliorer la reponse client avec des outils IA pratiques.",
-    audience: ["Entreprises", "Ecoles", "Services clients", "ONG", "Startups", "Equipes commerciales"],
+      "NEURALIS aide les organisations à utiliser l’intelligence artificielle pour préparer des réponses, orienter les demandes et analyser des documents. Chaque cas d’usage est testé avec des limites d’accès, des règles de confidentialité et une validation humaine adaptée au risque.",
+    searchIntent: "Réduire les tâches répétitives et aider vos équipes à traiter les demandes dans un cadre défini.",
+    audience: ["Entreprises", "Écoles", "Services clients", "ONG", "Startups", "Équipes commerciales"],
     outcomes: [
-      "Reponses plus rapides aux prospects",
-      "Demandes mieux qualifiees",
-      "Automatisation de taches repetitives",
-      "Premiers cas d'usage IA concrets",
+      "Une aide à la préparation des réponses courantes",
+      "Des demandes orientées selon des critères définis",
+      "Des tâches répétitives automatisées dans un périmètre ciblé",
+      "Un premier usage IA évalué sur des situations concrètes",
     ],
     deliverables: [
-      "Cadrage du cas d'usage",
-      "Base de connaissances",
-      "Prototype chatbot",
-      "Integration formulaire ou site",
-      "Tests et garde-fous",
-      "Formation a l'utilisation",
+      "Cadrage du cas d’usage et des validations nécessaires",
+      "Base de connaissances issue de contenus validés",
+      "Prototype de chatbot",
+      "Intégration au formulaire ou au site retenu",
+      "Tests des réponses, des exceptions et des limites d’accès",
+      "Formation à l’utilisation et aux limites de l’outil",
     ],
-    process: ["Cas d'usage", "Donnees utiles", "Prototype", "Tests", "Amelioration"],
+    process: ["Choix du cas d’usage", "Examen des données utiles", "Prototype", "Tests et validations", "Amélioration"],
     faq: [
       {
         question: "Un chatbot IA peut-il remplacer le service client ?",
         answer:
-          "Non. Il peut aider a repondre aux questions simples et qualifier les demandes, mais l'humain reste important pour les cas complexes.",
+          "Un chatbot peut aider à traiter les questions courantes et à orienter les demandes, mais il peut aussi produire une réponse inexacte. Un relais humain et des validations sont prévus pour les situations complexes ou sensibles.",
       },
       {
-        question: "Faut-il deja avoir beaucoup de documents ?",
+        question: "Faut-il déjà avoir beaucoup de documents ?",
         answer:
-          "Pas toujours. On peut commencer avec une FAQ, les offres, les processus et les informations essentielles de l'entreprise.",
+          "Pas toujours. Une FAQ, des offres et des informations essentielles validées peuvent suffire pour un premier usage. Les données confidentielles sont examinées avant toute transmission à un service d’IA et peuvent être exclues ou anonymisées.",
       },
       {
-        question: "L'IA peut-elle etre integree au site NEURALIS ou a un site client ?",
+        question: "Un assistant IA peut-il être intégré à notre site ?",
         answer:
-          "Oui. Selon le besoin, un assistant peut etre connecte a un site, un formulaire, un outil interne ou un workflow.",
+          "C’est possible selon la technologie du site et les accès disponibles. Nous étudions la connexion au site, au formulaire ou à l’outil interne, puis définissons les informations accessibles et les actions autorisées.",
       },
     ],
     keywords: ["chatbot IA Mali", "intelligence artificielle Mali", "automatisation Mali", "assistant IA Bamako", "IA entreprise Mali"],
@@ -316,45 +316,45 @@ export const seoLandingPages: SeoLandingPage[] = [
   {
     slug: "agence-digitale-mali",
     title: "Agence digitale au Mali",
-    metaTitle: "Agence digitale et entreprise tech au Mali",
+    metaTitle: "Agence digitale à Bamako, Mali",
     metaDescription:
-      "NEURALIS est une entreprise tech malienne basee a Bamako : sites web, applications, LMS, ERP, data, IA, automatisation, formation et conseil digital.",
-    eyebrow: "Entreprise tech malienne",
-    h1: "Agence digitale et entreprise tech au Mali.",
+      "NEURALIS, entreprise numérique basée à Bamako : sites web, applications, plateformes, data, IA, formation et conseil pour les organisations au Mali.",
+    eyebrow: "Entreprise numérique à Bamako",
+    h1: "Votre partenaire digital à Bamako et au Mali.",
     intro:
-      "NEURALIS accompagne les organisations ambitieuses avec une approche claire : commencer par des solutions utiles, construire la confiance, puis evoluer vers la data, l'IA et les plateformes avancees.",
-    searchIntent: "Trouver un partenaire tech fiable au Mali pour construire une presence digitale et des outils metiers.",
-    audience: ["Entreprises", "Ecoles", "Institutions", "ONG", "Startups", "Porteurs de projets"],
+      "NEURALIS accompagne les organisations dans leur présence en ligne et leurs outils de travail. Du site web à la plateforme métier, en passant par la data et l’IA, chaque projet commence par un besoin concret et un périmètre défini avec vous.",
+    searchIntent: "Trouver un interlocuteur au Mali pour cadrer votre projet, construire votre présence digitale ou faire évoluer vos outils métiers.",
+    audience: ["Entreprises", "Écoles", "Institutions", "ONG", "Startups", "Porteurs de projets"],
     outcomes: [
       "Un partenaire digital local",
-      "Des services complets mais progressifs",
-      "Une communication claire pour les non-techniciens",
-      "Une vision long terme vers la data et l'IA",
+      "Des étapes de réalisation adaptées aux priorités",
+      "Des explications claires pour décider sans expertise technique",
+      "Des évolutions envisagées selon les besoins de l’organisation",
     ],
     deliverables: [
       "Audit digital",
-      "Creation de site web",
-      "Applications metiers",
+      "Création de sites web",
+      "Applications métiers",
       "Plateformes LMS et ERP",
-      "Dashboards",
+      "Tableaux de bord",
       "IA et automatisation",
     ],
-    process: ["Ecoute", "Priorisation", "Prototype", "Livraison", "Accompagnement"],
+    process: ["Écoute du besoin", "Priorisation", "Prototype", "Livraison", "Accompagnement convenu"],
     faq: [
       {
-        question: "NEURALIS est-elle une agence web ou une entreprise tech ?",
+        question: "NEURALIS réalise-t-elle uniquement des sites web ?",
         answer:
-          "NEURALIS commence par des services digitaux concrets comme les sites et applications, puis evolue vers les plateformes, la data, l'IA et les produits tech.",
+          "Non. NEURALIS propose aussi des applications, des plateformes LMS et ERP, des tableaux de bord, de l’IA et de l’automatisation, ainsi que de la formation et du conseil digital. Le choix dépend de votre besoin, pas d’un parcours imposé.",
       },
       {
-        question: "Peut-on confier un projet complet a NEURALIS ?",
+        question: "Peut-on confier un projet complet à NEURALIS ?",
         answer:
-          "Oui. NEURALIS peut cadrer, concevoir, developper, deployer et accompagner l'utilisation d'une solution digitale.",
+          "Nous pouvons accompagner le cadrage, la conception, le développement, la mise en ligne et la prise en main d’une solution. La proposition précise les livrables, les responsabilités et les modalités d’accompagnement retenues.",
       },
       {
-        question: "NEURALIS travaille-t-elle seulement a Bamako ?",
+        question: "NEURALIS travaille-t-elle seulement à Bamako ?",
         answer:
-          "NEURALIS est basee a Bamako, mais peut accompagner des organisations dans tout le Mali et progressivement en Afrique de l'Ouest.",
+          "NEURALIS est basée à Bamako et peut étudier des projets d’organisations situées ailleurs au Mali. Les modalités de collaboration, à distance ou sur place, sont définies selon la mission.",
       },
     ],
     keywords: [

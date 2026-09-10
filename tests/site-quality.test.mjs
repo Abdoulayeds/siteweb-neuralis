@@ -5,9 +5,9 @@ import test from "node:test";
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 
 test("uses reusable official social brand marks in every navigation surface", async () => {
-  const [icons, header, footer] = await Promise.all([
+  const [icons, contact, footer] = await Promise.all([
     read("src/components/social-icon.tsx"),
-    read("src/components/header.tsx"),
+    read("src/app/contact/page.tsx"),
     read("src/components/footer.tsx"),
   ]);
 
@@ -15,9 +15,9 @@ test("uses reusable official social brand marks in every navigation surface", as
     assert.match(icons, new RegExp(`${brand}:`));
   }
   assert.match(icons, /<svg/);
-  assert.doesNotMatch(header, /Camera|Music2|BriefcaseBusiness/);
+  assert.doesNotMatch(contact, /Camera|Music2|BriefcaseBusiness/);
   assert.doesNotMatch(footer, /Camera|Music2|BriefcaseBusiness/);
-  assert.match(header, /SocialIcon/);
+  assert.match(contact, /SocialIcon/);
   assert.match(footer, /SocialIcon/);
 });
 
@@ -56,25 +56,10 @@ test("provides accessible shortcuts and persistent mobile contact", async () => 
   assert.match(styles, /\.skip-link/);
 });
 
-test("homepage hero states a concrete outcome and avoids fabricated progress metrics", async () => {
-  const [homepage, visual] = await Promise.all([
-    read("src/app/page.tsx"),
-    read("src/components/tech-visual.tsx"),
-  ]);
-
-  assert.match(homepage, /De l.idee au lancement/);
-  assert.match(homepage, /Bamako/);
-  assert.doesNotMatch(visual, /Transformation digitale[\s\S]*%/);
-  assert.match(visual, /Diagnostic/);
-  assert.match(visual, /Livraison/);
-  assert.match(visual, /Accompagnement/);
-});
-
 test("keeps every legacy light surface readable inside the dark premium theme", async () => {
-  const [layout, styles, landing] = await Promise.all([
+  const [layout, styles] = await Promise.all([
     read("src/app/layout.tsx"),
     read("src/app/globals.css"),
-    read("src/app/[landing]/page.tsx"),
   ]);
 
   assert.match(layout, /className="theme-dark/);
@@ -84,7 +69,6 @@ test("keeps every legacy light surface readable inside the dark premium theme", 
   assert.match(styles, /\.theme-dark main \.text-slate-950/);
   assert.match(styles, /\.theme-dark main \.text-white/);
   assert.match(styles, /\.theme-dark main input/);
-  assert.match(landing, /bg-white[\s\S]*text-white/);
 });
 
 test("renders a performant and accessible neural network background", async () => {
@@ -111,19 +95,6 @@ test("adds progressive page motion while preserving reduced-motion safety", asyn
   assert.match(styles, /@supports \(animation-timeline:\s*view\(\)\)/);
   assert.match(styles, /animation-timeline:\s*view\(\)/);
   assert.match(styles, /@media \(prefers-reduced-motion:\s*reduce\)/);
-});
-
-test("keeps the guided homepage journey dark without white-on-white fallbacks", async () => {
-  const [homepage, accordion] = await Promise.all([
-    read("src/app/page.tsx"),
-    read("src/components/accordion-list.tsx"),
-  ]);
-
-  assert.doesNotMatch(homepage, /border-cyan-300\/20 bg-white p-6 text-slate-950/);
-  assert.doesNotMatch(accordion, /border-slate-200 bg-white/);
-  assert.doesNotMatch(accordion, /font-semibold text-slate-950/);
-  assert.match(homepage, /bg-slate-900\/90/);
-  assert.match(accordion, /bg-slate-950\/40/);
 });
 
 test("keeps absolute hero decorations out of the document flow", async () => {

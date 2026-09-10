@@ -1,81 +1,47 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
+import { DetailDialog } from "@/components/detail-dialog";
 import { PageHero } from "@/components/page-hero";
-import { SectionHeader } from "@/components/section-header";
-import { portfolioItems } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
-  description:
-    "Portfolio et demonstrations NEURALIS : sites web, LMS, ERP, dashboards, IA, branding et prototypes digitaux.",
+  title: "Concepts & cas d’usage",
+  description: "Explorez les concepts de solutions NEURALIS : sites web, plateformes métiers, applications, data et IA. Illustrations de possibilités, sans références clients fictives.",
+  alternates: { canonical: "/portfolio" },
 };
 
-export default function PortfolioPage() {
-  return (
-    <>
-      <PageHero
-        eyebrow="Portfolio et demonstrations"
-        title="Nos realisations et prototypes pour montrer le niveau d'execution."
-        description="NEURALIS construit progressivement son portfolio client. En attendant, nous presentons des demonstrations et prototypes pour illustrer nos capacites en developpement web, plateformes metiers, data, IA et communication digitale."
-        secondaryLabel="Voir les offres"
-        secondaryHref="/offres"
-      />
-      <section className="section-padding bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Demos"
-            title="Des preuves visuelles, meme avant les premiers grands cas clients."
-            description="Chaque demonstration peut devenir une base pour discuter avec un prospect et adapter la solution a son contexte."
-            align="center"
-          />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {portfolioItems.map((item) => (
-              <article key={item.title} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-                <div className="h-44 bg-slate-950 p-4">
-                  <div className="h-full rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_20%_20%,rgba(6,182,212,0.28),transparent_30%),linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="rounded-full bg-cyan-300 px-3 py-1 text-xs font-semibold text-slate-950">
-                        {item.category}
-                      </span>
-                      <span className="h-3 w-3 rounded-full bg-white" />
-                    </div>
-                    <div className="mt-8 grid gap-2">
-                      <span className="h-3 rounded-full bg-white/50" />
-                      <span className="h-3 w-3/4 rounded-full bg-cyan-300/70" />
-                      <span className="h-3 w-1/2 rounded-full bg-white/20" />
-                    </div>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h2 className="text-xl font-semibold text-slate-950">{item.title}</h2>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {item.tags.map((tag) => (
-                      <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="section-padding bg-slate-50">
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Honnetete"
-            title="Le portfolio client va se construire avec les premiers projets."
-            description="Au lancement, les demonstrations permettent de montrer la qualite attendue. Chaque mission livree deviendra ensuite une etude de cas, avec temoignage et resultats quand le client l'autorise."
-            align="center"
-          />
-          <div className="mt-8">
-            <ButtonLink href="/contact">Construire un cas avec NEURALIS</ButtonLink>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+const concepts = [
+  { title: "Une vitrine qui ouvre la conversation", category: "Site web", image: "sites-web", alt: "Illustration conceptuelle d’une expérience web professionnelle", summary: "Présenter une entreprise et guider le visiteur vers une demande qualifiée.", problem: "Une activité peut être difficile à comprendre lorsque ses offres, ses coordonnées et ses contenus sont dispersés.", journey: ["Découvrir l’activité et sa proposition de valeur.", "Explorer les services et les réponses aux questions fréquentes.", "Prendre contact avec un besoin déjà mieux formulé."], possibilities: ["Site vitrine responsive", "Pages services", "Formulaire de contact", "Gestion de contenus"], caution: "Les textes, l’identité et les fonctionnalités seraient conçus pour l’organisation concernée." },
+  { title: "L’activité à portée de main", category: "Application", image: "applications", alt: "Illustration conceptuelle d’applications sur plusieurs écrans", summary: "Un espace mobile pour consulter, saisir et suivre les informations du quotidien.", problem: "Les équipes peuvent perdre du temps à rechercher une information ou à ressaisir les mêmes données dans plusieurs outils.", journey: ["Se connecter avec un profil et des droits adaptés.", "Consulter les tâches ou les dossiers utiles à son rôle.", "Enregistrer une action et suivre son avancement."], possibilities: ["Application web ou mobile", "Espace utilisateur", "Saisie structurée", "Notifications à définir"], caution: "Les usages hors connexion, les notifications et les intégrations nécessitent un cadrage spécifique." },
+  { title: "Un campus numérique mieux organisé", category: "Plateforme métier", image: "plateformes", alt: "Illustration conceptuelle d’une plateforme numérique de gestion", summary: "Relier ressources pédagogiques, inscriptions et suivi des apprenants.", problem: "Dans un organisme de formation, la multiplication des supports rend le suivi pédagogique et administratif plus complexe.", journey: ["L’administration prépare les profils et les inscriptions.", "Les formateurs publient les ressources et les activités.", "Les apprenants accèdent à leur parcours et consultent leur progression."], possibilities: ["Espace de formation", "Gestion des rôles", "Ressources et évaluations", "Suivi pédagogique"], caution: "La gestion de données personnelles, les accès et la conservation des dossiers sont définis avant développement." },
+  { title: "Des données qui éclairent les décisions", category: "Data & pilotage", image: "data", alt: "Illustration conceptuelle d’un environnement de visualisation de données", summary: "Rassembler les indicateurs essentiels dans une vue de pilotage lisible.", problem: "Des chiffres répartis dans plusieurs fichiers peuvent être difficiles à comparer et à actualiser correctement.", journey: ["Identifier les sources disponibles et vérifier leur qualité.", "Définir les indicateurs avec les personnes qui les utilisent.", "Explorer les tendances et retrouver les données de référence."], possibilities: ["Tableau de bord", "Filtres par période", "Exports", "Mise à jour à définir"], caution: "Les éléments graphiques de cette illustration ne représentent aucune donnée ni performance client réelle." },
+  { title: "Un assistant pour les questions récurrentes", category: "IA & automatisation", image: "ia", alt: "Illustration conceptuelle de connexions et d’assistance par intelligence artificielle", summary: "Explorer l’assistance documentaire avec des sources définies et des limites visibles.", problem: "Retrouver une procédure ou répondre plusieurs fois à la même question mobilise du temps et de l’attention.", journey: ["Délimiter un corpus documentaire autorisé.", "Poser une question et obtenir une réponse à vérifier.", "Retrouver la source ou transmettre à une personne en cas d’incertitude."], possibilities: ["Recherche documentaire", "Aide à la rédaction", "Réponses avec sources", "Escalade humaine"], caution: "Un système d’IA peut se tromper. Confidentialité, évaluation des réponses et validation humaine font partie du cadrage." },
+  { title: "Une marque cohérente, partout", category: "Communication", image: "communication", alt: "Illustration conceptuelle d’un univers de communication digitale", summary: "Donner une même direction aux messages, aux visuels et aux canaux de contact.", problem: "Des publications sans ligne directrice peuvent rendre une marque moins reconnaissable et son offre moins lisible.", journey: ["Clarifier les publics, le ton et les messages prioritaires.", "Décliner une direction visuelle sur les supports utiles.", "Organiser les contenus et observer les retours disponibles."], possibilities: ["Identité visuelle", "Supports sociaux", "Calendrier éditorial", "Profils professionnels"], caution: "Cette direction visuelle est illustrative. Elle ne correspond pas à une campagne client ni à des résultats de diffusion." },
+];
 
+export default function PortfolioPage() {
+  return <>
+    <PageHero eyebrow="Concepts & cas d’usage" title="Des idées concrètes pour imaginer votre projet." description="Une sélection de possibilités en web, outils métiers, data et IA. Explorez les usages pour trouver un point de départ à votre propre solution." secondaryLabel="Explorer la galerie" secondaryHref="#galerie" />
+    <section id="galerie" className="studio-section scroll-mt-28"><div className="studio-container">
+      <div className="mb-10 rounded-2xl border border-cyan-300/20 bg-cyan-950/20 p-5 text-sm leading-7 text-slate-300"><span className="font-semibold text-cyan-200">Une galerie d’inspiration, en toute transparence.</span> Les visuels ci-dessous sont des illustrations générées. Ils ne sont ni des captures de projets livrés, ni des références clients, ni des démonstrations fonctionnelles.</div>
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {concepts.map(concept => <article key={concept.title} className="studio-panel group flex flex-col overflow-hidden">
+          <div className="relative overflow-hidden border-b border-white/10"><Image src={"/images/services/" + concept.image + ".webp"} alt={concept.alt} width={1536} height={1024} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="aspect-video w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105" /><span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-slate-950/90 px-3 py-1.5 text-[11px] font-medium text-slate-200">Illustration de solution</span></div>
+          <div className="flex flex-1 flex-col p-6"><p className="studio-kicker">{concept.category}</p><h2 className="mt-3 text-xl font-semibold leading-7 text-white">{concept.title}</h2><p className="studio-copy mt-3 text-sm">{concept.summary}</p>
+            <div className="mt-auto pt-6"><DetailDialog title={concept.title} eyebrow={concept.category + " · Concept illustratif"} triggerLabel="Explorer le cas d’usage" triggerClassName="studio-link">
+              <Image src={"/images/services/" + concept.image + ".webp"} alt={concept.alt} width={1536} height={1024} sizes="(min-width: 1024px) 800px, 100vw" className="aspect-video w-full rounded-2xl object-cover" />
+              <p className="mt-3 text-xs leading-6 text-slate-400">Illustration de solution générée — aucun projet client présenté.</p>
+              <h3 className="mt-8 text-xl font-semibold text-white">Le problème à explorer</h3><p className="mt-3 leading-8 text-slate-300">{concept.problem}</p>
+              <h3 className="mt-7 text-xl font-semibold text-white">Un parcours possible</h3><ol className="mt-4 space-y-3">{concept.journey.map((step,index) => <li className="flex gap-4 leading-7 text-slate-300" key={step}><span className="font-mono text-cyan-300">0{index + 1}</span>{step}</li>)}</ol>
+              <h3 className="mt-7 text-xl font-semibold text-white">Fonctionnalités envisageables</h3><div className="studio-tags mt-4">{concept.possibilities.map(item => <span key={item}>{item}</span>)}</div>
+              <p className="mt-7 rounded-2xl border border-white/10 bg-slate-900/70 p-5 text-sm leading-7 text-slate-400">{concept.caution}</p><div className="mt-8 flex flex-wrap items-center gap-5"><ButtonLink href="/contact">Discuter d’un projet similaire</ButtonLink><Link href={"/services/" + concept.image} className="studio-link">Voir l’expertise <ArrowUpRight className="h-4 w-4" aria-hidden /></Link></div>
+            </DetailDialog></div>
+          </div>
+        </article>)}
+      </div>
+    </div></section>
+    <section className="studio-section border-t border-white/10"><div className="studio-container max-w-4xl text-center"><p className="studio-kicker">Votre contexte change tout</p><h2 className="studio-heading mt-3">L’inspiration est ici. Le projet commence avec vous.</h2><p className="studio-copy mx-auto mt-5 max-w-2xl">Ces concepts ouvrent la discussion. Votre solution se construit à partir de vos utilisateurs, de vos contraintes et d’un périmètre validé.</p><div className="mt-8"><ButtonLink href="/contact">Parler de mon idée</ButtonLink></div></div></section>
+  </>;
+}

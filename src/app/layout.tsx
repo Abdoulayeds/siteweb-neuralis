@@ -9,11 +9,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   applicationName: "NEURALIS",
   title: {
-    default: "NEURALIS - Creation de sites web, applications et solutions digitales au Mali",
+    default: "NEURALIS — Votre partenaire digital à Bamako, Mali",
     template: "%s | NEURALIS",
   },
   description:
-    "NEURALIS accompagne les entreprises, ecoles et organisations a Bamako et au Mali : sites web, applications, LMS, ERP, dashboards, data, IA, automatisation et formation.",
+    "Sites web, applications, plateformes métiers, data et IA : NEURALIS accompagne les entreprises et organisations au Mali, du cadrage à la prise en main.",
   keywords: [
     "NEURALIS",
     "NEURALIS Mali",

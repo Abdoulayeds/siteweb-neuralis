@@ -1,58 +1,43 @@
 import type { Metadata } from "next";
+import { Check, ArrowUpRight } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
-import { OfferCard } from "@/components/cards";
+import { DetailDialog } from "@/components/detail-dialog";
 import { PageHero } from "@/components/page-hero";
-import { SectionHeader } from "@/components/section-header";
-import { offers } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Offres",
-  description:
-    "Packs NEURALIS : Presence Digitale, Site Web Pro, Plateforme Metier, Data & Automatisation et Formation.",
+  title: "Offres & accompagnement",
+  description: "Cinq points de départ NEURALIS : présence digitale, site web, plateforme métier, data et automatisation, formation. Périmètre et budget sur devis.",
+  alternates: { canonical: "/offres" },
 };
 
-export default function OffresPage() {
-  return (
-    <>
-      <PageHero
-        eyebrow="Offres commerciales"
-        title="Des offres simples pour demarrer votre transformation digitale."
-        description="Pour faciliter le lancement des projets, NEURALIS propose des offres claires et adaptables. Les prix peuvent etre definis sur devis selon le niveau de service, la duree et les objectifs."
-        secondaryLabel="Nous contacter"
-        secondaryHref="/contact"
-      />
-      <section className="section-padding bg-white">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Packs"
-            title="Choisissez une porte d'entree claire."
-            description="Chaque pack peut etre personnalise apres un echange de cadrage. L'objectif est de rendre l'achat simple sans enfermer le projet."
-            align="center"
-          />
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {offers.map((offer) => (
-              <OfferCard key={offer.title} {...offer} />
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="section-padding bg-slate-50">
-        <div className="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <SectionHeader
-            eyebrow="Sur mesure"
-            title="Votre besoin ne rentre pas dans un pack ?"
-            description="NEURALIS peut cadrer une solution sur mesure : application, LMS, ERP, dashboard, assistant IA, formation ou accompagnement complet."
-            align="center"
-          />
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            <ButtonLink href="/contact">Demander une proposition</ButtonLink>
-            <ButtonLink href="/services" variant="secondary">
-              Comparer les services
-            </ButtonLink>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
+const offers = [
+  { title: "Présence digitale", label: "Être visible", description: "Poser les bases d’une image professionnelle, cohérente sur vos canaux essentiels.", points: ["Identité et messages", "Profils professionnels", "Premiers contenus"], audience: "Entrepreneurs, commerces et petites structures qui souhaitent présenter une activité de façon cohérente.", scope: ["Clarification des publics, du positionnement et des messages clés.", "Définition d’une base visuelle et de supports adaptés aux canaux retenus.", "Configuration ou optimisation des profils convenus et préparation d’un calendrier de contenus."], variables: "Nombre de canaux, volume de créations, contenus à produire et besoin d’animation récurrente.", delivery: "Supports et accès prévus au devis, recommandations éditoriales et consignes de prise en main." },
+  { title: "Site web professionnel", label: "Présenter & convertir", description: "Un site clair, soigné et adapté au mobile pour donner confiance et faciliter le contact.", points: ["Design responsive", "Contenus structurés", "Parcours de contact"], audience: "Entreprises, cabinets, associations et institutions qui ont besoin d’un point de référence fiable en ligne.", scope: ["Arborescence et maquettes des pages convenues.", "Développement responsive, intégration des contenus et métadonnées essentielles.", "Tests des parcours, préparation de la mise en ligne et transmission des accès convenus."], variables: "Nombre de pages, langues, production des contenus, fonctionnalités et besoin de gestion autonome.", delivery: "Site correspondant au périmètre validé, guide de prise en main et modalités de maintenance explicites." },
+  { title: "Plateforme métier", label: "Mieux organiser", description: "Un outil centré sur votre activité pour relier utilisateurs, informations et processus.", points: ["Cadrage fonctionnel", "Rôles et parcours", "Première version utile"], audience: "Écoles, PME et organisations dont les processus nécessitent davantage qu’un simple site vitrine.", scope: ["Analyse du processus prioritaire et rédaction d’un périmètre fonctionnel.", "Conception des écrans, droits d’accès et principales règles de gestion.", "Développement par étapes, recette avec vos utilisateurs et préparation de la prise en main."], variables: "Modules, nombre de profils, reprise des données, systèmes à connecter et contraintes de déploiement.", delivery: "Version validée lors de la recette, documentation d’usage et plan des évolutions éventuelles." },
+  { title: "Data & automatisation", label: "Piloter & simplifier", description: "Rendre vos données exploitables et réduire les tâches répétitives bien identifiées.", points: ["Sources et indicateurs", "Tableau de bord", "Flux ciblés"], audience: "Équipes qui veulent mieux suivre leur activité ou fiabiliser une tâche répétitive à partir de données disponibles.", scope: ["Audit des sources, de leur qualité et des droits d’utilisation.", "Définition des indicateurs ou du scénario d’automatisation prioritaire.", "Mise en place du livrable retenu, tests sur cas représentatifs et documentation des limites."], variables: "Qualité et volume des données, connexions nécessaires, fréquence de mise à jour et services tiers.", delivery: "Tableau de bord et/ou flux convenu, règles de contrôle, documentation et transfert de compétences." },
+  { title: "Formation & autonomie", label: "Faire progresser", description: "Des sessions pratiques pour utiliser vos outils avec méthode et confiance.", points: ["Objectifs adaptés", "Exercices concrets", "Supports réutilisables"], audience: "Professionnels et équipes souhaitant progresser en outils numériques, IA, bureautique, data ou communication digitale.", scope: ["Échange sur le niveau initial, les usages et les objectifs de la session.", "Programme adapté avec démonstrations et exercices liés au travail quotidien.", "Supports pédagogiques et bilan des acquis selon le format convenu."], variables: "Thème, niveau, nombre de participants, durée, format présentiel ou à distance et accompagnement après session.", delivery: "Supports de formation, exercices et ressources convenus. Les formations ne sont pas présentées comme certifiantes." },
+];
 
+export default function OffresPage() {
+  return <>
+    <PageHero eyebrow="Offres NEURALIS" title="Le bon point de départ pour votre prochain cap." description="Cinq formats pour rendre votre projet plus facile à cadrer. Un périmètre clair, des livrables convenus et un budget défini ensemble." secondaryLabel="Comparer les packs" secondaryHref="#packs" />
+    <section id="packs" className="studio-section scroll-mt-28"><div className="studio-container">
+      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><p className="studio-kicker">Des bases, pas des cases</p><h2 className="studio-heading mt-3">Choisissez votre priorité.</h2></div><p className="max-w-md text-sm leading-7 text-slate-400">Tous les projets sont chiffrés sur devis. Les packs se personnalisent après un échange de cadrage.</p></div>
+      <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {offers.map((offer, index) => <article key={offer.title} className="studio-panel flex flex-col p-7">
+          <div className="flex items-center justify-between"><p className="studio-kicker">{offer.label}</p><span className="font-mono text-sm text-slate-500">0{index + 1}</span></div>
+          <h3 className="mt-6 text-2xl font-semibold text-white">{offer.title}</h3><p className="studio-copy mt-4 text-sm">{offer.description}</p>
+          <ul className="my-6 space-y-3">{offer.points.map(point => <li key={point} className="flex items-center gap-3 text-sm text-slate-300"><Check className="h-4 w-4 shrink-0 text-cyan-300" aria-hidden />{point}</li>)}</ul>
+          <div className="mt-auto border-t border-white/10 pt-6"><p className="mb-4 text-sm text-slate-400">Sur devis · Périmètre personnalisé</p><DetailDialog title={offer.title} eyebrow="Détail de l’offre" triggerLabel="Voir le contenu du pack" triggerClassName="studio-link">
+            <p className="text-lg leading-8 text-slate-300">{offer.audience}</p><h3 className="mt-8 text-xl font-semibold text-white">Ce que nous cadrons avec vous</h3>
+            <ul className="mt-4 space-y-4">{offer.scope.map(item => <li key={item} className="flex gap-3 text-slate-300"><Check className="mt-1 h-5 w-5 shrink-0 text-cyan-300" aria-hidden /><span className="leading-7">{item}</span></li>)}</ul>
+            <div className="mt-8 grid gap-5 md:grid-cols-2"><section className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"><h3 className="font-semibold text-white">Livrables à préciser au devis</h3><p className="mt-3 leading-7 text-slate-300">{offer.delivery}</p></section><section className="rounded-2xl border border-white/10 bg-slate-900/70 p-6"><h3 className="font-semibold text-white">Ce qui influence le budget</h3><p className="mt-3 leading-7 text-slate-300">{offer.variables}</p></section></div>
+            <p className="mt-6 text-sm leading-7 text-slate-400">Les délais, révisions, conditions de paiement, coûts d’hébergement et abonnements tiers sont précisés dans la proposition. Aucun abonnement ni maintenance récurrente n’est présumé inclus.</p><div className="mt-8"><ButtonLink href="/contact">Demander un devis pour ce pack</ButtonLink></div>
+          </DetailDialog></div>
+        </article>)}
+        <article className="flex flex-col justify-center rounded-3xl border border-cyan-300/25 bg-cyan-950/20 p-8"><ArrowUpRight className="h-9 w-9 text-cyan-300" aria-hidden /><h3 className="mt-6 text-2xl font-semibold text-white">Votre projet est différent ?</h3><p className="studio-copy mt-4 text-sm">Nous pouvons combiner plusieurs expertises ou commencer par une mission de conseil.</p><div className="mt-7"><ButtonLink href="/contact" variant="ghost">En parler ensemble</ButtonLink></div></article>
+      </div>
+    </div></section>
+    <section className="studio-section border-t border-white/10"><div className="studio-container grid gap-8 md:grid-cols-[1fr_1.2fr]"><div><p className="studio-kicker">Avant de commencer</p><h2 className="studio-heading mt-3">Savoir ce qui sera livré.</h2></div><div className="grid gap-6 sm:grid-cols-3">{[{ title: "01 / Échange", copy: "Votre besoin, vos contraintes et vos priorités." }, { title: "02 / Proposition", copy: "Périmètre, livrables, calendrier et budget." }, { title: "03 / Validation", copy: "Un accord clair avant le début de la mission." }].map(step => <div key={step.title}><h3 className="font-semibold text-cyan-200">{step.title}</h3><p className="studio-copy mt-3 text-sm">{step.copy}</p></div>)}</div></div></section>
+  </>;
+}
