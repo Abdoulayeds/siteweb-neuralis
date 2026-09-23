@@ -208,6 +208,17 @@ textarea {
   color: var(--text-secondary) !important;
 }
 
+/* The editorial reset above applies only to pale surfaces. Explicit navy CTAs
+   and brand panels retain their intended light text. */
+.theme-dark main :is([class*="bg-[#0F172A]"], [class*="bg-[#0f172a]"]).text-white,
+.theme-dark main :is([class*="bg-[#0F172A]"], [class*="bg-[#0f172a]"]) .text-white {
+  color: #ffffff !important;
+}
+
+.theme-dark main :is([class*="bg-[#0F172A]"], [class*="bg-[#0f172a]"]) :is(.text-slate-200, .text-slate-300, .text-slate-400) {
+  color: #d9e7ee !important;
+}
+
 .theme-dark main .text-cyan-900,
 .theme-dark main .text-cyan-700,
 .theme-dark main .text-cyan-600,
@@ -429,6 +440,10 @@ dialog .studio-heading { font-size: clamp(1.65rem,3vw,2.6rem); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .theme-dark main > .studio-section > .studio-container { animation: none; }
+  .hero-showcase,
+  .hero-showcase:hover,
+  .journey-card:hover,
+  .visual-service-card:hover .service-image-link img { transform: none; }
 }
 
 .text-balance {
