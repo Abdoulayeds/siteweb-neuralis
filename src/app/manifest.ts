@@ -9,14 +9,14 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Sites web, applications, plateformes metiers, data et IA pour les organisations au Mali.",
     start_url: "/",
     display: "standalone",
-    background_color: "#020617",
-    theme_color: "#020617",
+    background_color: "#ffffff",
+    theme_color: "#0f172a",
     lang: "fr",
     icons: [
       {
-        src: "/logo-neuralis.jpeg",
-        sizes: "512x512",
-        type: "image/jpeg",
+        src: "/neuralis-mark.svg",
+        sizes: "any",
+        type: "image/svg+xml",
       },
     ],
   };

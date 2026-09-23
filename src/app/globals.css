@@ -402,8 +402,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 7rem; }
 .journey-card > p:last-child { margin-top: 1.5rem; }
 .visual-service-card { display: flex; flex-direction: column; border: 1px solid var(--border-subtle); border-radius: 1.2rem; background: #ffffff; box-shadow: 0 16px 40px rgba(15, 23, 42, .07); }
 .service-image-link { display: block; position: relative; overflow: hidden; border-radius: 1.2rem 1.2rem 0 0; }
-.service-image-link img { transition: transform 500ms cubic-bezier(.2,.7,.2,1); }
-.visual-service-card:hover .service-image-link img { transform: scale(1.035); }
 .service-image-number { position: absolute; left: 1rem; top: 1rem; display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; border: 1px solid #ffffffb8; color: var(--neuralis-navy); background: #ffffffec; font-size: .65rem; backdrop-filter: blur(8px); }
 .theme-dark main article.visual-service-card::after { display: none; }
 .theme-dark main article.visual-service-card:hover { transform: translateY(-3px); }
@@ -442,8 +440,7 @@ dialog .studio-heading { font-size: clamp(1.65rem,3vw,2.6rem); }
   .theme-dark main > .studio-section > .studio-container { animation: none; }
   .hero-showcase,
   .hero-showcase:hover,
-  .journey-card:hover,
-  .visual-service-card:hover .service-image-link img { transform: none; }
+  .journey-card:hover { transform: none; }
 }
 
 .text-balance {

@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
+  icons: { icon: "/neuralis-mark.svg", shortcut: "/neuralis-mark.svg" },
   robots: {
     index: true,
     follow: true,
@@ -94,8 +95,8 @@ const jsonLd = {
   "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
   name: businessInfo.name,
   url: businessInfo.siteUrl,
-  logo: `${businessInfo.siteUrl}/logo-neuralis.jpeg`,
-  image: `${businessInfo.siteUrl}/logo-neuralis.jpeg`,
+  logo: `${businessInfo.siteUrl}/neuralis-mark.svg`,
+  image: `${businessInfo.siteUrl}/neuralis-mark.svg`,
   sameAs: businessInfo.socials.map((social) => social.href),
   email: businessInfo.email,
   telephone: businessInfo.phoneInternational,
