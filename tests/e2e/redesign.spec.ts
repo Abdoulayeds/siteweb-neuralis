@@ -16,6 +16,17 @@ test("homepage illustrates every service with a dedicated image and detail", asy
   }
 });
 
+test("navigation call to action uses the brand navy with readable white text", async ({ page }) => {
+  await page.goto("/");
+  const cta = page.locator("header").getByRole("link", { name: "Discutons" });
+  await expect(cta).toBeVisible();
+  const colors = await cta.evaluate(element => {
+    const style = getComputedStyle(element);
+    return { background: style.backgroundColor, text: style.color };
+  });
+  expect(colors).toEqual({ background: "rgb(15, 23, 42)", text: "rgb(255, 255, 255)" });
+});
+
 for (const route of pages) {
   test(`page ${route} is readable and navigable`, async ({ page }) => {
     const errors: string[] = [];
