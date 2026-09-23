@@ -88,3 +88,15 @@ test("keeps absolute hero decorations out of the document flow", async () => {
   assert.doesNotMatch(styles, /main > section > \*\s*\{[^}]*position:\s*relative/s);
   assert.match(styles, /main > section > :not\(\.absolute\)/);
 });
+
+test("applies the official NEURALIS palette and a vector brand mark", async () => {
+  const [styles, logo] = await Promise.all([
+    read("src/app/globals.css"),
+    read("src/components/logo.tsx"),
+  ]);
+
+  assert.match(styles, /--neuralis-navy:\s*#0f172a/i);
+  assert.match(styles, /--neuralis-cyan:\s*#06b6d4/i);
+  assert.match(logo, /<svg[\s>]/);
+  assert.match(logo, /aria-label="Retour a l'accueil NEURALIS"/);
+});
