@@ -1,23 +1,26 @@
 import Link from "next/link";
 
+/** The circuit-shaped N follows the mark shown in the NEURALIS brand palette. */
 export function Logo() {
   return (
-    <Link href="/" className="group flex items-center gap-3" aria-label="Retour a l'accueil NEURALIS">
-      <span className="neuralis-mark relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-2xl border border-cyan-300/40 bg-slate-950 shadow-[0_0_34px_rgba(6,182,212,0.28)] transition duration-300 group-hover:-translate-y-0.5 group-hover:border-cyan-200 group-hover:shadow-[0_0_44px_rgba(6,182,212,0.46)]">
-        <span className="relative z-10 text-2xl font-black leading-none text-cyan-200">N</span>
-        <span className="absolute left-2 top-2 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-        <span className="absolute bottom-2 right-2 h-1.5 w-1.5 rounded-full bg-cyan-300" />
-        <span className="absolute bottom-2 left-2 h-1.5 w-1.5 rounded-full bg-cyan-300/70" />
-        <span className="absolute inset-x-3 top-1/2 h-px -rotate-45 bg-cyan-300/70" />
-        <span className="absolute inset-y-3 left-1/2 w-px bg-cyan-300/40" />
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="text-xl font-semibold text-slate-900">
-          Neuralis
-        </span>
-        <span className="mt-1 text-[10px] uppercase tracking-[0.24em] text-cyan-800">
-          Digital Partner
-        </span>
+    <Link href="/" className="group inline-flex items-center gap-3" aria-label="Retour a l'accueil NEURALIS">
+      <svg
+        viewBox="0 0 64 64"
+        fill="none"
+        aria-hidden="true"
+        className="h-12 w-12 shrink-0 text-[#06b6d4] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none"
+      >
+        <g stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 14v36M13 13l39 39M52 14v36M27 27l25 25" />
+          <circle cx="12" cy="10" r="5" fill="white" />
+          <circle cx="52" cy="10" r="5" fill="white" />
+          <circle cx="12" cy="54" r="5" fill="white" />
+          <circle cx="52" cy="54" r="5" fill="white" />
+          <circle cx="26" cy="26" r="5" fill="white" />
+        </g>
+      </svg>
+      <span className="text-[1.55rem] font-medium leading-none tracking-[-0.055em] text-[#0f172a] transition-colors duration-200 group-hover:text-[#08758b] motion-reduce:transition-none">
+        Neuralis
       </span>
     </Link>
   );
