@@ -5,6 +5,17 @@ import { businessInfo } from "../../src/lib/business-info";
 
 const pages = ["/", "/services", "/solutions", "/offres", "/portfolio", "/a-propos", "/contact", ...seoLandingPages.map(page => `/${page.slug}`), ...serviceCatalog.map(service => `/services/${service.id}`)];
 
+test("homepage illustrates every service with a dedicated image and detail", async ({ page }) => {
+  await page.goto("/");
+  const cards = page.locator("article.visual-service-card");
+  await expect(cards).toHaveCount(serviceCatalog.length);
+  for (const service of serviceCatalog) {
+    const card = cards.filter({ has: page.getByRole("heading", { name: service.title, exact: true }) });
+    await expect(card.getByRole("img")).toHaveCount(1);
+    await expect(card.getByRole("button", { name: "En savoir plus" })).toBeVisible();
+  }
+});
+
 for (const route of pages) {
   test(`page ${route} is readable and navigable`, async ({ page }) => {
     const errors: string[] = [];
