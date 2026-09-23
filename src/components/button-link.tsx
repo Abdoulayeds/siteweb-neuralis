@@ -12,13 +12,13 @@ type ButtonLinkProps = {
 export function ButtonLink({ href, children, variant = "primary", whatsapp = false }: ButtonLinkProps) {
   const styles = {
     primary:
-      "bg-cyan-400 text-slate-950 shadow-[0_18px_45px_rgba(6,182,212,0.28)] hover:bg-cyan-200 hover:shadow-[0_20px_60px_rgba(6,182,212,0.42)]",
+      "site-button-primary bg-cyan-700 text-white shadow-[0_14px_36px_rgba(8,123,145,0.18)] hover:bg-cyan-800 hover:shadow-[0_18px_44px_rgba(8,123,145,0.24)]",
     secondary:
-      "border border-cyan-300/30 bg-slate-950 text-white hover:border-cyan-300/70 hover:bg-slate-900 hover:shadow-[0_18px_45px_rgba(15,23,42,0.24)]",
+      "border border-cyan-700 bg-white text-cyan-800 hover:bg-cyan-50",
     ghost:
-      "border border-white/15 bg-white/5 text-white hover:border-cyan-300/70 hover:bg-white/10",
+      "border border-slate-300 bg-white text-slate-800 hover:border-cyan-700 hover:bg-cyan-50",
     light:
-      "border border-cyan-300/25 bg-cyan-300/10 text-cyan-100 hover:border-cyan-300/70 hover:bg-cyan-300/15",
+      "border border-cyan-200 bg-cyan-50 text-cyan-800 hover:border-cyan-700 hover:bg-cyan-100",
   };
 
   return (

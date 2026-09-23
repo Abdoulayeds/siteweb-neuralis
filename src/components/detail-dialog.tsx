@@ -70,7 +70,7 @@ export function DetailDialog({
         type="button"
         aria-haspopup="dialog"
         onClick={openDialog}
-        className={triggerClassName ?? "inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-cyan-200 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 motion-reduce:transition-none"}
+        className={triggerClassName ?? "inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-cyan-800 transition-colors hover:text-cyan-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 motion-reduce:transition-none"}
       >
         {triggerLabel}
         <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -94,16 +94,16 @@ export function DetailDialog({
             dialogRef.current?.close();
           }
         }}
-        className="m-auto max-h-[90dvh] w-[calc(100%-2rem)] max-w-[1040px] flex-col overflow-hidden rounded-3xl border border-cyan-300/20 bg-[#081322] p-0 text-slate-200 shadow-[0_28px_100px_rgba(0,0,0,0.65)] outline-none backdrop:bg-slate-950/80 backdrop:backdrop-blur-sm open:flex motion-safe:transition-[opacity,transform] motion-safe:duration-200 motion-safe:starting:open:translate-y-2 motion-safe:starting:open:opacity-0 motion-reduce:transition-none"
+        className="m-auto max-h-[90dvh] w-[calc(100%-2rem)] max-w-[1040px] flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white p-0 text-slate-800 shadow-[0_28px_100px_rgba(20,40,59,0.22)] outline-none backdrop:bg-slate-950/50 backdrop:backdrop-blur-sm open:flex motion-safe:transition-[opacity,transform] motion-safe:duration-200 motion-safe:starting:open:translate-y-2 motion-safe:starting:open:opacity-0 motion-reduce:transition-none"
       >
-        <header className="sticky top-0 z-10 flex shrink-0 items-start justify-between gap-5 border-b border-cyan-300/15 bg-[#081322] px-6 py-6 sm:px-10 sm:py-8">
+        <header className="sticky top-0 z-10 flex shrink-0 items-start justify-between gap-5 border-b border-slate-200 bg-white px-6 py-6 sm:px-10 sm:py-8">
           <div className="min-w-0">
             {eyebrow ? (
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-800">
                 {eyebrow}
               </p>
             ) : null}
-            <h2 id={titleId} className="text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl">
+            <h2 id={titleId} className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
               {title}
             </h2>
           </div>
@@ -111,7 +111,7 @@ export function DetailDialog({
             type="button"
             aria-label="Fermer la fenêtre de détail"
             onClick={() => dialogRef.current?.close()}
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-200 transition-colors hover:border-cyan-300/50 hover:bg-cyan-300/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 motion-reduce:transition-none"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-700 transition-colors hover:border-cyan-700 hover:bg-cyan-50 hover:text-cyan-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 motion-reduce:transition-none"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>

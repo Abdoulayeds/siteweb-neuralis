@@ -56,21 +56,6 @@ test("provides accessible shortcuts and persistent mobile contact", async () => 
   assert.match(styles, /\.skip-link/);
 });
 
-test("keeps every legacy light surface readable inside the dark premium theme", async () => {
-  const [layout, styles] = await Promise.all([
-    read("src/app/layout.tsx"),
-    read("src/app/globals.css"),
-  ]);
-
-  assert.match(layout, /className="theme-dark/);
-  assert.match(styles, /--surface-base:/);
-  assert.match(styles, /--surface-raised:/);
-  assert.match(styles, /\.theme-dark main \.bg-white/);
-  assert.match(styles, /\.theme-dark main \.text-slate-950/);
-  assert.match(styles, /\.theme-dark main \.text-white/);
-  assert.match(styles, /\.theme-dark main input/);
-});
-
 test("renders a performant and accessible neural network background", async () => {
   const [layout, neuralBackground, styles] = await Promise.all([
     read("src/app/layout.tsx"),

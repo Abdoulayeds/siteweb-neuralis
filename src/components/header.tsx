@@ -53,7 +53,7 @@ export function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-white/10 bg-[#07111f]/95 text-white backdrop-blur-xl"
+      className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 text-slate-900 shadow-[0_8px_32px_rgba(20,60,76,0.05)] backdrop-blur-xl"
       onBlur={(event) => {
         if (open && !event.currentTarget.contains(event.relatedTarget)) setOpenForPath(null);
       }}
@@ -66,7 +66,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`relative whitespace-nowrap rounded-md px-3 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 motion-reduce:transition-none ${isActive(item.href) ? "text-cyan-200 after:absolute after:inset-x-3 after:bottom-1 after:h-px after:bg-cyan-300" : "text-slate-300 hover:text-white"}`}
+              className={`relative whitespace-nowrap rounded-md px-3 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700 motion-reduce:transition-none ${isActive(item.href) ? "text-cyan-800 after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:bg-cyan-700" : "text-slate-700 hover:text-cyan-800"}`}
             >
               {labelFor(item)}
             </Link>
@@ -76,7 +76,7 @@ export function Header() {
           <Link
             href="/contact"
             onClick={() => { if (open) closeMenu(); }}
-            className="hidden items-center gap-2 rounded-lg border border-cyan-300/30 bg-cyan-300/10 px-4 py-3 text-sm font-semibold text-cyan-100 transition-colors hover:border-cyan-200/60 hover:bg-cyan-300/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 motion-reduce:transition-none sm:inline-flex"
+            className="hidden items-center gap-2 rounded-lg border border-cyan-700 bg-cyan-700 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-cyan-800 hover:bg-cyan-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 motion-reduce:transition-none sm:inline-flex"
           >
             Discutons
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -84,7 +84,7 @@ export function Header() {
           <button
             ref={toggleRef}
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 text-white hover:border-cyan-300/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 xl:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 text-slate-900 hover:border-cyan-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 xl:hidden"
             onClick={() => open ? closeMenu() : setOpenForPath(pathname)}
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={open}
@@ -97,7 +97,7 @@ export function Header() {
       <div
         id={menuId}
         hidden={!open}
-        className="absolute inset-x-0 top-20 max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain border-b border-white/10 bg-[#07111f] shadow-2xl xl:hidden"
+        className="absolute inset-x-0 top-20 max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain border-b border-slate-200 bg-white shadow-xl xl:hidden"
       >
         <nav ref={mobileNavRef} className="studio-container grid gap-1 py-5" aria-label="Navigation mobile">
           {navItems.map((item) => (
@@ -106,7 +106,7 @@ export function Header() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               onClick={closeMenu}
-              className={`rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-2 focus-visible:outline-cyan-300 motion-reduce:transition-none ${isActive(item.href) ? "bg-cyan-300/10 text-cyan-200" : "text-slate-300 hover:bg-white/5 hover:text-white"}`}
+              className={`rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-2 focus-visible:outline-cyan-700 motion-reduce:transition-none ${isActive(item.href) ? "bg-cyan-50 text-cyan-800" : "text-slate-700 hover:bg-slate-100 hover:text-cyan-800"}`}
             >
               {labelFor(item)}
             </Link>
@@ -114,7 +114,7 @@ export function Header() {
           <Link
             href="/contact"
             onClick={closeMenu}
-            className="mt-4 inline-flex items-center justify-between gap-3 rounded-lg border border-cyan-300/30 bg-cyan-300/10 px-4 py-4 font-semibold text-cyan-100 hover:bg-cyan-300/15 focus-visible:outline-2 focus-visible:outline-cyan-300"
+            className="mt-4 inline-flex items-center justify-between gap-3 rounded-lg border border-cyan-700 bg-cyan-700 px-4 py-4 font-semibold text-white hover:bg-cyan-800 focus-visible:outline-2 focus-visible:outline-cyan-700"
           >
             Parlons de votre projet
             <ArrowUpRight className="h-5 w-5" aria-hidden="true" />

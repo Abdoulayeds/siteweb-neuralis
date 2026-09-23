@@ -4,13 +4,13 @@
 
 - Huit expertises illustrées dans `src/lib/service-catalog.ts` : textes courts, publics, bénéfices, livrables, scénario illustratif, étapes et FAQ.
 - Les cartes proposent une fenêtre « En savoir plus » et une fiche permanente `/services/{id}` accessible aussi sans JavaScript.
-- Les pages Solutions, Offres, Portfolio et À propos utilisent des résumés et des détails à la demande. Le portfolio présente explicitement des illustrations de solutions, pas des références clients.
-- Les sept pages d'expertise locale conservent leurs adresses et disposent de métadonnées, d'une illustration et de questions repliables.
-- Le thème sombre, le fond neuronal, les logos des réseaux sociaux et le respect de la réduction des animations sont conservés.
+- Les pages Solutions, Offres, Portfolio et À propos utilisent des résumés et des détails à la demande. Le portfolio présente explicitement des cas d’usage illustrés, sans les attribuer à des clients.
+- Les sept pages d'expertise locale conservent leurs adresses et disposent de métadonnées, d'une photographie et de questions repliables.
+- Le fond neuronal discret, les logos des réseaux sociaux et le respect de la réduction des animations sont conservés dans une palette claire.
 
 ## Visuels
 
-Les huit illustrations originales sont dans `public/images/services`, au format WebP 1200 × 800, chacune sous 180 Ko. Les consignes de génération sont conservées dans [service-image-prompts.md](service-image-prompts.md). Pour remplacer une image, conserver son nom ou modifier le catalogue ainsi que son texte alternatif.
+Les huit photographies réelles sont dans `public/images/services`, au format WebP 1200 × 800. Les sources, photographes et conditions de licence sont consignés dans [photo-credits.md](photo-credits.md). Elles illustrent les services et ne représentent ni l’équipe ni les clients de NEURALIS. Pour remplacer une image, conserver son nom ou modifier le catalogue ainsi que son texte alternatif.
 
 ## Contact
 

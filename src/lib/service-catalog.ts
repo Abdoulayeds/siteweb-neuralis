@@ -25,7 +25,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous concevons des sites vitrines, institutionnels et marchands qui rendent votre offre compréhensible dès les premières pages. Contenus, navigation et parcours de contact sont organisés autour de vos visiteurs, avec une attention particulière à l’usage sur mobile.",
     image: "/images/services/sites-web.webp",
-    imageAlt: "Illustration de la conception d’un site web professionnel sur ordinateur et mobile",
+    imageAlt: "Deux développeurs travaillent ensemble devant leurs ordinateurs",
     forWho: ["PME et entreprises", "Commerces", "Écoles et centres de formation", "ONG et associations", "Cabinets et indépendants"],
     deliverables: [
       "Arborescence et organisation des contenus essentiels",
@@ -60,7 +60,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous développons des applications pour gérer des demandes, des réservations, des opérations ou des espaces clients. Le projet démarre par les usages prioritaires, puis avance par étapes pour valider les fonctionnalités avec les personnes qui les utiliseront.",
     image: "/images/services/applications.webp",
-    imageAlt: "Illustration d’une application métier et de ses interfaces web et mobiles",
+    imageAlt: "Deux professionnels échangent autour d’une application sur téléphone et ordinateur",
     forWho: ["PME", "Startups", "Équipes opérationnelles", "Commerces et prestataires", "Porteurs de projets"],
     deliverables: [
       "Cadrage fonctionnel et liste des parcours prioritaires",
@@ -95,7 +95,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous accompagnons les écoles et les organisations dans la mise en place de plateformes de formation et de gestion. Cours, inscriptions, stocks, clients ou suivi administratif sont structurés dans un périmètre cohérent, à partir d’une solution existante ou d’un développement adapté.",
     image: "/images/services/plateformes.webp",
-    imageAlt: "Illustration d’une plateforme de gestion avec modules et tableau de bord",
+    imageAlt: "Deux collègues consultent ensemble un ordinateur portable",
     forWho: ["Écoles et établissements", "Centres de formation", "PME", "ONG et associations", "Services administratifs"],
     deliverables: [
       "Cartographie des processus et des besoins de gestion",
@@ -130,7 +130,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous structurons votre présence digitale autour de votre activité, de vos publics et de vos messages essentiels. Identité visuelle, contenus et calendrier éditorial forment un ensemble cohérent pour présenter votre offre et entretenir la relation avec votre audience.",
     image: "/images/services/communication.webp",
-    imageAlt: "Illustration d’une identité visuelle et de supports de communication digitale",
+    imageAlt: "Une photographe prépare une prise de vue sur fond jaune",
     forWho: ["Entreprises en lancement", "Commerces et restaurants", "Marques locales", "Indépendants", "Associations et organisations"],
     deliverables: [
       "Diagnostic de votre présence et de vos supports existants",
@@ -165,7 +165,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous organisons vos données pour construire des tableaux de bord qui répondent à des questions de gestion précises. Les sources, les règles de calcul et la fréquence de mise à jour sont définies avec vos équipes pour donner du sens aux indicateurs.",
     image: "/images/services/data.webp",
-    imageAlt: "Illustration d’un tableau de bord avec graphiques et indicateurs d’activité",
+    imageAlt: "Une équipe examine une présentation de graphiques sur un écran",
     forWho: ["Directions de PME", "Équipes commerciales", "Établissements de formation", "Responsables opérationnels", "ONG et associations"],
     deliverables: [
       "Inventaire des sources et diagnostic de qualité des données",
@@ -200,7 +200,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous identifions les tâches qui peuvent être automatisées et les situations où un assistant IA apporte une aide concrète. Les solutions sont testées sur des cas représentatifs, avec des règles de confidentialité et une validation humaine adaptée aux décisions importantes.",
     image: "/images/services/ia.webp",
-    imageAlt: "Illustration d’un assistant IA relié à des documents et à un processus de travail",
+    imageAlt: "Une équipe d’ingénieurs observe un équipement robotique",
     forWho: ["Équipes administratives", "Services clients", "PME", "Centres de formation", "Entrepreneurs"],
     deliverables: [
       "Sélection d’un cas d’usage et de critères de réussite observables",
@@ -235,7 +235,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous construisons des formations en IA, bureautique, data, communication digitale et développement selon le niveau des participants. Les séances alternent explications, démonstrations et exercices pour relier chaque apprentissage à une tâche concrète.",
     image: "/images/services/formation.webp",
-    imageAlt: "Illustration d’un atelier de formation aux outils numériques",
+    imageAlt: "Une formatrice accompagne une personne devant un ordinateur",
     forWho: ["Équipes d’entreprise", "Professionnels", "Entrepreneurs", "Étudiants", "Associations et établissements"],
     deliverables: [
       "Échange de cadrage sur le niveau et les objectifs des participants",
@@ -270,7 +270,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous analysons vos outils, vos usages et vos contraintes pour identifier les améliorations qui méritent d’être engagées. Le conseil se traduit en recommandations compréhensibles et en documents de cadrage qui facilitent les décisions et les échanges avec vos prestataires.",
     image: "/images/services/consulting.webp",
-    imageAlt: "Illustration d’un atelier de conseil digital autour d’une feuille de route",
+    imageAlt: "Une équipe échange autour d’une table de réunion",
     forWho: ["Directions et responsables", "PME", "Institutions", "Écoles et centres de formation", "Porteurs de projets"],
     deliverables: [
       "Entretiens de cadrage et inventaire des outils concernés",
