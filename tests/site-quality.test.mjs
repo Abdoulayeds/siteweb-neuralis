@@ -100,3 +100,15 @@ test("applies the official NEURALIS palette and a vector brand mark", async () =
   assert.match(logo, /<svg[\s>]/);
   assert.match(logo, /aria-label="Retour a l'accueil NEURALIS"/);
 });
+
+test("uses the same official mark in install and search metadata", async () => {
+  const [manifest, layout] = await Promise.all([
+    read("src/app/manifest.ts"),
+    read("src/app/layout.tsx"),
+  ]);
+
+  assert.match(manifest, /background_color:\s*"#ffffff"/i);
+  assert.match(manifest, /theme_color:\s*"#0f172a"/i);
+  assert.match(manifest, /src:\s*"\/neuralis-mark\.svg"/);
+  assert.match(layout, /logo:\s*`\$\{businessInfo\.siteUrl\}\/neuralis-mark\.svg`/);
+});
