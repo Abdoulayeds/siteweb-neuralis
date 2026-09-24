@@ -45,6 +45,18 @@ test("header and footer use calm brand-tinted surfaces instead of near-white blo
   expect(await redChannel("footer")).toBeLessThan(230);
 });
 
+test("secondary detail buttons have a visible boundary and comfortable touch target", async ({ page }) => {
+  await page.goto("/offres");
+  const trigger = page.getByRole("button", { name: "Voir le contenu du pack" }).first();
+  await expect(trigger).toBeVisible();
+  const appearance = await trigger.evaluate(element => {
+    const style = getComputedStyle(element);
+    return { border: parseFloat(style.borderTopWidth), height: element.getBoundingClientRect().height };
+  });
+  expect(appearance.border).toBeGreaterThanOrEqual(1);
+  expect(appearance.height).toBeGreaterThanOrEqual(44);
+});
+
 for (const route of pages) {
   test(`page ${route} is readable and navigable`, async ({ page }) => {
     const errors: string[] = [];
