@@ -27,6 +27,20 @@ test("navigation call to action uses the brand navy with readable white text", a
   expect(colors).toEqual({ background: "rgb(15, 23, 42)", text: "rgb(255, 255, 255)" });
 });
 
+test("header and footer use calm brand-tinted surfaces instead of near-white blocks", async ({ page }) => {
+  await page.goto("/");
+  const redChannel = async (selector: string) => page.locator(selector).first().evaluate(element => {
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 1;
+    const context = canvas.getContext("2d")!;
+    context.fillStyle = getComputedStyle(element).backgroundColor;
+    context.fillRect(0, 0, 1, 1);
+    return context.getImageData(0, 0, 1, 1).data[0];
+  });
+  expect(await redChannel("header")).toBeLessThan(235);
+  expect(await redChannel("footer")).toBeLessThan(230);
+});
+
 for (const route of pages) {
   test(`page ${route} is readable and navigable`, async ({ page }) => {
     const errors: string[] = [];
