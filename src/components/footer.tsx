@@ -21,7 +21,7 @@ const footerLink = "w-fit rounded-sm text-sm leading-6 text-slate-600 transition
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-[#eef5f7] text-slate-900">
+    <footer className="relative overflow-hidden border-t border-[#bfd8de] bg-[#dfecef] text-slate-900 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-cyan-600/55 before:to-transparent">
       <div className="studio-container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.35fr_0.8fr_1.1fr_1.15fr] lg:gap-8 lg:py-20">
         <div>
           <Logo />

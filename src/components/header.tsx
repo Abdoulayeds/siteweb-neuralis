@@ -53,7 +53,7 @@ export function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 text-slate-900 shadow-[0_8px_32px_rgba(20,60,76,0.05)] backdrop-blur-xl"
+      className="sticky top-0 z-50 border-b border-[#bfd8de] bg-[#e5f0f3]/90 text-slate-900 shadow-[0_8px_32px_rgba(15,23,42,0.08)] backdrop-blur-xl"
       onBlur={(event) => {
         if (open && !event.currentTarget.contains(event.relatedTarget)) setOpenForPath(null);
       }}
@@ -76,7 +76,7 @@ export function Header() {
           <Link
             href="/contact"
             onClick={() => { if (open) closeMenu(); }}
-            className="hidden items-center gap-2 rounded-lg border border-cyan-700 bg-cyan-700 px-4 py-3 text-sm font-semibold text-white transition-colors hover:border-cyan-800 hover:bg-cyan-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 motion-reduce:transition-none sm:inline-flex"
+            className="hidden min-h-11 items-center gap-2 rounded-full border border-[#0f172a] bg-[#0f172a] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#1e293b] hover:shadow-[0_16px_34px_rgba(15,23,42,0.22)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-600 motion-reduce:transform-none motion-reduce:transition-none sm:inline-flex"
           >
             Discutons
             <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -97,7 +97,7 @@ export function Header() {
       <div
         id={menuId}
         hidden={!open}
-        className="absolute inset-x-0 top-20 max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain border-b border-slate-200 bg-white shadow-xl xl:hidden"
+        className="absolute inset-x-0 top-20 max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain border-b border-[#bfd8de] bg-[#edf5f6] shadow-xl xl:hidden"
       >
         <nav ref={mobileNavRef} className="studio-container grid gap-1 py-5" aria-label="Navigation mobile">
           {navItems.map((item) => (
@@ -114,7 +114,7 @@ export function Header() {
           <Link
             href="/contact"
             onClick={closeMenu}
-            className="mt-4 inline-flex items-center justify-between gap-3 rounded-lg border border-cyan-700 bg-cyan-700 px-4 py-4 font-semibold text-white hover:bg-cyan-800 focus-visible:outline-2 focus-visible:outline-cyan-700"
+            className="mt-4 inline-flex min-h-12 items-center justify-between gap-3 rounded-full border border-[#0f172a] bg-[#0f172a] px-5 py-4 font-semibold text-white hover:bg-[#1e293b] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-600"
           >
             Parlons de votre projet
             <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
