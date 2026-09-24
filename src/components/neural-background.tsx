@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 const FRAME_INTERVAL = 1000 / 30;
-const CONNECTION_DISTANCE = 148;
-const POINTER_DISTANCE = 210;
+const CONNECTION_DISTANCE = 184;
+const POINTER_DISTANCE = 228;
 
 type NeuralNode = {
   x: number;
@@ -37,14 +37,18 @@ export function NeuralBackground() {
     const shouldStayStatic = () => reducedMotion || !hasFinePointer;
 
     const createNodes = () => {
-      const areaCount = Math.floor((width * height) / 32000);
-      const nodeCount = shouldStayStatic() ? 20 : width < 768 ? 26 : Math.min(58, Math.max(36, areaCount));
+      const nodeCount = shouldStayStatic()
+        ? width < 768 ? 24 : 34
+        : Math.min(88, Math.max(54, Math.floor((width * height) / 18000)));
+      const columns = Math.max(3, Math.round(Math.sqrt((nodeCount * width) / height)));
+      const rows = Math.ceil(nodeCount / columns);
 
-      nodes = Array.from({ length: nodeCount }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        vx: (Math.random() - 0.5) * (width < 768 ? 0.16 : 0.26),
-        vy: (Math.random() - 0.5) * (width < 768 ? 0.16 : 0.26),
+      // A jittered lattice gives the web even coverage without looking like a grid.
+      nodes = Array.from({ length: nodeCount }, (_, index) => ({
+        x: ((index % columns) + 0.2 + Math.random() * 0.6) * (width / columns),
+        y: (Math.floor(index / columns) + 0.2 + Math.random() * 0.6) * (height / rows),
+        vx: (Math.random() - 0.5) * 0.24,
+        vy: (Math.random() - 0.5) * 0.24,
         radius: 1 + Math.random() * 1.5,
         pulse: Math.random() * Math.PI * 2,
       }));
@@ -76,7 +80,7 @@ export function NeuralBackground() {
           const distance = Math.hypot(dx, dy);
 
           if (distance > 1 && distance < POINTER_DISTANCE) {
-            const attraction = (1 - distance / POINTER_DISTANCE) * 0.006;
+            const attraction = (1 - distance / POINTER_DISTANCE) * (distance < 54 ? -0.003 : 0.004);
             node.x += dx * attraction;
             node.y += dy * attraction;
           }
@@ -93,8 +97,9 @@ export function NeuralBackground() {
       }
     };
 
-    const drawScene = () => {
+    const drawScene = (time = 0) => {
       context.clearRect(0, 0, width, height);
+      const animateSignals = !shouldStayStatic();
 
       for (let index = 0; index < nodes.length; index += 1) {
         const node = nodes[index];
@@ -104,24 +109,43 @@ export function NeuralBackground() {
           const distance = Math.hypot(node.x - target.x, node.y - target.y);
 
           if (distance < CONNECTION_DISTANCE) {
-            const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.28;
+            const proximity = pointer.active
+              ? Math.max(0, 1 - Math.hypot(node.x - pointer.x, node.y - pointer.y) / POINTER_DISTANCE)
+                + Math.max(0, 1 - Math.hypot(target.x - pointer.x, target.y - pointer.y) / POINTER_DISTANCE)
+              : 0;
+            const opacity = Math.min(0.7, 0.12 + (1 - distance / CONNECTION_DISTANCE) * 0.3 + proximity * 0.15);
             context.beginPath();
             context.moveTo(node.x, node.y);
             context.lineTo(target.x, target.y);
             context.strokeStyle = `rgba(6, 182, 212, ${opacity})`;
-            context.lineWidth = 0.7;
+            context.lineWidth = proximity > 0.2 ? 1 : 0.8;
             context.stroke();
+
+            // Small travelling packets suggest data moving through the network.
+            if (animateSignals && distance < CONNECTION_DISTANCE * 0.85 && (index * 7 + targetIndex) % 9 === 0) {
+              const progress = (time * 0.00014 + index * 0.31 + targetIndex * 0.11) % 1;
+              context.beginPath();
+              context.arc(
+                node.x + (target.x - node.x) * progress,
+                node.y + (target.y - node.y) * progress,
+                1.45,
+                0,
+                Math.PI * 2,
+              );
+              context.fillStyle = "rgba(151, 242, 255, 0.76)";
+              context.fill();
+            }
           }
         }
 
         if (pointer.active) {
           const pointerDistance = Math.hypot(node.x - pointer.x, node.y - pointer.y);
           if (pointerDistance < POINTER_DISTANCE) {
-            const opacity = (1 - pointerDistance / POINTER_DISTANCE) * 0.55;
+            const opacity = (1 - pointerDistance / POINTER_DISTANCE) * 0.7;
             context.beginPath();
             context.moveTo(node.x, node.y);
             context.lineTo(pointer.x, pointer.y);
-            context.strokeStyle = `rgba(8, 123, 145, ${opacity})`;
+            context.strokeStyle = `rgba(151, 242, 255, ${opacity})`;
             context.lineWidth = 1;
             context.stroke();
           }
@@ -133,16 +157,26 @@ export function NeuralBackground() {
           : 0;
         context.beginPath();
         context.arc(node.x, node.y, Math.max(0.8, node.radius + pulse + pointerProximity * 0.65), 0, Math.PI * 2);
-        context.fillStyle = `rgba(6, 182, 212, ${0.54 + pointerProximity * 0.34})`;
+        context.fillStyle = `rgba(56, 211, 237, ${0.63 + pointerProximity * 0.31})`;
         context.fill();
       }
 
       if (pointer.active) {
-        const glow = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 120);
-        glow.addColorStop(0, "rgba(6, 182, 212, 0.08)");
+        const glow = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 140);
+        glow.addColorStop(0, "rgba(6, 182, 212, 0.13)");
         glow.addColorStop(1, "rgba(6, 182, 212, 0)");
         context.fillStyle = glow;
-        context.fillRect(pointer.x - 120, pointer.y - 120, 240, 240);
+        context.fillRect(pointer.x - 140, pointer.y - 140, 280, 280);
+
+        context.beginPath();
+        context.arc(pointer.x, pointer.y, 21 + Math.sin(time * 0.0025) * 3, 0, Math.PI * 2);
+        context.strokeStyle = "rgba(151, 242, 255, 0.5)";
+        context.lineWidth = 1;
+        context.stroke();
+        context.beginPath();
+        context.arc(pointer.x, pointer.y, 2.5, 0, Math.PI * 2);
+        context.fillStyle = "rgba(209, 250, 255, 0.9)";
+        context.fill();
       }
     };
 
@@ -152,7 +186,7 @@ export function NeuralBackground() {
 
       lastFrame = time;
       updateNodes();
-      drawScene();
+      drawScene(time);
     };
 
     const start = () => {
