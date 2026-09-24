@@ -18,7 +18,11 @@ test("homepage illustrates every service with a dedicated image and detail", asy
 
 test("navigation call to action uses the brand navy with readable white text", async ({ page }) => {
   await page.goto("/");
-  const cta = page.locator("header").getByRole("link", { name: "Discutons" });
+  const isMobile = await page.getByRole("button", { name: "Ouvrir le menu" }).isVisible();
+  if (isMobile) await page.getByRole("button", { name: "Ouvrir le menu" }).click();
+  const cta = isMobile
+    ? page.getByRole("navigation", { name: "Navigation mobile" }).getByRole("link", { name: "Parlons de votre projet" })
+    : page.locator("header").getByRole("link", { name: "Discutons" });
   await expect(cta).toBeVisible();
   const colors = await cta.evaluate(element => {
     const style = getComputedStyle(element);
