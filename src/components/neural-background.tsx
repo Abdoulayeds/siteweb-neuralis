@@ -25,17 +25,20 @@ export function NeuralBackground() {
     if (!canvas || !context) return;
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const pointer = { x: 0, y: 0, active: false };
+    const finePointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const pointer = { x: 0, y: 0, targetX: 0, targetY: 0, active: false };
     let reducedMotion = motionQuery.matches;
+    let hasFinePointer = finePointerQuery.matches;
     let width = window.innerWidth;
     let height = window.innerHeight;
     let nodes: NeuralNode[] = [];
     let animationFrame = 0;
     let lastFrame = 0;
+    const shouldStayStatic = () => reducedMotion || !hasFinePointer;
 
     const createNodes = () => {
       const areaCount = Math.floor((width * height) / 32000);
-      const nodeCount = reducedMotion ? 18 : width < 768 ? 26 : Math.min(58, Math.max(36, areaCount));
+      const nodeCount = shouldStayStatic() ? 20 : width < 768 ? 26 : Math.min(58, Math.max(36, areaCount));
 
       nodes = Array.from({ length: nodeCount }, () => ({
         x: Math.random() * width,
@@ -61,6 +64,11 @@ export function NeuralBackground() {
     };
 
     const updateNodes = () => {
+      if (pointer.active) {
+        pointer.x += (pointer.targetX - pointer.x) * 0.18;
+        pointer.y += (pointer.targetY - pointer.y) * 0.18;
+      }
+
       for (const node of nodes) {
         if (pointer.active) {
           const dx = pointer.x - node.x;
@@ -96,11 +104,11 @@ export function NeuralBackground() {
           const distance = Math.hypot(node.x - target.x, node.y - target.y);
 
           if (distance < CONNECTION_DISTANCE) {
-            const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.3;
+            const opacity = (1 - distance / CONNECTION_DISTANCE) * 0.28;
             context.beginPath();
             context.moveTo(node.x, node.y);
             context.lineTo(target.x, target.y);
-            context.strokeStyle = `rgba(34, 211, 238, ${opacity})`;
+            context.strokeStyle = `rgba(6, 182, 212, ${opacity})`;
             context.lineWidth = 0.7;
             context.stroke();
           }
@@ -109,27 +117,30 @@ export function NeuralBackground() {
         if (pointer.active) {
           const pointerDistance = Math.hypot(node.x - pointer.x, node.y - pointer.y);
           if (pointerDistance < POINTER_DISTANCE) {
-            const opacity = (1 - pointerDistance / POINTER_DISTANCE) * 0.48;
+            const opacity = (1 - pointerDistance / POINTER_DISTANCE) * 0.55;
             context.beginPath();
             context.moveTo(node.x, node.y);
             context.lineTo(pointer.x, pointer.y);
-            context.strokeStyle = `rgba(103, 232, 249, ${opacity})`;
-            context.lineWidth = 0.9;
+            context.strokeStyle = `rgba(8, 123, 145, ${opacity})`;
+            context.lineWidth = 1;
             context.stroke();
           }
         }
 
-        const pulse = reducedMotion ? 0 : Math.sin(node.pulse) * 0.35;
+        const pulse = shouldStayStatic() ? 0 : Math.sin(node.pulse) * 0.35;
+        const pointerProximity = pointer.active
+          ? Math.max(0, 1 - Math.hypot(node.x - pointer.x, node.y - pointer.y) / POINTER_DISTANCE)
+          : 0;
         context.beginPath();
-        context.arc(node.x, node.y, Math.max(0.8, node.radius + pulse), 0, Math.PI * 2);
-        context.fillStyle = "rgba(103, 232, 249, 0.7)";
+        context.arc(node.x, node.y, Math.max(0.8, node.radius + pulse + pointerProximity * 0.65), 0, Math.PI * 2);
+        context.fillStyle = `rgba(6, 182, 212, ${0.54 + pointerProximity * 0.34})`;
         context.fill();
       }
 
       if (pointer.active) {
         const glow = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 120);
-        glow.addColorStop(0, "rgba(34, 211, 238, 0.1)");
-        glow.addColorStop(1, "rgba(34, 211, 238, 0)");
+        glow.addColorStop(0, "rgba(6, 182, 212, 0.08)");
+        glow.addColorStop(1, "rgba(6, 182, 212, 0)");
         context.fillStyle = glow;
         context.fillRect(pointer.x - 120, pointer.y - 120, 240, 240);
       }
@@ -146,7 +157,7 @@ export function NeuralBackground() {
 
     const start = () => {
       window.cancelAnimationFrame(animationFrame);
-      if (reducedMotion || document.hidden) {
+      if (shouldStayStatic() || document.hidden) {
         drawScene();
         return;
       }
@@ -154,9 +165,13 @@ export function NeuralBackground() {
     };
 
     const handlePointerMove = (event: PointerEvent) => {
-      if (reducedMotion || event.pointerType === "touch") return;
-      pointer.x = event.clientX;
-      pointer.y = event.clientY;
+      if (shouldStayStatic() || event.pointerType === "touch") return;
+      if (!pointer.active) {
+        pointer.x = event.clientX;
+        pointer.y = event.clientY;
+      }
+      pointer.targetX = event.clientX;
+      pointer.targetY = event.clientY;
       pointer.active = true;
     };
 
@@ -179,23 +194,37 @@ export function NeuralBackground() {
       start();
     };
 
+    const handlePointerChange = (event: MediaQueryListEvent) => {
+      hasFinePointer = event.matches;
+      pointer.active = false;
+      resize();
+      start();
+    };
+
+    const handleResize = () => {
+      resize();
+      start();
+    };
+
     resize();
     drawScene();
     start();
 
-    window.addEventListener("resize", resize, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     document.addEventListener("pointerleave", handlePointerLeave);
     document.addEventListener("visibilitychange", handleVisibilityChange);
     motionQuery.addEventListener("change", handleMotionChange);
+    finePointerQuery.addEventListener("change", handlePointerChange);
 
     return () => {
       window.cancelAnimationFrame(animationFrame);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("pointerleave", handlePointerLeave);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       motionQuery.removeEventListener("change", handleMotionChange);
+      finePointerQuery.removeEventListener("change", handlePointerChange);
     };
   }, []);
 
