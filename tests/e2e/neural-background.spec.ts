@@ -19,8 +19,12 @@ test("moving the mouse lights up a distinct neural cursor halo", async ({ page }
   });
 
   await page.goto("/");
-  await page.mouse.move(300, 500);
-  await expect.poll(() => page.evaluate(() => (window as typeof window & { __neuralCursorHaloCount?: number }).__neuralCursorHaloCount ?? 0)).toBeGreaterThan(0);
+  await expect.poll(async () => {
+    // Hydration can finish after navigation under parallel browser load; keep
+    // sending the pointer event until the canvas listener is ready.
+    await page.mouse.move(300 + Math.random() * 4, 500);
+    return page.evaluate(() => (window as typeof window & { __neuralCursorHaloCount?: number }).__neuralCursorHaloCount ?? 0);
+  }, { timeout: 15000 }).toBeGreaterThan(0);
 });
 
 test("reduced motion keeps the neural backdrop still on desktop", async ({ page }, testInfo) => {

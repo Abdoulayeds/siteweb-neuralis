@@ -27,9 +27,9 @@ export default function SolutionsPage() {
       <div className="studio-container">
         <div className="max-w-2xl"><p className="studio-kicker">Votre point de départ</p><h2 className="studio-heading mt-3">Un besoin concret. Un parcours adapté.</h2><p className="studio-copy mt-4">Choisissez votre contexte pour découvrir les usages possibles et les premières étapes.</p></div>
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {sectors.map((sector) => <article key={sector.title} className="studio-panel flex flex-col p-6 md:p-7">
-            <sector.icon className="h-8 w-8 text-cyan-300" strokeWidth={1.5} aria-hidden />
-            <h3 className="mt-6 text-xl font-semibold text-white">{sector.title}</h3>
+          {sectors.map((sector, index) => <article key={sector.title} data-tone={["cyan", "indigo", "mint", "amber", "orchid", "coral"][index]} className="studio-panel themed-card flex flex-col p-6 md:p-7">
+            <span className="themed-card-icon"><sector.icon className="h-7 w-7" strokeWidth={1.5} aria-hidden /></span>
+            <h3 className="mt-6 text-xl font-semibold text-slate-900">{sector.title}</h3>
             <p className="studio-copy mt-3 text-sm">{sector.need}</p>
             <div className="studio-tags mt-5">{sector.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
             <div className="mt-auto pt-7"><DetailDialog title={sector.title} eyebrow="Un parcours possible" triggerLabel="Explorer la solution" triggerClassName="studio-link">
@@ -45,6 +45,6 @@ export default function SolutionsPage() {
         </div>
       </div>
     </section>
-    <section className="studio-section border-t border-white/10"><div className="studio-container"><div className="studio-panel flex flex-col gap-7 p-8 md:flex-row md:items-center md:justify-between md:p-12"><div className="max-w-2xl"><p className="studio-kicker">Un autre contexte ?</p><h2 className="mt-3 text-3xl font-semibold text-white">Commençons par ce qui vous freine.</h2><p className="studio-copy mt-4">Décrivez votre activité, votre problème principal et les outils que vous utilisez déjà.</p></div><ButtonLink href="/contact">Cadrer mon besoin</ButtonLink></div></div></section>
+    <section className="studio-section border-t border-white/10"><div className="studio-container"><div className="studio-panel themed-card flex flex-col gap-7 p-8 md:flex-row md:items-center md:justify-between md:p-12" data-tone="cyan"><div className="max-w-2xl"><p className="studio-kicker">Un autre contexte ?</p><h2 className="mt-3 text-3xl font-semibold text-slate-900">Commençons par ce qui vous freine.</h2><p className="studio-copy mt-4">Décrivez votre activité, votre problème principal et les outils que vous utilisez déjà.</p></div><ButtonLink href="/contact">Cadrer mon besoin</ButtonLink></div></div></section>
   </>;
 }

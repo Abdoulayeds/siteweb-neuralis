@@ -29,7 +29,7 @@ export default function ContactPage() {
       />
       <section className="studio-section scroll-mt-28" id="formulaire">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
-          <aside className="rounded-[2rem] bg-slate-950 p-8 text-white">
+          <aside className="contact-info-card rounded-[2rem] p-8">
             <p className="studio-kicker">Restons en contact</p>
             <h2 className="mt-4 text-3xl font-semibold">Un échange simple.<br />Un projet bien cadré.</h2>
             <p className="mt-5 text-sm leading-7 text-slate-300">
@@ -81,7 +81,7 @@ export default function ContactPage() {
           {web3FormsAccessKey ? <form
             action="https://api.web3forms.com/submit"
             method="POST"
-            className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-sm md:p-8"
+            className="contact-form-card rounded-[2rem] p-6 md:p-8"
           >
             <input type="hidden" name="access_key" value={web3FormsAccessKey} />
             <input type="hidden" name="subject" value="Nouvelle demande de devis NEURALIS" />
@@ -136,11 +136,11 @@ export default function ContactPage() {
                 Vos coordonnées servent à vous recontacter au sujet de cette demande.
               </p>
             </div>
-          </form> : <div className="studio-panel p-7 md:p-10">
+          </form> : <div className="studio-panel contact-fallback-card p-7 md:p-10">
             <p className="studio-kicker">Votre projet, en quelques mots</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white">Écrivons la suite ensemble.</h2>
+            <h2 className="mt-4 text-3xl font-semibold text-slate-900">Écrivons la suite ensemble.</h2>
             <p className="studio-copy mt-5">Envoyez-nous votre demande par e-mail ou WhatsApp. Pour préparer notre échange, indiquez simplement :</p>
-            <ul className="mt-6 grid gap-4 text-slate-300"><li>01 / Votre activité et votre organisation</li><li>02 / Le besoin ou le problème à résoudre</li><li>03 / Le résultat attendu et votre calendrier</li></ul>
+            <ul className="mt-6 grid gap-4 text-slate-700"><li>01 / Votre activité et votre organisation</li><li>02 / Le besoin ou le problème à résoudre</li><li>03 / Le résultat attendu et votre calendrier</li></ul>
             <div className="mt-9 flex flex-wrap gap-3"><ButtonLink href={`mailto:${businessInfo.email}?subject=Mon%20projet%20digital%20NEURALIS`}>Écrire par e-mail</ButtonLink><ButtonLink href={businessInfo.whatsappUrl} variant="ghost" whatsapp>Échanger sur WhatsApp</ButtonLink></div>
           </div>}
         </div>

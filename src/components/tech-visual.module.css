@@ -146,50 +146,68 @@
   animation: livePulse 3.2s ease-in-out infinite;
 }
 
-.orbit {
-  position: absolute;
-  top: 4rem;
-  right: 6%;
-  width: 48%;
-  aspect-ratio: 1;
-  z-index: -1;
-  opacity: 0.65;
-  border: 1px solid rgba(92, 212, 232, 0.13);
-  border-radius: 50%;
-  animation: orbitDrift 18s linear infinite;
+.headStage {
+  position: relative;
+  display: grid;
+  height: clamp(14rem, 23vw, 19rem);
+  place-items: center;
+  isolation: isolate;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(106, 217, 232, 0.13);
+  background: radial-gradient(ellipse at 50% 55%, rgba(23, 161, 190, 0.19), transparent 64%);
+  perspective: 700px;
 }
 
-.orbit::before,
-.orbit::after {
+.headStageLabel,
+.headStageStatus {
+  position: absolute;
+  z-index: 3;
+  color: #91c7d3;
+  font-size: 0.54rem;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+}
+
+.headStageLabel { top: 1.3rem; left: 0.25rem; }
+.headStageStatus { right: 0.25rem; bottom: 1.3rem; display: inline-flex; align-items: center; gap: 0.5rem; color: #9be7f0; }
+.headStageStatus span { width: 0.4rem; height: 0.4rem; border-radius: 50%; background: #62e0ed; box-shadow: 0 0 12px #55d6e8; animation: livePulse 2.5s ease-in-out infinite; }
+
+.headRing,
+.headRingSecondary {
+  position: absolute;
+  width: min(52%, 16rem);
+  aspect-ratio: 1;
+  border: 1px dashed rgba(105, 224, 237, 0.33);
+  border-radius: 50%;
+  box-shadow: 0 0 55px rgba(6, 182, 212, 0.08), inset 0 0 55px rgba(6, 182, 212, 0.08);
+  animation: orbitDrift 24s linear infinite;
+}
+
+.headRing::before,
+.headRingSecondary::before {
   content: "";
   position: absolute;
-  inset: 18%;
-  border: 1px solid rgba(92, 212, 232, 0.16);
-  border-radius: 50%;
-}
-
-.orbit::after { inset: 36%; }
-
-.orbit span {
-  position: absolute;
+  top: 9%;
+  left: 12%;
   width: 0.35rem;
   height: 0.35rem;
   border-radius: 50%;
-  background: #61deef;
-  box-shadow: 0 0 16px #06b6d4;
+  background: #b2f5fb;
+  box-shadow: 0 0 16px 5px rgba(63, 206, 226, 0.55);
 }
 
-.orbit span:nth-child(1) { top: 13%; left: 14%; }
-.orbit span:nth-child(2) { top: 51%; right: -0.2rem; }
-.orbit span:nth-child(3) { bottom: 3%; left: 26%; }
-.orbit span:nth-child(4) { top: 48%; left: 32%; }
+.headRingSecondary { width: min(69%, 21rem); border-style: solid; border-color: rgba(105, 224, 237, 0.1); animation-direction: reverse; animation-duration: 31s; }
+.headRotation { position: relative; z-index: 2; height: 98%; aspect-ratio: 320 / 360; transform-style: preserve-3d; animation: headTurn 17s linear infinite; }
+.headSvg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 18px rgba(67, 217, 237, 0.24)); }
+.headNode { animation: headNodeBlink 3s ease-in-out infinite alternate; }
 
 .pipeline {
   position: relative;
   display: flex;
   align-items: stretch;
   justify-content: center;
-  padding: clamp(3.3rem, 6vw, 5.4rem) 0 clamp(2.6rem, 5vw, 4.5rem);
+  padding: clamp(1.5rem, 2.5vw, 2.5rem) 0 clamp(2.2rem, 4vw, 3.2rem);
 }
 
 .stepGroup {
@@ -354,6 +372,16 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes headTurn {
+  from { transform: rotateY(-18deg) rotateZ(-2deg); }
+  to { transform: rotateY(342deg) rotateZ(-2deg); }
+}
+
+@keyframes headNodeBlink {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
 @keyframes livePulse {
   50% { box-shadow: 0 0 0 7px rgba(73, 217, 232, 0.04); opacity: 0.68; }
 }
@@ -372,7 +400,11 @@
   .section { padding: 4.2rem 1rem; }
   .scene { padding: 1rem; }
   .sceneHeader { font-size: 0.51rem; letter-spacing: 0.1em; }
-  .pipeline { flex-direction: column; gap: 0; padding: 2.5rem 0 2rem; }
+  .headStage { height: 15rem; margin-top: 0.6rem; }
+  .headRotation { height: 84%; margin-bottom: 1rem; }
+  .headStageLabel { top: 0.7rem; }
+  .headStageStatus { bottom: 0.7rem; }
+  .pipeline { flex-direction: column; gap: 0; padding: 1.4rem 0 2rem; }
   .stepGroup { flex-direction: column; width: 100%; }
   .stepGroup:last-child { flex: 1 1 auto; }
   .step { min-height: auto; flex-direction: row; align-items: center; gap: 0.9rem; padding: 0.9rem; }
@@ -382,7 +414,6 @@
   .connector { width: 2px; height: 1rem; flex-basis: 1rem; }
   .pulse { top: 0; left: -3px; }
   .pulse { animation-name: dataTravelVertical; }
-  .orbit { width: 90%; right: -22%; top: 14%; }
   .bottomLabel { font-size: 0.55rem; letter-spacing: 0; }
 }
 

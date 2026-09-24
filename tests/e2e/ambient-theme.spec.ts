@@ -47,14 +47,16 @@ test("dark data sections keep their titles readable and service cards light", as
     navyVeilOpacity: Number(getComputedStyle(element).backgroundImage.match(/rgba\(15, 23, 42, (0\.[0-9]+)\)/)?.[1]),
     title: getComputedStyle(element.querySelector("h2")!).color,
     copy: getComputedStyle(element.querySelector(".studio-copy")!).color,
-    card: getComputedStyle(element.querySelector("article.visual-service-card")!).backgroundColor,
+    card: getComputedStyle(element.querySelector("article.visual-service-card")!).backgroundImage,
+    cardTitle: getComputedStyle(element.querySelector("article.visual-service-card h3")!).color,
   }));
 
   expect(appearance.background).toMatch(/rgba\(15, 23, 42, 0\.[0-9]+\)/);
   expect(appearance.navyVeilOpacity).toBeLessThanOrEqual(0.78);
   expect(appearance.title).toBe("rgb(255, 255, 255)");
   expect(appearance.copy).toBe("rgb(214, 232, 239)");
-  expect(appearance.card).toBe("rgb(255, 255, 255)");
+  expect(appearance.card).toContain("gradient");
+  expect(appearance.cardTitle).toBe("rgb(15, 23, 42)");
 });
 
 test("secondary page heroes preserve the same readable network treatment", async ({ page }) => {

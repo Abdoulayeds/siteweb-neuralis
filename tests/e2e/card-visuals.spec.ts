@@ -43,7 +43,7 @@ test("contact panels use distinct readable surfaces", async ({ page }) => {
   expect(await formOrFallback.evaluate(element => getComputedStyle(element).backgroundImage)).toContain("gradient");
 });
 
-test("the homepage displays an endlessly rotating neural head with reduced-motion support", async ({ page }) => {
+test("the homepage displays an endlessly rotating neural head with reduced-motion support", async ({ page }, testInfo) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
   const head = page.getByTestId("neural-head");
@@ -55,6 +55,7 @@ test("the homepage displays an endlessly rotating neural head with reduced-motio
   }));
   expect(animated.duration).not.toBe("0s");
   expect(animated.iterations).toBe("infinite");
+  await head.screenshot({ path: testInfo.outputPath("neural-head.png") });
 
   await page.emulateMedia({ reducedMotion: "reduce" });
   expect(await head.locator("[data-testid='neural-head-rotation']").evaluate(element => getComputedStyle(element).animationIterationCount)).not.toBe("infinite");

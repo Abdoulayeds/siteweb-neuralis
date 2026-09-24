@@ -6,8 +6,9 @@ import { DetailDialog } from "./detail-dialog";
 import { ServiceDetail } from "./service-detail";
 
 export function VisualServiceCard({ service, index = 0 }: { service: ServiceDefinition; index?: number }) {
+  const tone = ["cyan", "indigo", "mint", "amber", "orchid", "coral"][index % 6];
   return (
-    <article id={service.id} className="visual-service-card group scroll-mt-32 overflow-hidden">
+    <article id={service.id} data-tone={tone} className="visual-service-card themed-card group scroll-mt-32 overflow-hidden">
       <Link href={`/services/${service.id}`} className="service-image-link focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-cyan-700" aria-label={`Découvrir : ${service.title}`}>
         <Image src={service.image} alt={service.imageAlt} width={1200} height={800} sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 40vw" className="aspect-[3/2] w-full object-cover transition-transform duration-700 motion-safe:group-hover:scale-[1.035] motion-reduce:transition-none" />
         <span className="service-image-number" aria-hidden>0{index + 1}</span>
