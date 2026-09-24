@@ -95,7 +95,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous accompagnons les écoles et les organisations dans la mise en place de plateformes de formation et de gestion. Cours, inscriptions, stocks, clients ou suivi administratif sont structurés dans un périmètre cohérent, à partir d’une solution existante ou d’un développement adapté.",
     image: "/images/services/plateformes.webp",
-    imageAlt: "Deux collègues consultent ensemble un ordinateur portable",
+    imageAlt: "Une commerçante consulte une tablette devant des vêtements en stock",
     forWho: ["Écoles et établissements", "Centres de formation", "PME", "ONG et associations", "Services administratifs"],
     deliverables: [
       "Cartographie des processus et des besoins de gestion",
@@ -130,7 +130,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous structurons votre présence digitale autour de votre activité, de vos publics et de vos messages essentiels. Identité visuelle, contenus et calendrier éditorial forment un ensemble cohérent pour présenter votre offre et entretenir la relation avec votre audience.",
     image: "/images/services/communication.webp",
-    imageAlt: "Une photographe prépare une prise de vue sur fond jaune",
+    imageAlt: "Deux professionnelles préparent un calendrier de publications sur un tableau blanc",
     forWho: ["Entreprises en lancement", "Commerces et restaurants", "Marques locales", "Indépendants", "Associations et organisations"],
     deliverables: [
       "Diagnostic de votre présence et de vos supports existants",
@@ -200,7 +200,7 @@ export const serviceCatalog: ServiceDefinition[] = [
     description:
       "Nous identifions les tâches qui peuvent être automatisées et les situations où un assistant IA apporte une aide concrète. Les solutions sont testées sur des cas représentatifs, avec des règles de confidentialité et une validation humaine adaptée aux décisions importantes.",
     image: "/images/services/ia.webp",
-    imageAlt: "Une équipe d’ingénieurs observe un équipement robotique",
+    imageAlt: "Une personne utilise un assistant IA sur son ordinateur portable",
     forWho: ["Équipes administratives", "Services clients", "PME", "Centres de formation", "Entrepreneurs"],
     deliverables: [
       "Sélection d’un cas d’usage et de critères de réussite observables",
