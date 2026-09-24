@@ -20,6 +20,10 @@ test("la scène data respecte la réduction des mouvements et ne déborde pas", 
   const motion = await scene.locator("[data-testid='data-flow-pulse']").first().evaluate(element => getComputedStyle(element).animationDuration);
   expect(motion).toBe("0s");
 
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const activeMotion = await scene.locator("[data-testid='data-flow-pulse']").first().evaluate(element => getComputedStyle(element).animationDuration);
+  expect(activeMotion).not.toBe("0s");
+
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
   expect(overflow).toBe(false);
 });

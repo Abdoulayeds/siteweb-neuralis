@@ -8,19 +8,26 @@ test("the neural canvas remains visible behind a dark, translucent homepage hero
     const heading = hero.querySelector("h1")!;
     const heroStyle = getComputedStyle(hero);
 
+    const pixels = canvas.getContext("2d")!.getImageData(0, 0, canvas.width, canvas.height).data;
+    let canvasDrawn = false;
+    for (let index = 3; index < pixels.length; index += 4) {
+      if (pixels[index] > 0) { canvasDrawn = true; break; }
+    }
+
     return {
       pageBackground: getComputedStyle(document.documentElement).backgroundColor,
       heroBackground: heroStyle.backgroundImage,
+      navyVeilOpacity: Number(heroStyle.backgroundImage.match(/rgba\(15, 23, 42, (0\.[0-9]+)\)/)?.[1]),
       headingColor: getComputedStyle(heading).color,
       canvasOpacity: Number(getComputedStyle(canvas).opacity),
       canvasBehindContent: Number(getComputedStyle(canvas).zIndex) < Number(getComputedStyle(document.querySelector("main")!).zIndex),
-      canvasDrawn: [...canvas.getContext("2d")!.getImageData(0, 0, canvas.width, canvas.height).data]
-        .some((channel, index) => index % 4 === 3 && channel > 0),
+      canvasDrawn,
     };
   });
 
   expect(appearance.pageBackground).toBe("rgb(15, 23, 42)");
   expect(appearance.heroBackground).toMatch(/rgba\(15, 23, 42, 0\.[0-9]+\)/);
+  expect(appearance.navyVeilOpacity).toBeLessThanOrEqual(0.78);
   expect(appearance.headingColor).toBe("rgb(255, 255, 255)");
   expect(appearance.canvasOpacity).toBeGreaterThanOrEqual(0.75);
   expect(appearance.canvasBehindContent).toBe(true);
@@ -37,12 +44,14 @@ test("dark data sections keep their titles readable and service cards light", as
 
   const appearance = await section.evaluate(element => ({
     background: getComputedStyle(element).backgroundImage,
+    navyVeilOpacity: Number(getComputedStyle(element).backgroundImage.match(/rgba\(15, 23, 42, (0\.[0-9]+)\)/)?.[1]),
     title: getComputedStyle(element.querySelector("h2")!).color,
     copy: getComputedStyle(element.querySelector(".studio-copy")!).color,
     card: getComputedStyle(element.querySelector("article.visual-service-card")!).backgroundColor,
   }));
 
   expect(appearance.background).toMatch(/rgba\(15, 23, 42, 0\.[0-9]+\)/);
+  expect(appearance.navyVeilOpacity).toBeLessThanOrEqual(0.78);
   expect(appearance.title).toBe("rgb(255, 255, 255)");
   expect(appearance.copy).toBe("rgb(214, 232, 239)");
   expect(appearance.card).toBe("rgb(255, 255, 255)");
@@ -54,11 +63,20 @@ test("secondary page heroes preserve the same readable network treatment", async
 
   const appearance = await hero.evaluate(element => ({
     background: getComputedStyle(element).backgroundImage,
+    navyVeilOpacity: Number(getComputedStyle(element).backgroundImage.match(/rgba\(15, 23, 42, (0\.[0-9]+)\)/)?.[1]),
     title: getComputedStyle(element.querySelector("h1")!).color,
     copy: getComputedStyle(element.querySelector(".studio-copy")!).color,
   }));
 
   expect(appearance.background).toMatch(/rgba\(15, 23, 42, 0\.[0-9]+\)/);
+  expect(appearance.navyVeilOpacity).toBeLessThanOrEqual(0.78);
   expect(appearance.title).toBe("rgb(255, 255, 255)");
   expect(appearance.copy).toBe("rgb(214, 232, 239)");
+});
+
+test("the expertise link on dark landing sections has a light, legible color", async ({ page }) => {
+  await page.goto("/creation-site-web-bamako");
+  const link = page.locator(".studio-section-alt").getByRole("link", { name: "La fiche expertise complète" });
+  await expect(link).toBeVisible();
+  expect(await link.evaluate(element => getComputedStyle(element).color)).toBe("rgb(157, 234, 244)");
 });

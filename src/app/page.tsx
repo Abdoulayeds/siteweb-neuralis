@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Check, Compass, Layers3, MoveUpRight } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { DetailDialog } from "@/components/detail-dialog";
+import { TechVisual } from "@/components/tech-visual";
 import { VisualServiceCard } from "@/components/visual-service-card";
 import { serviceCatalog } from "@/lib/service-catalog";
 
@@ -55,6 +56,8 @@ export default function Home() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{serviceCatalog.map((service,index) => <VisualServiceCard key={service.id} service={service} index={index} />)}</div>
       </div>
     </section>
+
+    <TechVisual />
 
     <section id="methode" className="studio-section scroll-mt-24"><div className="studio-container grid gap-12 lg:grid-cols-2 lg:items-center">
       <div className="method-art"><Image src="/images/services/consulting.webp" alt="Équipe réunie pour cadrer un projet" width={1200} height={800} sizes="(max-width: 1023px) 100vw, 50vw" className="aspect-[4/3] w-full rounded-3xl object-cover" /><div className="method-label"><Compass className="h-5 w-5 text-cyan-800" aria-hidden /><span>Une direction claire, à chaque étape.</span></div></div>

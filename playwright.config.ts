@@ -18,5 +18,5 @@ export default defineConfig({
     { name: "desktop", use: { viewport: { width: 1440, height: 1000 } } },
     { name: "mobile", use: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } },
   ],
-  webServer: { command: "node tests/serve-export.mjs", url: "http://127.0.0.1:4180", reuseExistingServer: false, timeout: 30000 },
+  webServer: { command: "node tests/serve-export.mjs", url: "http://127.0.0.1:4180", reuseExistingServer: process.env.PLAYWRIGHT_REUSE_EXISTING_SERVER === "1", timeout: 30000 },
 });
