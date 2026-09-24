@@ -16,6 +16,11 @@ test("homepage illustrates every service with a dedicated image and detail", asy
   }
 });
 
+test("homepage concept image describes the photographed platform use", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator('a[href="/portfolio"] img')).toHaveAttribute("alt", /commerçante.*tablette/i);
+});
+
 test("navigation call to action uses the brand navy with readable white text", async ({ page }) => {
   await page.goto("/");
   const isMobile = await page.getByRole("button", { name: "Ouvrir le menu" }).isVisible();
