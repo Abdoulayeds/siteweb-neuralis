@@ -70,7 +70,7 @@ export function DetailDialog({
         type="button"
         aria-haspopup="dialog"
         onClick={openDialog}
-        className={triggerClassName ?? "inline-flex items-center gap-2 rounded-lg text-sm font-semibold text-cyan-800 transition-colors hover:text-cyan-950 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 motion-reduce:transition-none"}
+        className={triggerClassName ?? "inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-[background-color,border-color,box-shadow] hover:border-cyan-600 hover:bg-cyan-50 hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 motion-reduce:transition-none"}
       >
         {triggerLabel}
         <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />

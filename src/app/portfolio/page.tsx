@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { DetailDialog } from "@/components/detail-dialog";
 import { PageHero } from "@/components/page-hero";
+import { serviceCatalog } from "@/lib/service-catalog";
 
 export const metadata: Metadata = {
   title: "Concepts & cas d’usage",
@@ -21,27 +22,31 @@ const concepts = [
   { title: "Une marque cohérente, partout", category: "Communication", image: "communication", alt: "Photographe réalisant une prise de vue pour un contenu de communication", summary: "Donner une même direction aux messages, aux visuels et aux canaux de contact.", problem: "Des publications sans ligne directrice peuvent rendre une marque moins reconnaissable et son offre moins lisible.", journey: ["Clarifier les publics, le ton et les messages prioritaires.", "Décliner une direction visuelle sur les supports utiles.", "Organiser les contenus et observer les retours disponibles."], possibilities: ["Identité visuelle", "Supports sociaux", "Calendrier éditorial", "Profils professionnels"], caution: "Cette photographie illustre un travail créatif ; elle ne présente pas une campagne client NEURALIS." },
 ];
 
+function photoAlt(concept: (typeof concepts)[number]) {
+  return serviceCatalog.find(service => service.id === concept.image)?.imageAlt ?? concept.alt;
+}
+
 export default function PortfolioPage() {
   return <>
-    <PageHero eyebrow="Concepts & cas d’usage" title="Des idées concrètes pour imaginer votre projet." description="Une sélection de possibilités en web, outils métiers, data et IA. Explorez les usages pour trouver un point de départ à votre propre solution." secondaryLabel="Explorer la galerie" secondaryHref="#galerie" />
+    <PageHero eyebrow="Concepts & cas d’usage" title="Imaginez le projet qui vous sera utile." description="Six situations concrètes pour visualiser ce qu’un site, une application ou un outil métier peut changer au quotidien. Ce sont des pistes de réflexion, pas des réalisations clients." secondaryLabel="Explorer la galerie" secondaryHref="#galerie" />
     <section id="galerie" className="studio-section scroll-mt-28"><div className="studio-container">
-      <div className="mb-10 rounded-2xl border border-cyan-300/20 bg-cyan-950/20 p-5 text-sm leading-7 text-slate-300"><span className="font-semibold text-cyan-200">Une galerie d’inspiration, en toute transparence.</span> Ces photographies illustrent des situations de travail et des usages possibles. Les personnes photographiées ne sont pas présentées comme notre équipe ou nos clients ; ces images ne montrent pas des projets livrés.</div>
+      <div className="mb-10 rounded-2xl border border-cyan-200 bg-cyan-50 p-5 text-sm leading-7 text-slate-700"><span className="font-semibold text-[#0F172A]">Une galerie d’inspiration, en toute transparence.</span> Ces photographies illustrent des situations de travail et des usages possibles. Les personnes photographiées ne sont pas présentées comme notre équipe ou nos clients ; ces images ne montrent pas des projets livrés.</div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {concepts.map(concept => <article key={concept.title} className="studio-panel group flex flex-col overflow-hidden">
-          <div className="relative overflow-hidden border-b border-white/10"><Image src={"/images/services/" + concept.image + ".webp"} alt={concept.alt} width={1536} height={1024} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="aspect-video w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105" /><span className="absolute bottom-3 left-3 rounded-full border border-white/15 bg-white/95 px-3 py-1.5 text-[11px] font-medium text-slate-700">Cas d’usage illustré</span></div>
-          <div className="flex flex-1 flex-col p-6"><p className="studio-kicker">{concept.category}</p><h2 className="mt-3 text-xl font-semibold leading-7 text-white">{concept.title}</h2><p className="studio-copy mt-3 text-sm">{concept.summary}</p>
-            <div className="mt-auto pt-6"><DetailDialog title={concept.title} eyebrow={concept.category + " · Concept illustratif"} triggerLabel="Explorer le cas d’usage" triggerClassName="studio-link">
-              <Image src={"/images/services/" + concept.image + ".webp"} alt={concept.alt} width={1536} height={1024} sizes="(min-width: 1024px) 800px, 100vw" className="aspect-video w-full rounded-2xl object-cover" />
-              <p className="mt-3 text-xs leading-6 text-slate-400">Photographie d’illustration — aucun projet ou client présenté.</p>
-              <h3 className="mt-8 text-xl font-semibold text-white">Le problème à explorer</h3><p className="mt-3 leading-8 text-slate-300">{concept.problem}</p>
-              <h3 className="mt-7 text-xl font-semibold text-white">Un parcours possible</h3><ol className="mt-4 space-y-3">{concept.journey.map((step,index) => <li className="flex gap-4 leading-7 text-slate-300" key={step}><span className="font-mono text-cyan-300">0{index + 1}</span>{step}</li>)}</ol>
-              <h3 className="mt-7 text-xl font-semibold text-white">Fonctionnalités envisageables</h3><div className="studio-tags mt-4">{concept.possibilities.map(item => <span key={item}>{item}</span>)}</div>
-              <p className="mt-7 rounded-2xl border border-white/10 bg-slate-900/70 p-5 text-sm leading-7 text-slate-400">{concept.caution}</p><div className="mt-8 flex flex-wrap items-center gap-5"><ButtonLink href="/contact">Discuter d’un projet similaire</ButtonLink><Link href={"/services/" + concept.image} className="studio-link">Voir l’expertise <ArrowUpRight className="h-4 w-4" aria-hidden /></Link></div>
+        {concepts.map(concept => <article key={concept.title} className="studio-panel group flex flex-col overflow-hidden transition-[transform,box-shadow] duration-300 motion-safe:hover:-translate-y-1 motion-safe:hover:shadow-[0_24px_56px_rgba(15,23,42,0.12)] motion-reduce:transition-none">
+          <div className="relative overflow-hidden border-b border-slate-200"><Image src={"/images/services/" + concept.image + ".webp"} alt={photoAlt(concept)} width={1200} height={800} sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="aspect-[3/2] w-full object-cover transition-transform duration-500 motion-safe:group-hover:scale-105 motion-reduce:transition-none" /><span className="absolute bottom-3 left-3 rounded-full border border-white/80 bg-white/95 px-3 py-1.5 text-[11px] font-semibold text-[#0F172A] shadow-sm">Cas d’usage illustré</span></div>
+          <div className="flex flex-1 flex-col p-6"><p className="studio-kicker">{concept.category}</p><h2 className="mt-3 text-xl font-semibold leading-7 text-[#0F172A]">{concept.title}</h2><p className="mt-3 text-sm leading-7 text-slate-600">{concept.summary}</p>
+            <div className="mt-auto pt-6"><DetailDialog title={concept.title} eyebrow={concept.category + " · Concept illustratif"} triggerLabel="Explorer le cas d’usage" triggerClassName="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#0F172A] px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-[#075d72] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700 motion-reduce:transition-none">
+              <Image src={"/images/services/" + concept.image + ".webp"} alt={photoAlt(concept)} width={1200} height={800} sizes="(min-width: 1024px) 800px, 100vw" className="aspect-[3/2] w-full rounded-2xl object-cover" />
+              <p className="mt-3 text-xs leading-6 text-slate-600">Photographie d’illustration — aucun projet ou client présenté.</p>
+              <h3 className="mt-8 text-xl font-semibold text-[#0F172A]">Le problème à explorer</h3><p className="mt-3 leading-8 text-slate-700">{concept.problem}</p>
+              <h3 className="mt-7 text-xl font-semibold text-[#0F172A]">Un parcours possible</h3><ol className="mt-4 grid gap-3 sm:grid-cols-3">{concept.journey.map((step,index) => <li className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm leading-6 text-slate-700" key={step}><span className="font-bold text-cyan-800">0{index + 1}</span>{step}</li>)}</ol>
+              <h3 className="mt-7 text-xl font-semibold text-[#0F172A]">Fonctionnalités envisageables</h3><div className="studio-tags mt-4">{concept.possibilities.map(item => <span key={item}>{item}</span>)}</div>
+              <p className="mt-7 rounded-2xl border border-cyan-200 bg-cyan-50 p-5 text-sm leading-7 text-slate-700">{concept.caution}</p><div className="mt-8 flex flex-wrap items-center gap-5"><ButtonLink href="/contact">Discuter d’un projet similaire</ButtonLink><Link href={"/services/" + concept.image} className="studio-link">Voir l’expertise <ArrowUpRight className="h-4 w-4" aria-hidden /></Link></div>
             </DetailDialog></div>
           </div>
         </article>)}
       </div>
     </div></section>
-    <section className="studio-section border-t border-white/10"><div className="studio-container max-w-4xl text-center"><p className="studio-kicker">Votre contexte change tout</p><h2 className="studio-heading mt-3">L’inspiration est ici. Le projet commence avec vous.</h2><p className="studio-copy mx-auto mt-5 max-w-2xl">Ces concepts ouvrent la discussion. Votre solution se construit à partir de vos utilisateurs, de vos contraintes et d’un périmètre validé.</p><div className="mt-8"><ButtonLink href="/contact">Parler de mon idée</ButtonLink></div></div></section>
+    <section className="studio-section studio-section-alt border-t border-slate-200"><div className="studio-container max-w-4xl text-center"><p className="studio-kicker">Votre contexte change tout</p><h2 className="studio-heading mt-3">L’inspiration est ici. Le projet commence avec vous.</h2><p className="studio-copy mx-auto mt-5 max-w-2xl">Ces concepts ouvrent la discussion. Votre solution se construit à partir de vos utilisateurs, de vos contraintes et d’un périmètre validé.</p><div className="mt-8"><ButtonLink href="/contact">Parler de mon idée</ButtonLink></div></div></section>
   </>;
 }

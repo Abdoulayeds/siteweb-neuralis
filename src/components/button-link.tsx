@@ -12,9 +12,9 @@ type ButtonLinkProps = {
 export function ButtonLink({ href, children, variant = "primary", whatsapp = false }: ButtonLinkProps) {
   const styles = {
     primary:
-      "site-button-primary bg-cyan-700 text-white shadow-[0_14px_36px_rgba(8,123,145,0.18)] hover:bg-cyan-800 hover:shadow-[0_18px_44px_rgba(8,123,145,0.24)]",
+      "site-button-primary border border-[#0f172a] bg-[#0f172a] text-white shadow-[0_14px_36px_rgba(15,23,42,0.18)] hover:bg-[#1e293b] hover:shadow-[0_18px_44px_rgba(15,23,42,0.24)]",
     secondary:
-      "border border-cyan-700 bg-white text-cyan-800 hover:bg-cyan-50",
+      "border border-[#0f172a] bg-white text-[#0f172a] hover:border-cyan-700 hover:bg-cyan-50",
     ghost:
       "border border-slate-300 bg-white text-slate-800 hover:border-cyan-700 hover:bg-cyan-50",
     light:
@@ -24,7 +24,7 @@ export function ButtonLink({ href, children, variant = "primary", whatsapp = fal
   return (
     <Link
       href={href}
-      className={`group relative inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden rounded-full px-5 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 ${styles[variant]}`}
+      className={`group relative inline-flex min-h-12 items-center justify-center gap-2 overflow-hidden rounded-full px-5 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-600 motion-reduce:transform-none motion-reduce:transition-none ${styles[variant]}`}
     >
       <span className="absolute inset-y-0 -left-10 w-10 rotate-12 bg-white/30 blur-xl transition duration-700 group-hover:left-[120%]" />
       {whatsapp ? <SocialIcon name="WhatsApp" className="relative h-4 w-4 transition group-hover:scale-110" /> : null}
