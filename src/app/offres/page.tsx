@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 import { Check, ArrowUpRight } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { DetailDialog } from "@/components/detail-dialog";
 import { PageHero } from "@/components/page-hero";
 
-export const metadata: Metadata = {
-  title: "Offres & accompagnement",
-  description: "Cinq points de départ NEURALIS : présence digitale, site web, plateforme métier, data et automatisation, formation. Périmètre et budget sur devis.",
-  alternates: { canonical: "/offres" },
-};
+export const metadata = createPageMetadata("Offres web et accompagnement digital à Bamako", "Site web, présence digitale, plateforme métier, data et formation : découvrez les offres NEURALIS au Mali. Périmètre personnalisé et budget sur devis.", "/offres");
 
 const offers = [
   { title: "Présence digitale", label: "Être visible", description: "Poser les bases d’une image professionnelle, cohérente sur vos canaux essentiels.", points: ["Identité et messages", "Profils professionnels", "Premiers contenus"], audience: "Entrepreneurs, commerces et petites structures qui souhaitent présenter une activité de façon cohérente.", scope: ["Clarification des publics, du positionnement et des messages clés.", "Définition d’une base visuelle et de supports adaptés aux canaux retenus.", "Configuration ou optimisation des profils convenus et préparation d’un calendrier de contenus."], variables: "Nombre de canaux, volume de créations, contenus à produire et besoin d’animation récurrente.", delivery: "Supports et accès prévus au devis, recommandations éditoriales et consignes de prise en main." },

@@ -15,6 +15,15 @@ export function Header() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLElement>(null);
   const desktopNavRef = useRef<HTMLElement>(null);
+  const mobileTabsRef = useRef<HTMLElement>(null);
+  const currentPath = pathname.replace(/\/$/, "") || "/";
+
+  useEffect(() => {
+    const tabs = mobileTabsRef.current;
+    const active = tabs?.querySelector<HTMLAnchorElement>('a[aria-current="page"]');
+    if (!tabs || !active) return;
+    tabs.scrollTo({ left: active.offsetLeft - tabs.clientWidth / 2 + active.offsetWidth / 2, behavior: "instant" });
+  }, [pathname]);
 
   function closeMenu() {
     setOpenForPath(null);
@@ -23,7 +32,7 @@ export function Header() {
 
   useEffect(() => {
     if (!open) return;
-    mobileNavRef.current?.querySelector<HTMLAnchorElement>("a")?.focus({ preventScroll: true });
+    mobileNavRef.current?.querySelector<HTMLAnchorElement>('a[aria-current="page"], a')?.focus({ preventScroll: true });
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -48,7 +57,7 @@ export function Header() {
     };
   }, [open]);
 
-  const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
+  const isActive = (href: string) => currentPath === href || (href !== "/" && currentPath.startsWith(`${href}/`));
   const labelFor = (item: (typeof navItems)[number]) => item.href === "/a-propos" ? "À propos" : item.label;
 
   return (
@@ -75,7 +84,7 @@ export function Header() {
         <div className="flex shrink-0 items-center gap-3">
           <Link
             href="/contact"
-            onClick={() => { if (open) closeMenu(); }}
+            onClick={() => setOpenForPath(null)}
             className="hidden min-h-11 items-center gap-2 rounded-full border border-[#0f172a] bg-[#0f172a] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#1e293b] hover:shadow-[0_16px_34px_rgba(15,23,42,0.22)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-600 motion-reduce:transform-none motion-reduce:transition-none sm:inline-flex"
           >
             Discutons
@@ -94,10 +103,13 @@ export function Header() {
           </button>
         </div>
       </div>
+      <nav ref={mobileTabsRef} aria-label="Accès rapides mobile" className="mobile-page-tabs xl:hidden">
+        {navItems.map(item => <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} onClick={() => setOpenForPath(null)}>{labelFor(item)}</Link>)}
+      </nav>
       <div
         id={menuId}
         hidden={!open}
-        className="absolute inset-x-0 top-20 max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain border-b border-[#bfd8de] bg-[#edf5f6] shadow-xl xl:hidden"
+        className="absolute inset-x-0 top-full max-h-[calc(100dvh-132px)] overflow-y-auto overscroll-contain border-b border-[#bfd8de] bg-[#edf5f6] shadow-xl xl:hidden"
       >
         <nav ref={mobileNavRef} className="studio-container grid gap-1 py-5" aria-label="Navigation mobile">
           {navItems.map((item) => (
@@ -105,7 +117,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              onClick={closeMenu}
+              onClick={() => setOpenForPath(null)}
               className={`rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-2 focus-visible:outline-cyan-700 motion-reduce:transition-none ${isActive(item.href) ? "bg-cyan-50 text-cyan-800" : "text-slate-700 hover:bg-slate-100 hover:text-cyan-800"}`}
             >
               {labelFor(item)}
@@ -113,7 +125,7 @@ export function Header() {
           ))}
           <Link
             href="/contact"
-            onClick={closeMenu}
+            onClick={() => setOpenForPath(null)}
             className="mt-4 inline-flex min-h-12 items-center justify-between gap-3 rounded-full border border-[#0f172a] bg-[#0f172a] px-5 py-4 font-semibold text-white hover:bg-[#1e293b] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-600"
           >
             Parlons de votre projet

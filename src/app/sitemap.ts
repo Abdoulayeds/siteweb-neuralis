@@ -10,13 +10,14 @@ const routes = [
   "/services",
   "/solutions",
   "/offres",
+  "/projets",
   "/portfolio",
   "/a-propos",
   "/contact",
   ...serviceCatalog.map((service) => `/services/${service.id}`),
   ...seoLandingPages.map((page) => `/${page.slug}`),
 ];
-const lastModified = new Date("2026-09-09");
+const lastModified = new Date("2026-10-12");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({

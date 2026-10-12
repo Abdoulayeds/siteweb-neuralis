@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { PageHero } from "@/components/page-hero";
@@ -8,12 +8,7 @@ import { SocialIcon } from "@/components/social-icon";
 
 const web3FormsAccessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  alternates: { canonical: "/contact" },
-  description:
-    "Contactez NEURALIS pour un projet de site web, application, LMS, ERP, data, IA, automatisation, formation ou communication digitale.",
-};
+export const metadata = createPageMetadata("Contact et devis pour votre projet digital à Bamako", "Contactez NEURALIS à Bamako par téléphone, e-mail ou WhatsApp pour votre site web, application, plateforme, data ou IA. Parlons de votre projet au Mali.", "/contact");
 
 export default function ContactPage() {
   return (
@@ -51,6 +46,9 @@ export default function ContactPage() {
               <a href={businessInfo.whatsappUrl} className="flex items-center gap-3 hover:text-cyan-200">
                 <SocialIcon name="WhatsApp" className="h-5 w-5 text-cyan-300" />
                 WhatsApp Business
+              </a>
+              <a href={businessInfo.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="google-business-link">
+                <MapPin className="h-5 w-5" aria-hidden /> Notre fiche d’établissement Google <span aria-hidden>↗</span>
               </a>
             </div>
             <div className="mt-8">

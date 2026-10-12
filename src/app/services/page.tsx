@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 import { ButtonLink } from "@/components/button-link";
 import { PageHero } from "@/components/page-hero";
 import { VisualServiceCard } from "@/components/visual-service-card";
 import { serviceCatalog } from "@/lib/service-catalog";
 
-export const metadata: Metadata = {
-  title: "Nos expertises digitales à Bamako",
-  description: "Explorez les 8 expertises NEURALIS : sites web, applications, plateformes métiers, communication, data, IA, formation et conseil. Fiches détaillées et exemples d’usage.",
-  alternates: { canonical: "/services" },
-};
+export const metadata = createPageMetadata("Sites web, applications, data et IA à Bamako", "Création de sites web, applications, plateformes métiers, data, IA et formation au Mali. Découvrez les services NEURALIS et discutons de votre projet.", "/services");
 
 const groups = [
   { category: "Créer", id: "creer", number: "01", title: "Une présence et des expériences qui vous ressemblent.", text: "Du premier contact à l’usage quotidien : des interfaces claires pour rendre votre activité visible et facile à comprendre." },

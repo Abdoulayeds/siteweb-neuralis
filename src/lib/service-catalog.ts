@@ -59,8 +59,8 @@ export const serviceCatalog: ServiceDefinition[] = [
     summary: "Transformez un besoin métier en une application utile, avec des parcours simples et des fonctions ciblées.",
     description:
       "Nous développons des applications pour gérer des demandes, des réservations, des opérations ou des espaces clients. Le projet démarre par les usages prioritaires, puis avance par étapes pour valider les fonctionnalités avec les personnes qui les utiliseront.",
-    image: "/images/services/applications.webp",
-    imageAlt: "Deux professionnels échangent autour d’une application sur téléphone et ordinateur",
+    image: "/images/services/applications-africa.webp",
+    imageAlt: "Deux développeurs à Lagos collaborent devant un écran d’ordinateur",
     forWho: ["PME", "Startups", "Équipes opérationnelles", "Commerces et prestataires", "Porteurs de projets"],
     deliverables: [
       "Cadrage fonctionnel et liste des parcours prioritaires",
@@ -94,8 +94,8 @@ export const serviceCatalog: ServiceDefinition[] = [
     summary: "Centralisez vos activités dans une plateforme adaptée à vos équipes, vos processus et vos règles de gestion.",
     description:
       "Nous accompagnons les écoles et les organisations dans la mise en place de plateformes de formation et de gestion. Cours, inscriptions, stocks, clients ou suivi administratif sont structurés dans un périmètre cohérent, à partir d’une solution existante ou d’un développement adapté.",
-    image: "/images/services/plateformes.webp",
-    imageAlt: "Une commerçante consulte une tablette devant des vêtements en stock",
+    image: "/images/services/plateformes-africa.webp",
+    imageAlt: "Une commerçante africaine présente un tissu dans sa boutique",
     forWho: ["Écoles et établissements", "Centres de formation", "PME", "ONG et associations", "Services administratifs"],
     deliverables: [
       "Cartographie des processus et des besoins de gestion",
@@ -129,8 +129,8 @@ export const serviceCatalog: ServiceDefinition[] = [
     summary: "Donnez de la cohérence à votre identité, vos contenus et vos prises de parole sur les bons canaux.",
     description:
       "Nous structurons votre présence digitale autour de votre activité, de vos publics et de vos messages essentiels. Identité visuelle, contenus et calendrier éditorial forment un ensemble cohérent pour présenter votre offre et entretenir la relation avec votre audience.",
-    image: "/images/services/communication.webp",
-    imageAlt: "Deux professionnelles préparent un calendrier de publications sur un tableau blanc",
+    image: "/images/services/communication-africa.webp",
+    imageAlt: "Trois professionnelles africaines préparent une session de travail avec un ordinateur et des notes",
     forWho: ["Entreprises en lancement", "Commerces et restaurants", "Marques locales", "Indépendants", "Associations et organisations"],
     deliverables: [
       "Diagnostic de votre présence et de vos supports existants",
@@ -164,8 +164,8 @@ export const serviceCatalog: ServiceDefinition[] = [
     summary: "Transformez vos fichiers et vos données d’activité en indicateurs compréhensibles et en rapports utiles.",
     description:
       "Nous organisons vos données pour construire des tableaux de bord qui répondent à des questions de gestion précises. Les sources, les règles de calcul et la fréquence de mise à jour sont définies avec vos équipes pour donner du sens aux indicateurs.",
-    image: "/images/services/data.webp",
-    imageAlt: "Une équipe examine une présentation de graphiques sur un écran",
+    image: "/images/services/data-africa.webp",
+    imageAlt: "Trois professionnels à Lagos examinent ensemble un ordinateur portable",
     forWho: ["Directions de PME", "Équipes commerciales", "Établissements de formation", "Responsables opérationnels", "ONG et associations"],
     deliverables: [
       "Inventaire des sources et diagnostic de qualité des données",
@@ -199,8 +199,8 @@ export const serviceCatalog: ServiceDefinition[] = [
     summary: "Simplifiez les tâches répétitives avec des automatisations ciblées et une IA intégrée à vos usages.",
     description:
       "Nous identifions les tâches qui peuvent être automatisées et les situations où un assistant IA apporte une aide concrète. Les solutions sont testées sur des cas représentatifs, avec des règles de confidentialité et une validation humaine adaptée aux décisions importantes.",
-    image: "/images/services/ia.webp",
-    imageAlt: "Une personne utilise un assistant IA sur son ordinateur portable",
+    image: "/images/services/ia-africa.webp",
+    imageAlt: "Une professionnelle à Lagos consulte son ordinateur portable",
     forWho: ["Équipes administratives", "Services clients", "PME", "Centres de formation", "Entrepreneurs"],
     deliverables: [
       "Sélection d’un cas d’usage et de critères de réussite observables",
@@ -234,8 +234,8 @@ export const serviceCatalog: ServiceDefinition[] = [
     summary: "Apprenez à utiliser les outils digitaux à partir d’exercices pratiques et de situations proches de votre quotidien.",
     description:
       "Nous construisons des formations en IA, bureautique, data, communication digitale et développement selon le niveau des participants. Les séances alternent explications, démonstrations et exercices pour relier chaque apprentissage à une tâche concrète.",
-    image: "/images/services/formation.webp",
-    imageAlt: "Une formatrice accompagne une personne devant un ordinateur",
+    image: "/images/services/formation-africa.webp",
+    imageAlt: "Des apprenants à Lagos collaborent devant un ordinateur portable",
     forWho: ["Équipes d’entreprise", "Professionnels", "Entrepreneurs", "Étudiants", "Associations et établissements"],
     deliverables: [
       "Échange de cadrage sur le niveau et les objectifs des participants",

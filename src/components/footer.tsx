@@ -73,6 +73,9 @@ export function Footer() {
               <MapPin className="h-4 w-4 shrink-0 text-cyan-800" aria-hidden="true" />
               {businessInfo.city}, {businessInfo.country}
             </p>
+            <Link className={`${footerLink} flex items-center gap-3`} href={businessInfo.googleMapsUrl} target="_blank" rel="noopener noreferrer">
+              <MapPin className="h-4 w-4 shrink-0 text-cyan-800" aria-hidden="true" /> Notre fiche Google ↗
+            </Link>
             <Link className={`${footerLink} flex items-start gap-3`} href={`mailto:${businessInfo.email}`}>
               <Mail className="mt-1 h-4 w-4 shrink-0 text-cyan-800" aria-hidden="true" />
               <span className="break-all">{businessInfo.email}</span>

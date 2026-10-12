@@ -1,15 +1,11 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 import Link from "next/link";
 import { Building2, GraduationCap, HeartHandshake, Rocket, Store, BriefcaseBusiness } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { DetailDialog } from "@/components/detail-dialog";
 import { PageHero } from "@/components/page-hero";
 
-export const metadata: Metadata = {
-  title: "Solutions par secteur",
-  description: "Écoles, commerces, PME, ONG et startups : les solutions digitales NEURALIS adaptées aux usages de votre organisation au Mali.",
-  alternates: { canonical: "/solutions" },
-};
+export const metadata = createPageMetadata("Solutions digitales pour entreprises et écoles au Mali", "Écoles, commerces, PME, ONG et startups : NEURALIS conçoit des solutions digitales adaptées à votre organisation à Bamako et au Mali.", "/solutions");
 
 const sectors = [
   { title: "Écoles & organismes de formation", icon: GraduationCap, need: "Relier l’administration, les enseignants et les apprenants.", tags: ["Inscriptions", "Cours", "Suivi"], context: "Les informations dispersées entre papier, fichiers et messageries compliquent le suivi des élèves et la préparation des cours.", steps: ["Cartographier les inscriptions, les rôles et les documents utilisés.", "Créer un espace adapté : dossiers, ressources pédagogiques, progression et communications.", "Accompagner les équipes dans la prise en main et définir les règles d’accès aux données."], services: [{ label: "Plateformes métiers & LMS", id: "plateformes" }, { label: "Formation des équipes", id: "formation" }] },

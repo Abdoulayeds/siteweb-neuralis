@@ -1,15 +1,11 @@
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/page-metadata";
 import Image from "next/image";
 import { Compass, Handshake, ScanEye, ShieldCheck, MapPin } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { DetailDialog } from "@/components/detail-dialog";
 import { PageHero } from "@/components/page-hero";
 
-export const metadata: Metadata = {
-  title: "À propos de NEURALIS",
-  description: "Basée à Bamako, NEURALIS accompagne les entreprises et organisations dans leurs projets web, métiers, data et IA avec une approche concrète et progressive.",
-  alternates: { canonical: "/a-propos" },
-};
+export const metadata = createPageMetadata("NEURALIS, votre entreprise tech à Bamako", "Découvrez NEURALIS, entreprise numérique à Bamako : création de sites web, outils métiers, data, IA et accompagnement des organisations au Mali.", "/a-propos");
 
 const principles = [
   { title: "L’utilité avant tout", icon: Compass, text: "Partir d’un problème réel, prioriser l’essentiel et éviter les fonctions qui ne servent pas l’usage." },

@@ -8,6 +8,7 @@ export const businessInfo = {
   city: "Bamako",
   country: "Mali",
   countryCode: "ML",
+  googleMapsUrl: "https://www.google.com/maps?cid=1285032285137969613",
   socials: [
     {
       label: "Instagram",

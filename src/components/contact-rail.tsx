@@ -12,7 +12,7 @@ export function ContactRail() {
       className="contact-rail group"
     >
       <SocialIcon name="WhatsApp" className="h-5 w-5" />
-      <span className="hidden sm:inline">Parler de mon projet</span>
+      <span className="contact-rail-label">Parler de mon projet</span>
     </Link>
   );
 }

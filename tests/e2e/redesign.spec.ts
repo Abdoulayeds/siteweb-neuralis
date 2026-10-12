@@ -3,7 +3,7 @@ import { serviceCatalog } from "../../src/lib/service-catalog";
 import { seoLandingPages } from "../../src/lib/seo-landing-pages";
 import { businessInfo } from "../../src/lib/business-info";
 
-const pages = ["/", "/services", "/solutions", "/offres", "/portfolio", "/a-propos", "/contact", ...seoLandingPages.map(page => `/${page.slug}`), ...serviceCatalog.map(service => `/services/${service.id}`)];
+const pages = ["/", "/services", "/solutions", "/offres", "/projets", "/portfolio", "/a-propos", "/contact", ...seoLandingPages.map(page => `/${page.slug}`), ...serviceCatalog.map(service => `/services/${service.id}`)];
 
 test("homepage illustrates every service with a dedicated image and detail", async ({ page }) => {
   await page.goto("/");
@@ -18,7 +18,7 @@ test("homepage illustrates every service with a dedicated image and detail", asy
 
 test("homepage concept image describes the photographed platform use", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator('a[href="/portfolio"] img')).toHaveAttribute("alt", /commerçante.*tablette/i);
+  await expect(page.locator('a[href="/portfolio"] img')).toHaveAttribute("alt", /commerçante.*tissus.*boutique/i);
 });
 
 test("navigation call to action uses the brand navy with readable white text", async ({ page }) => {
@@ -139,6 +139,10 @@ test("close button, backdrop and mobile menu behave correctly", async ({ page })
   await mobile.getByRole("link", { name: "Offres", exact: true }).click();
   await expect(page).toHaveURL(/\/offres$/);
   await expect(mobile).not.toBeVisible();
+  const activeTab = page.getByRole("navigation", { name: "Accès rapides mobile" }).getByRole("link", { name: "Offres", exact: true });
+  await expect(activeTab).toHaveAttribute("aria-current", "page");
+  await expect(activeTab).toBeInViewport();
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 

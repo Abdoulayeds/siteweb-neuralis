@@ -3,13 +3,14 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ContactRail } from "@/components/contact-rail";
 import { NeuralBackground } from "@/components/neural-background";
+import { NavigationEffects } from "@/components/navigation-effects";
 import { businessInfo } from "@/lib/business-info";
 import "./globals.css";
 
 export const metadata: Metadata = {
   applicationName: "NEURALIS",
   title: {
-    default: "NEURALIS — Votre partenaire digital à Bamako, Mali",
+    default: "NEURALIS — Agence web et solutions digitales à Bamako, Mali",
     template: "%s | NEURALIS",
   },
   description:
@@ -30,7 +31,6 @@ export const metadata: Metadata = {
     "intelligence artificielle Mali",
     "formation digitale Bamako",
     "concepteur de sites web Bamako",
-    "meilleure agence digitale Mali",
     "chatbot IA Mali",
     "dashboard entreprise Mali",
   ],
@@ -93,11 +93,13 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+  "@id": `${businessInfo.siteUrl}/#organization`,
   name: businessInfo.name,
   url: businessInfo.siteUrl,
   logo: `${businessInfo.siteUrl}/neuralis-mark.svg`,
   image: `${businessInfo.siteUrl}/neuralis-mark.svg`,
-  sameAs: businessInfo.socials.map((social) => social.href),
+  sameAs: [...businessInfo.socials.map((social) => social.href), businessInfo.googleMapsUrl],
+  hasMap: businessInfo.googleMapsUrl,
   email: businessInfo.email,
   telephone: businessInfo.phoneInternational,
   priceRange: "$$",
@@ -165,11 +167,13 @@ export default function RootLayout({
           Aller au contenu
         </a>
         <NeuralBackground />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", "@id": `${businessInfo.siteUrl}/#website`, url: businessInfo.siteUrl, name: businessInfo.name, inLanguage: "fr", publisher: { "@id": `${businessInfo.siteUrl}/#organization` } }).replace(/</g, "\\u003c") }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
         <Header />
+        <NavigationEffects />
         <main id="contenu">{children}</main>
         <ContactRail />
         <Footer />
