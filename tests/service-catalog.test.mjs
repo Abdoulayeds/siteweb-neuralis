@@ -1,7 +1,23 @@
 import assert from "node:assert/strict";
-import { stat } from "node:fs/promises";
+import { stat, readFile } from "node:fs/promises";
 import test from "node:test";
 import { serviceCatalog, getService } from "../src/lib/service-catalog.ts";
+import { upcomingProjects } from "../src/lib/projects.ts";
+
+test("technology services and project previews explain the product rather than retail scenes", async () => {
+  for (const id of ["applications", "plateformes", "data", "ia"]) {
+    const service = getService(id);
+    assert.match(service.image, /-technical\.svg$/);
+    const svg = await readFile(new URL(`../public${service.image}`, import.meta.url), "utf8");
+    assert.match(svg, /viewBox="0 0 1200 800"/);
+    assert.match(svg, /Illustration/);
+    assert.doesNotMatch(svg, /<script|<foreignObject|href=["']https?:/);
+  }
+  const homepage = await readFile(new URL("../src/app/page.tsx", import.meta.url), "utf8");
+  const publishedVisuals = JSON.stringify([...serviceCatalog, ...upcomingProjects]) + homepage;
+  assert.doesNotMatch(publishedVisuals, /tissus|commerçante|plateformes-africa|ia-africa|data-africa/i);
+  assert.ok(upcomingProjects.every(project => project.image.endsWith("-technical.svg")));
+});
 
 test("every advertised expertise has a unique complete, serializable detail record", () => {
   const ids = ["sites-web", "applications", "plateformes", "communication", "data", "ia", "formation", "consulting"];

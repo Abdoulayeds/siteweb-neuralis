@@ -16,9 +16,9 @@ test("homepage illustrates every service with a dedicated image and detail", asy
   }
 });
 
-test("homepage concept image describes the photographed platform use", async ({ page }) => {
+test("homepage concept image clearly illustrates a business platform", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator('a[href="/portfolio"] img')).toHaveAttribute("alt", /commerçante.*tissus.*boutique/i);
+  await expect(page.locator('a[href="/portfolio"] img')).toHaveAttribute("alt", /plateforme.*modules.*gestion/i);
 });
 
 test("navigation call to action uses the brand navy with readable white text", async ({ page }) => {
