@@ -109,6 +109,8 @@ test("uses the same official mark in install and search metadata", async () => {
 
   assert.match(manifest, /background_color:\s*"#ffffff"/i);
   assert.match(manifest, /theme_color:\s*"#0f172a"/i);
-  assert.match(manifest, /src:\s*"\/neuralis-mark\.svg"/);
-  assert.match(layout, /logo:\s*`\$\{businessInfo\.siteUrl\}\/neuralis-mark\.svg`/);
+  assert.match(manifest, /src:\s*"\/brand\/neuralis-icon-512\.png"/);
+  assert.match(manifest, /src:\s*"\/brand\/neuralis-icon-192\.png"/);
+  assert.match(layout, /logo:\s*`\$\{businessInfo\.siteUrl\}\/brand\/neuralis-icon-512\.png`/);
+  assert.match(layout, /apple:\s*"\/brand\/apple-touch-icon\.png"/);
 });
