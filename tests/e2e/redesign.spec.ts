@@ -107,7 +107,8 @@ test("all service details open, trap focus and close without losing position", a
     await page.keyboard.press("Escape");
     await expect(dialog).not.toBeVisible();
     await expect(trigger).toBeFocused();
-    expect(await page.evaluate(() => document.body.style.overflow)).not.toBe("hidden");
+    // The dialog restores scrolling in an effect cleanup, so wait for it rather than reading once.
+    await expect.poll(() => page.evaluate(() => document.body.style.overflow)).not.toBe("hidden");
   }
 });
 
@@ -117,7 +118,7 @@ test("detail links reach standalone pages and restore scrolling", async ({ page 
   await page.getByRole("dialog").getByRole("link", { name: "Ouvrir la fiche complète" }).click();
   await expect(page).toHaveURL(/\/services\/sites-web$/);
   await expect(page.locator("main h1")).toHaveText("Sites web professionnels");
-  expect(await page.evaluate(() => document.body.style.overflow)).not.toBe("hidden");
+  await expect.poll(() => page.evaluate(() => document.body.style.overflow)).not.toBe("hidden");
 });
 
 test("close button, backdrop and mobile menu behave correctly", async ({ page }) => {
