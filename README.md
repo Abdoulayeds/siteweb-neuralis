@@ -12,37 +12,29 @@ NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_web3forms_key
 
 La page de confirmation est `/merci`.
 
-## Getting Started
-
-First, run the development server:
+## Developpement local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000). Les pages se trouvent dans `src/app/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commandes utiles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Commande | Role |
+|----------|------|
+| `npm run dev` | Serveur de developpement |
+| `npm run build` | Export statique dans `out/` (puis normalisation via `scripts/normalize-static-export.mjs`) |
+| `npm run lint` | Verification ESLint |
+| `npm test` | Tests unitaires (`tests/*.test.mjs`, runner natif de Node) |
+| `npm run test:e2e` | Tests end-to-end Playwright |
 
-## Learn More
+## Deploiement
 
-To learn more about Next.js, take a look at the following resources:
+Le site est deploye sur Render a partir de l'export statique genere par `npm run build`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `docs/` : notes de redesign, notes de release et credits photo.
