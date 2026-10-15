@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, ChartNoAxesCombined, DatabaseZap, ScanSearch } from "lucide-react";
 import styles from "./tech-visual.module.css";
+import { PauseWhenOffscreen } from "./pause-when-offscreen";
 
 const steps = [
   { title: "Données", detail: "Rassembler l’essentiel", Icon: DatabaseZap },
@@ -20,6 +21,7 @@ const neuralEdges = neuralNodes.flatMap((node, index) =>
       : [],
   ),
 );
+const signalEdges = neuralEdges.filter((_, index) => index % 7 === 3);
 
 function NeuralHead() {
   return (
@@ -38,6 +40,7 @@ function NeuralHead() {
           <g clipPath="url(#neural-head-clip)" aria-hidden="true">
             <path d="M60 90 C125 40 184 70 253 121 M57 176 C134 115 203 149 264 186 M73 250 C130 210 209 234 246 271" fill="none" stroke="#6cddeb" strokeWidth="16" opacity=".045" />
             {neuralEdges.map(({ from, to, node, target }) => <line key={`${from}-${to}`} x1={node.x} y1={node.y} x2={target.x} y2={target.y} stroke="url(#neural-head-line)" strokeWidth=".9" opacity=".42" />)}
+            {signalEdges.map(({ from, to, node, target }, index) => <line key={`signal-${from}-${to}`} x1={node.x} y1={node.y} x2={target.x} y2={target.y} pathLength={1} className={styles.headSignal} style={{ animationDelay: `${-(index % 11) * 0.37}s` }} />)}
             {neuralNodes.map((node, index) => <circle key={index} cx={node.x} cy={node.y} r={index % 7 === 0 ? 2.9 : 1.6} fill={index % 7 === 0 ? "#b5f7fb" : "#57d9eb"} className={styles.headNode} style={{ animationDelay: `${-(index % 9) * 0.42}s` }} />)}
           </g>
           <path d="M138 27 C188 21 231 55 247 105" fill="none" stroke="#d8fbff" strokeWidth="3" opacity=".42" />
@@ -60,6 +63,7 @@ export function TechVisual() {
           <Link href="/services#organiser" className={styles.link}>Découvrir nos solutions data et IA <ArrowUpRight aria-hidden="true" size={18} /></Link>
         </div>
 
+        <PauseWhenOffscreen>
         <div className={styles.scene} data-testid="tech-visual" aria-label="Illustration du parcours de la donnée, de l’analyse à la décision">
           <div className={styles.sceneHeader}><span className={styles.live}><span className={styles.liveDot} /> FLUX D’IDÉES</span><span>NEURALIS / LAB</span></div>
           <NeuralHead />
@@ -82,6 +86,7 @@ export function TechVisual() {
           </div>
           <p className={styles.caption}>Une vision du parcours de la donnée, pas un tableau de bord client.</p>
         </div>
+        </PauseWhenOffscreen>
       </div>
     </section>
   );

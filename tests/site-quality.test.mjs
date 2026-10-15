@@ -97,8 +97,10 @@ test("applies the official NEURALIS palette and a vector brand mark", async () =
 
   assert.match(styles, /--neuralis-navy:\s*#0f172a/i);
   assert.match(styles, /--neuralis-cyan:\s*#06b6d4/i);
-  assert.match(logo, /<svg[\s>]/);
-  assert.match(logo, /aria-label="Retour a l'accueil NEURALIS"/);
+  // The official mark is now the real ribbon "N" artwork, not a redrawn vector.
+  assert.match(logo, /src="\/brand\/neuralis-mark\.(png|webp)"/);
+  assert.doesNotMatch(logo, /<svg[\s>]/);
+  assert.match(logo, /aria-label="Retour à l'accueil NEURALIS"/);
 });
 
 test("uses the same official mark in install and search metadata", async () => {
@@ -109,6 +111,22 @@ test("uses the same official mark in install and search metadata", async () => {
 
   assert.match(manifest, /background_color:\s*"#ffffff"/i);
   assert.match(manifest, /theme_color:\s*"#0f172a"/i);
-  assert.match(manifest, /src:\s*"\/neuralis-mark\.svg"/);
-  assert.match(layout, /logo:\s*`\$\{businessInfo\.siteUrl\}\/neuralis-mark\.svg`/);
+  assert.match(manifest, /src:\s*"\/brand\/neuralis-icon-512\.png"/);
+  assert.match(manifest, /src:\s*"\/brand\/neuralis-icon-192\.png"/);
+  assert.match(layout, /logo:\s*`\$\{businessInfo\.siteUrl\}\/brand\/neuralis-icon-512\.png`/);
+  assert.match(layout, /apple:\s*"\/brand\/apple-touch-icon\.png"/);
+});
+
+test("ships every brand asset referenced by the source with the repository", async () => {
+  const { execFileSync, spawnSync } = await import("node:child_process");
+  const { existsSync } = await import("node:fs");
+  const sources = execFileSync("git", ["grep", "--untracked", "-ho", "/brand/[A-Za-z0-9._-]*", "--", "src"], { encoding: "utf8" });
+  const assets = [...new Set(sources.trim().split("\n"))].map((asset) => `public${asset}`);
+
+  assert.ok(assets.length > 0);
+  for (const asset of assets) {
+    assert.ok(existsSync(asset), `${asset} is missing`);
+    const ignored = spawnSync("git", ["check-ignore", "--no-index", "-q", asset]).status === 0;
+    assert.equal(ignored, false, `${asset} is git-ignored`);
+  }
 });

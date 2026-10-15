@@ -36,9 +36,13 @@ Ouvrir [http://localhost:3000](http://localhost:3000). Les pages se trouvent dan
 
 `npm audit` (sans option) signale `braces` (GHSA-vfj7-8cjw-p6xm, toutes versions `<=3.0.3`) via `eslint-config-next` -> `@next/eslint-plugin-next` -> `fast-glob`. Aucune version corrigee de `braces` n'existe et toutes les versions de `@next/eslint-plugin-next` (jusqu'a 16.5 canary) en dependent. Le risque est nul pour le site : c'est un outil de lint, absent de l'export statique, et le code vulnerable n'est appele que si `settings.next.rootDir` est defini dans `eslint.config.mjs` (ce n'est pas le cas). Ne pas lancer `npm audit fix --force` : il retrograde vers `eslint-config-next@14`, incompatible avec Next 16. Reverifier quand Next publie un plugin sans `fast-glob`.
 
+Ces commandes sont relancees automatiquement par la CI GitHub Actions (`.github/workflows/ci.yml`) a chaque Pull Request et a chaque push sur `main`. Guide : [docs/ci-cd.md](docs/ci-cd.md).
+
 ## Deploiement
 
 Le site est deploye sur Render a partir de l'export statique genere par `npm run build`.
+
+Pour ne publier qu'apres une CI verte (Render "After CI Checks Pass" et protection de la branche `main`), voir [docs/ci-cd.md](docs/ci-cd.md).
 
 ## Documentation
 

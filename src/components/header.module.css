@@ -1,0 +1,434 @@
+/*
+ * NEURALIS header: dark navy glass bar, glowing "signal" along the bottom edge,
+ * sliding neural-node indicator for the active page.
+ * Motion is CSS-only (transform / opacity) and disabled under reduced motion.
+ */
+.header {
+  --hdr-bg: rgba(5, 8, 15, 0.74);
+  --hdr-text: #cbd5e1; /* 12.9:1 on #05080f */
+  --hdr-strong: #ffffff;
+  --hdr-cyan: #22d3ee;
+  --hdr-cyan-deep: #06b6d4;
+  --hdr-line: rgba(148, 163, 184, 0.16);
+
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  isolation: isolate;
+  color: var(--hdr-strong);
+  background: var(--hdr-bg);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+}
+
+/* Extra opacity + depth once the page is scrolled (opacity-only transition). */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(5, 8, 15, 0.94));
+  box-shadow: 0 18px 40px -18px rgba(2, 6, 23, 0.9);
+  opacity: 0;
+  transition: opacity 320ms ease;
+  pointer-events: none;
+}
+
+.header[data-scrolled="true"]::before {
+  opacity: 1;
+}
+
+.header :focus-visible {
+  outline: 2px solid var(--hdr-cyan);
+  outline-offset: 3px;
+}
+
+.bar {
+  display: flex;
+  height: 5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.brand {
+  flex-shrink: 0;
+  transform-origin: left center;
+  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.header[data-scrolled="true"] .brand {
+  transform: scale(0.94);
+}
+
+/* --- Bottom border "signal" ------------------------------------------------ */
+.signal {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1px;
+  overflow: hidden;
+  background: linear-gradient(90deg, transparent, var(--hdr-line) 12%, rgba(34, 211, 238, 0.28) 50%, var(--hdr-line) 88%, transparent);
+  pointer-events: none;
+}
+
+.signal::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 22%;
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.95), #ffffff 55%, transparent);
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: signal-travel 7s cubic-bezier(0.45, 0, 0.25, 1) 1.2s infinite;
+}
+
+@keyframes signal-travel {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  10% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 1;
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: translateX(560%);
+  }
+}
+
+/* --- Desktop navigation ---------------------------------------------------- */
+.nav {
+  position: relative;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  padding: 0 0.8rem;
+  border-radius: 0.65rem;
+  color: var(--hdr-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+/* Hover glow lives on a pseudo-element so only its opacity animates. */
+.link::before {
+  content: "";
+  position: absolute;
+  inset: 0.35rem 0.1rem;
+  z-index: -1;
+  border-radius: 0.6rem;
+  background: radial-gradient(ellipse at 50% 120%, rgba(34, 211, 238, 0.2), rgba(34, 211, 238, 0.05) 70%);
+  box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.16);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--hdr-strong);
+}
+
+.link:hover::before,
+.link:focus-visible::before {
+  opacity: 1;
+}
+
+.link[aria-current="page"] {
+  color: var(--hdr-strong);
+}
+
+/* Sliding active indicator: a glowing line + neural node, positioned from JS via custom properties. */
+.indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0.2rem;
+  width: 100px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0), var(--hdr-cyan) 30%, var(--hdr-cyan) 70%, rgba(6, 182, 212, 0));
+  opacity: 0;
+  transform: translateX(var(--ind-x, 0px)) scaleX(var(--ind-scale, 0));
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.node {
+  position: absolute;
+  left: -4px;
+  bottom: calc(0.2rem - 3px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ecfeff;
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.35), 0 0 14px 3px rgba(34, 211, 238, 0.75);
+  opacity: 0;
+  transform: translateX(var(--ind-center, 0px));
+  pointer-events: none;
+}
+
+.nav[data-indicator="on"] .indicator,
+.nav[data-indicator="on"] .node {
+  opacity: 1;
+}
+
+.nav[data-ready="true"] .indicator,
+.nav[data-ready="true"] .node {
+  transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1), opacity 240ms ease;
+}
+
+.nav[data-indicator="on"] .node::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(34, 211, 238, 0.55);
+  animation: node-ping 2.8s ease-out infinite;
+}
+
+@keyframes node-ping {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.6);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+/* --- Actions ---------------------------------------------------------------- */
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Gradient-border CTA (padding-box / border-box trick, no extra wrapper). */
+.cta {
+  position: relative;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, #0f1b2e, #0a1222) padding-box,
+    linear-gradient(120deg, #22d3ee, #38bdf8 45%, #0284c7) border-box;
+  background-color: var(--neuralis-navy, #0f172a);
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform 220ms ease;
+}
+
+.cta::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.25), 0 10px 30px -6px rgba(6, 182, 212, 0.65);
+  opacity: 0.35;
+  transition: opacity 220ms ease;
+}
+
+.ctaIcon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--hdr-cyan);
+  transition: transform 220ms ease;
+}
+
+.cta:hover,
+.cta:focus-visible {
+  transform: translateY(-1px);
+}
+
+.cta:hover::after,
+.cta:focus-visible::after {
+  opacity: 1;
+}
+
+.cta:hover .ctaIcon,
+.cta:focus-visible .ctaIcon {
+  transform: translate(2px, -2px);
+}
+
+/* display is left to Tailwind (inline-flex xl:hidden) to avoid cascade-order conflicts. */
+.toggle {
+  width: 2.75rem;
+  height: 2.75rem;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.6);
+  color: #ffffff;
+  transition: border-color 200ms ease;
+}
+
+.toggle:hover,
+.toggle[aria-expanded="true"] {
+  border-color: rgba(34, 211, 238, 0.7);
+}
+
+/* --- Mobile quick tabs (overrides the light .mobile-page-tabs from globals.css) */
+.header .tabs {
+  border-top: 1px solid var(--hdr-line);
+  background: rgba(5, 8, 15, 0.55);
+}
+
+.header .tabs a {
+  min-height: 2.75rem;
+  border-color: rgba(148, 163, 184, 0.18);
+  color: var(--hdr-text);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.header .tabs a:hover {
+  border-color: rgba(34, 211, 238, 0.45);
+  color: #ffffff;
+}
+
+.header .tabs a[aria-current="page"] {
+  border-color: rgba(34, 211, 238, 0.7);
+  background: linear-gradient(120deg, rgba(6, 182, 212, 0.28), rgba(2, 132, 199, 0.28));
+  color: #ffffff;
+  box-shadow: 0 0 16px -2px rgba(34, 211, 238, 0.45);
+}
+
+.header .tabs a:focus-visible {
+  outline-offset: -2px;
+}
+
+/* --- Mobile menu panel ------------------------------------------------------ */
+.panel {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  max-height: calc(100dvh - 132px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-bottom: 1px solid rgba(34, 211, 238, 0.22);
+  background: linear-gradient(180deg, rgba(10, 18, 34, 0.98), rgba(5, 8, 15, 0.98));
+  box-shadow: 0 30px 60px -20px rgba(2, 6, 23, 0.95);
+}
+
+.panelLink {
+  position: relative;
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  border-radius: 0.75rem;
+  color: var(--hdr-text);
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 200ms ease;
+}
+
+.panelLink::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(148, 163, 184, 0.45);
+}
+
+.panelLink:hover,
+.panelLink:focus-visible {
+  color: #ffffff;
+  background: rgba(34, 211, 238, 0.06);
+}
+
+.panelLink[aria-current="page"] {
+  color: #ffffff;
+  background: linear-gradient(90deg, rgba(6, 182, 212, 0.16), rgba(6, 182, 212, 0.02));
+}
+
+.panelLink[aria-current="page"]::before {
+  background: #ecfeff;
+  box-shadow: 0 0 10px 2px rgba(34, 211, 238, 0.8);
+}
+
+.panelCta {
+  display: inline-flex;
+  min-height: 3rem;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, #0f1b2e, #0a1222) padding-box,
+    linear-gradient(120deg, #22d3ee, #38bdf8 45%, #0284c7) border-box;
+  background-color: var(--neuralis-navy, #0f172a);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header::before,
+  .brand,
+  .link,
+  .link::before,
+  .cta,
+  .cta::after,
+  .ctaIcon,
+  .toggle,
+  .panelLink,
+  .nav[data-ready="true"] .indicator,
+  .nav[data-ready="true"] .node {
+    transition: none;
+  }
+
+  .signal::after,
+  .nav[data-indicator="on"] .node::after {
+    animation: none;
+    display: none;
+  }
+
+  .header[data-scrolled="true"] .brand,
+  .cta:hover,
+  .cta:focus-visible,
+  .cta:hover .ctaIcon,
+  .cta:focus-visible .ctaIcon {
+    transform: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .indicator,
+  .node {
+    background: Highlight;
+  }
+
+  .cta,
+  .panelCta {
+    border-color: ButtonText;
+  }
+}
