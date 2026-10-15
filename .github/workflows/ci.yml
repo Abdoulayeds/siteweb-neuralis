@@ -34,6 +34,11 @@ jobs:
       - name: Installer les dependances
         run: npm ci
 
+      # Audite seulement les dependances livrees avec le site (voir README,
+      # "Audit npm : exception connue" pour l'alerte braces cote outils de lint).
+      - name: Audit de securite (dependances de production)
+        run: npm run audit:prod
+
       - name: Lint (ESLint)
         run: npm run lint
 
