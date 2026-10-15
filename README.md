@@ -31,9 +31,13 @@ Ouvrir [http://localhost:3000](http://localhost:3000). Les pages se trouvent dan
 | `npm test` | Tests unitaires (`tests/*.test.mjs`, runner natif de Node) |
 | `npm run test:e2e` | Tests end-to-end Playwright |
 
+Ces commandes sont relancees automatiquement par la CI GitHub Actions (`.github/workflows/ci.yml`) a chaque Pull Request et a chaque push sur `main`. Guide : [docs/ci-cd.md](docs/ci-cd.md).
+
 ## Deploiement
 
 Le site est deploye sur Render a partir de l'export statique genere par `npm run build`.
+
+Pour ne publier qu'apres une CI verte (Render "After CI Checks Pass" et protection de la branche `main`), voir [docs/ci-cd.md](docs/ci-cd.md).
 
 ## Documentation
 

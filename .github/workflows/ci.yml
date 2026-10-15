@@ -1,0 +1,97 @@
+# Integration continue du site NEURALIS.
+# Guide en francais : docs/ci-cd.md
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Une nouvelle poussee sur la meme branche annule l'execution precedente.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installer les dependances
+        run: npm ci
+
+      - name: Lint (ESLint)
+        run: npm run lint
+
+      - name: Tests unitaires
+        run: npm test
+
+      # Le build execute aussi "postbuild" (scripts/normalize-static-export.mjs).
+      # NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY n'est pas necessaire : sans cle,
+      # la page contact affiche les liens e-mail/WhatsApp au lieu du formulaire.
+      - name: Build (export statique)
+        run: npm run build
+
+      - name: Conserver l'export statique pour les tests e2e
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-export
+          path: out/
+          retention-days: 3
+          if-no-files-found: error
+
+  e2e:
+    name: e2e
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Recuperer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installer les dependances
+        run: npm ci
+
+      - name: Recuperer l'export statique
+        uses: actions/download-artifact@v4
+        with:
+          name: static-export
+          path: out/
+
+      # Sous Linux, playwright.config.ts utilise le Chromium fourni par Playwright.
+      - name: Installer le navigateur Chromium
+        run: npx playwright install --with-deps chromium
+
+      # Le webServer de Playwright sert out/ via tests/serve-export.mjs (port 4180).
+      - name: Tests end-to-end (Playwright)
+        run: npm run test:e2e
+
+      - name: Publier le rapport Playwright en cas d'echec
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
