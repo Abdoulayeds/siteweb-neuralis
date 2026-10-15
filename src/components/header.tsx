@@ -5,18 +5,78 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { Logo } from "./logo";
+import styles from "./header.module.css";
 import { navItems } from "@/lib/site-data";
+
+/** Horizontal inset (px) of the active underline inside its nav link. */
+const INDICATOR_INSET = 12;
+/** Base width (px) of the indicator element, scaled with scaleX. Keep in sync with header.module.css. */
+const INDICATOR_BASE = 100;
 
 export function Header() {
   const pathname = usePathname();
   const [openForPath, setOpenForPath] = useState<string | null>(null);
   const open = openForPath === pathname;
   const menuId = useId();
+  const headerRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLElement>(null);
   const desktopNavRef = useRef<HTMLElement>(null);
   const mobileTabsRef = useRef<HTMLElement>(null);
   const currentPath = pathname.replace(/\/$/, "") || "/";
+
+  // Denser glass once the page scrolls. Written to a data attribute: no re-render, no layout change.
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      header.dataset.scrolled = window.scrollY > 8 ? "true" : "false";
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  // Slide the glowing node/underline under the active desktop link (transform only).
+  useEffect(() => {
+    const nav = desktopNavRef.current;
+    if (!nav) return;
+    let cancelled = false;
+    const place = () => {
+      if (cancelled) return;
+      const active = nav.querySelector<HTMLAnchorElement>('a[aria-current="page"]');
+      if (!active || active.offsetWidth === 0) {
+        nav.dataset.indicator = "off";
+        return;
+      }
+      const width = Math.max(active.offsetWidth - INDICATOR_INSET * 2, 0);
+      nav.style.setProperty("--ind-x", `${active.offsetLeft + INDICATOR_INSET}px`);
+      nav.style.setProperty("--ind-scale", String(width / INDICATOR_BASE));
+      nav.style.setProperty("--ind-center", `${active.offsetLeft + active.offsetWidth / 2}px`);
+      nav.dataset.indicator = "on";
+    };
+    place();
+    // Enable transitions only after the first placement so the indicator never slides in from 0.
+    const frame = requestAnimationFrame(() => {
+      if (!cancelled) nav.dataset.ready = "true";
+    });
+    const observer = new ResizeObserver(place);
+    observer.observe(nav);
+    document.fonts?.ready.then(place).catch(() => undefined);
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [currentPath]);
 
   useEffect(() => {
     const tabs = mobileTabsRef.current;
@@ -58,42 +118,44 @@ export function Header() {
   }, [open]);
 
   const isActive = (href: string) => currentPath === href || (href !== "/" && currentPath.startsWith(`${href}/`));
-  const labelFor = (item: (typeof navItems)[number]) => item.href === "/a-propos" ? "À propos" : item.label;
 
   return (
     <header
-      className="sticky top-0 z-50 border-b border-[#bfd8de] bg-[#e5f0f3]/90 text-slate-900 shadow-[0_8px_32px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+      ref={headerRef}
+      className={styles.header}
       onBlur={(event) => {
         if (open && !event.currentTarget.contains(event.relatedTarget)) setOpenForPath(null);
       }}
     >
-      <div className="studio-container flex h-20 items-center justify-between gap-5">
-        <div className="shrink-0"><Logo /></div>
-        <nav ref={desktopNavRef} className="hidden items-center gap-1 xl:flex" aria-label="Navigation principale">
+      <div className={`studio-container ${styles.bar}`}>
+        <div className={styles.brand}><Logo /></div>
+        <nav ref={desktopNavRef} className={`hidden xl:flex ${styles.nav}`} aria-label="Navigation principale">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`relative whitespace-nowrap rounded-md px-3 py-3 text-sm font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700 motion-reduce:transition-none ${isActive(item.href) ? "text-cyan-800 after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:bg-cyan-700" : "text-slate-700 hover:text-cyan-800"}`}
+              className={styles.link}
             >
-              {labelFor(item)}
+              {item.label}
             </Link>
           ))}
+          <span className={styles.indicator} aria-hidden="true" />
+          <span className={styles.node} aria-hidden="true" />
         </nav>
-        <div className="flex shrink-0 items-center gap-3">
+        <div className={styles.actions}>
           <Link
             href="/contact"
             onClick={() => setOpenForPath(null)}
-            className="hidden min-h-11 items-center gap-2 rounded-full border border-[#0f172a] bg-[#0f172a] px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(15,23,42,0.16)] transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-[#1e293b] hover:shadow-[0_16px_34px_rgba(15,23,42,0.22)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-600 motion-reduce:transform-none motion-reduce:transition-none sm:inline-flex"
+            className={`hidden sm:inline-flex ${styles.cta}`}
           >
             Discutons
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            <ArrowUpRight className={styles.ctaIcon} aria-hidden="true" />
           </Link>
           <button
             ref={toggleRef}
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-slate-300 text-slate-900 hover:border-cyan-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-700 xl:hidden"
+            className={`inline-flex xl:hidden ${styles.toggle}`}
             onClick={() => open ? closeMenu() : setOpenForPath(pathname)}
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={open}
@@ -103,14 +165,11 @@ export function Header() {
           </button>
         </div>
       </div>
-      <nav ref={mobileTabsRef} aria-label="Accès rapides mobile" className="mobile-page-tabs xl:hidden">
-        {navItems.map(item => <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} onClick={() => setOpenForPath(null)}>{labelFor(item)}</Link>)}
+      <nav ref={mobileTabsRef} aria-label="Accès rapides mobile" className={`mobile-page-tabs xl:hidden ${styles.tabs}`}>
+        {navItems.map(item => <Link key={item.href} href={item.href} aria-current={isActive(item.href) ? "page" : undefined} onClick={() => setOpenForPath(null)}>{item.label}</Link>)}
       </nav>
-      <div
-        id={menuId}
-        hidden={!open}
-        className="absolute inset-x-0 top-full max-h-[calc(100dvh-132px)] overflow-y-auto overscroll-contain border-b border-[#bfd8de] bg-[#edf5f6] shadow-xl xl:hidden"
-      >
+      <span className={styles.signal} aria-hidden="true" />
+      <div id={menuId} hidden={!open} className={`xl:hidden ${styles.panel}`}>
         <nav ref={mobileNavRef} className="studio-container grid gap-1 py-5" aria-label="Navigation mobile">
           {navItems.map((item) => (
             <Link
@@ -118,18 +177,18 @@ export function Header() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               onClick={() => setOpenForPath(null)}
-              className={`rounded-lg px-4 py-3 text-base font-medium transition-colors focus-visible:outline-2 focus-visible:outline-cyan-700 motion-reduce:transition-none ${isActive(item.href) ? "bg-cyan-50 text-cyan-800" : "text-slate-700 hover:bg-slate-100 hover:text-cyan-800"}`}
+              className={styles.panelLink}
             >
-              {labelFor(item)}
+              {item.label}
             </Link>
           ))}
           <Link
             href="/contact"
             onClick={() => setOpenForPath(null)}
-            className="mt-4 inline-flex min-h-12 items-center justify-between gap-3 rounded-full border border-[#0f172a] bg-[#0f172a] px-5 py-4 font-semibold text-white hover:bg-[#1e293b] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-600"
+            className={styles.panelCta}
           >
             Parlons de votre projet
-            <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+            <ArrowUpRight className="h-5 w-5 text-[#22d3ee]" aria-hidden="true" />
           </Link>
         </nav>
       </div>

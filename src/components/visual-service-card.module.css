@@ -1,0 +1,148 @@
+/* Neural circuit overlay for service cards — decorative, transform/opacity/stroke-dashoffset only. */
+
+.card {
+  position: relative;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(34, 211, 238, 0.75), inset 0 0 26px rgba(6, 182, 212, 0.14);
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.circuit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(160deg, rgba(5, 8, 15, 0) 35%, rgba(5, 8, 15, 0.38));
+  opacity: 0;
+  transition: opacity 360ms ease;
+}
+
+.circuit svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.trace {
+  fill: none;
+  stroke: #22d3ee;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 3px rgba(34, 211, 238, 0.7));
+  transition: stroke-dashoffset 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.trace:nth-of-type(2) { transition-delay: 90ms; }
+.trace:nth-of-type(3) { transition-delay: 180ms; }
+.trace:nth-of-type(4) { transition-delay: 260ms; }
+.trace:nth-of-type(5) { transition-delay: 340ms; }
+
+.dot {
+  fill: #e0fbff;
+  stroke: #06b6d4;
+  stroke-width: 1.5;
+  opacity: 0;
+  transform: scale(0.3);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 300ms ease 420ms, transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1) 420ms;
+}
+
+.scan {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent calc(100% - 2px), rgba(34, 211, 238, 0.85) calc(100% - 2px)), linear-gradient(to bottom, transparent 70%, rgba(34, 211, 238, 0.12));
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+/* Number badge rendered as a circuit node. */
+.media .node {
+  border: 1px solid rgba(34, 211, 238, 0.85);
+  background: rgba(15, 23, 42, 0.88);
+  color: #a5f3fc;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.18), 0 6px 16px rgba(5, 8, 15, 0.3);
+  z-index: 2;
+}
+
+.media .node::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 1px solid rgba(34, 211, 238, 0.55);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+/* Active state: hover or keyboard focus anywhere in the card. */
+.card:hover .circuit,
+.card:focus-within .circuit,
+.card:hover .glow,
+.card:focus-within .glow {
+  opacity: 1;
+}
+
+.card:hover .trace,
+.card:focus-within .trace {
+  stroke-dashoffset: 0;
+}
+
+.card:hover .dot,
+.card:focus-within .dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card:hover .scan,
+.card:focus-within .scan {
+  animation: scanSweep 2.4s cubic-bezier(0.45, 0, 0.55, 1) 200ms infinite;
+}
+
+.card:hover .media .node::after,
+.card:focus-within .media .node::after {
+  animation: nodeRing 2s ease-out infinite;
+}
+
+@keyframes scanSweep {
+  0% { opacity: 0; transform: translateY(-100%); }
+  15% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(0); }
+}
+
+@keyframes nodeRing {
+  0% { opacity: 0.9; transform: scale(0.8); }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow,
+  .circuit,
+  .trace,
+  .dot,
+  .scan,
+  .media .node::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .card:hover .scan,
+  .card:focus-within .scan {
+    opacity: 0;
+  }
+}

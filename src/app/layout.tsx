@@ -166,7 +166,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className="theme-dark">
+      <body id="top" className="theme-dark">
         <a href="#contenu" className="skip-link">
           Aller au contenu
         </a>

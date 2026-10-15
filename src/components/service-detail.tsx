@@ -8,7 +8,7 @@ export function ServiceDetail({ service, standalone = false }: { service: Servic
   return (
     <div className="service-detail">
       <div className="grid gap-7 md:grid-cols-2 md:items-center">
-        <Image src={service.image} alt={service.imageAlt} width={1200} height={800} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[3/2] w-full rounded-2xl object-cover" />
+        <Image src={service.image} alt={service.imageAlt} width={1200} height={800} sizes="(min-width: 768px) 50vw, 100vw" className="aspect-[3/2] w-full rounded-2xl object-cover shadow-[0_18px_45px_rgba(15,23,42,0.12)] ring-1 ring-cyan-300/50" />
         <div>
           <p className="studio-kicker">En bref</p>
           <p className="mt-3 text-base leading-8 text-slate-700">{service.description}</p>
