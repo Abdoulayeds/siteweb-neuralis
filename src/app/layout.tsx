@@ -44,7 +44,11 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  icons: { icon: "/neuralis-mark.svg", shortcut: "/neuralis-mark.svg" },
+  icons: {
+    icon: [{ url: "/brand/favicon-48.png", sizes: "48x48", type: "image/png" }],
+    shortcut: "/brand/favicon-48.png",
+    apple: "/brand/apple-touch-icon.png",
+  },
   robots: {
     index: true,
     follow: true,
@@ -96,8 +100,8 @@ const jsonLd = {
   "@id": `${businessInfo.siteUrl}/#organization`,
   name: businessInfo.name,
   url: businessInfo.siteUrl,
-  logo: `${businessInfo.siteUrl}/neuralis-mark.svg`,
-  image: `${businessInfo.siteUrl}/neuralis-mark.svg`,
+  logo: `${businessInfo.siteUrl}/brand/neuralis-icon-512.png`,
+  image: `${businessInfo.siteUrl}/brand/neuralis-icon-512.png`,
   sameAs: [...businessInfo.socials.map((social) => social.href), businessInfo.googleMapsUrl],
   hasMap: businessInfo.googleMapsUrl,
   email: businessInfo.email,
@@ -162,7 +166,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="scroll-smooth">
-      <body className="theme-dark">
+      <body id="top" className="theme-dark">
         <a href="#contenu" className="skip-link">
           Aller au contenu
         </a>

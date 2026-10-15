@@ -13,12 +13,25 @@ const label = (x, y, value, color = cyan) => box(x, y, Math.max(180, value.lengt
 const check = (x, y, color = mint) => `<path d="M${x} ${y + 7}l7 7 14-17" fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
 const browser = (x, y, w, h, title, content) => `<g filter="url(#shadow)">${box(x, y, w, h)}${box(x, y, w, 58, "#edf2f7", 20)}${box(x, y + 35, w, 23, "#edf2f7", 0)}${["#ffab97", "#edca77", "#77cbbb"].map((color, i) => circle(x + 25 + i * 22, y + 29, 6, color)).join("")}${box(x + 110, y + 14, w - 142, 30, "#fff", 8)}${text(x + 128, y + 35, title, 15, "#536579")}${content}</g>`;
 const phone = (x, y, content) => `<g filter="url(#shadow)">${box(x, y, 236, 452, navy, 37)}${box(x + 10, y + 10, 216, 432, "#f5f8fc", 29)}${box(x + 76, y + 19, 84, 18, navy, 9)}${content}${box(x + 88, y + 425, 60, 5, "#b7c4d4", 3)}</g>`;
+// Animated neural layer in the empty top-right corner; static when reduced motion is requested.
+const pulseNodes = [[905, 74], [968, 42], [1012, 110], [1078, 58], [1134, 118], [1052, 146], [1148, 34]];
+const pulseEdges = [[0, 1], [0, 2], [1, 2], [1, 3], [2, 3], [2, 5], [3, 4], [3, 6], [4, 5]];
+const pulseSignals = [[0, 2, 3, 4], [1, 3, 6], [0, 1, 2, 5]];
+const pulseHubs = new Set([2, 3]);
+const pulsePt = i => pulseNodes[i].join(" ");
+const pulseStyle = `#neural-pulse .np-edge{fill:none;stroke:#38bdf8;stroke-width:2;opacity:.45}#neural-pulse .np-signal{fill:none;stroke:#06b6d4;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:.14 .86;stroke-dashoffset:1;animation:np-travel 3.6s linear infinite}#neural-pulse .np-signal:nth-of-type(2){animation-delay:-1.2s;animation-duration:4.2s}#neural-pulse .np-signal:nth-of-type(3){animation-delay:-2.4s}#neural-pulse .np-node{fill:#06b6d4;transform-box:fill-box;transform-origin:center;animation:np-pulse 2.8s ease-in-out infinite alternate}#neural-pulse .np-hub{fill:#0f172a;stroke:#22d3ee;stroke-width:3}@keyframes np-travel{0%{stroke-dashoffset:1;opacity:0}15%,85%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}@keyframes np-pulse{from{opacity:.55;transform:scale(.85)}to{opacity:1;transform:scale(1.15)}}@media (prefers-reduced-motion: reduce){#neural-pulse *{animation:none!important}#neural-pulse .np-signal{opacity:0}}`;
+const pulseLayer = `<g id="neural-pulse" aria-hidden="true"><style>${pulseStyle}</style>`
+  + `<g>${pulseEdges.map(([a, b]) => `<path class="np-edge" d="M${pulsePt(a)}L${pulsePt(b)}"/>`).join("")}</g>`
+  + `<g>${pulseSignals.map(path => `<path class="np-signal" pathLength="1" d="M${path.map(pulsePt).join("L")}"/>`).join("")}</g>`
+  + `<g>${pulseNodes.map(([x, y], i) => `<circle class="np-node${pulseHubs.has(i) ? " np-hub" : ""}" cx="${x}" cy="${y}" r="${pulseHubs.has(i) ? 8 : 5}" style="animation-delay:${(-i * 0.4).toFixed(1)}s"/>`).join("")}</g></g>`;
+
 const frame = (title, subtitle, body, accent = cyan) => `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
 <title id="title">${escape(title)}</title><desc id="desc">${escape(subtitle)} — Illustration conceptuelle, pas une capture de produit livré.</desc>
 <defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#eff8fa"/><stop offset="1" stop-color="#e9edfa"/></linearGradient><pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M36 0H0V36" fill="none" stroke="#bbcdda" stroke-width="1" opacity=".23"/></pattern><filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#16334c" flood-opacity=".12"/></filter></defs>
 ${box(0, 0, 1200, 800, "url(#bg)", 0)}${box(0, 0, 1200, 800, "url(#grid)", 0)}${circle(1100, 50, 210, "#dceef3")}${circle(75, 690, 155, "#dfe3fa")}
 ${box(58, 52, 6, 55, accent, 3)}${text(82, 72, "NEURALIS / EXPERTISE", 15, accent, 700)}${text(82, 111, title, 31, navy, 700)}
-${body}${text(62, 757, subtitle, 18, "#536579")}${text(917, 757, "Illustration conceptuelle", 15, "#536579")}</svg>`;
+${body}${text(62, 757, subtitle, 18, "#536579")}${text(917, 757, "Illustration conceptuelle", 15, "#536579")}
+${pulseLayer}</svg>`;
 
 const website = frame("Des sites pensés pour vos visiteurs", "Design · Développement · Expérience mobile", browser(90, 166, 850, 486, "votre-entreprise.example", `
 ${text(124, 263, "VOTRE MARQUE", 19, navy, 700)}${text(570, 263, "Services     À propos     Contact", 17, "#536579")}

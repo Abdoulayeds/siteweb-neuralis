@@ -33,9 +33,9 @@ test("the neural canvas remains visible behind a dark, translucent homepage hero
   expect(appearance.canvasBehindContent).toBe(true);
   expect(appearance.canvasDrawn).toBe(true);
 
-  const showcase = page.locator(".hero-showcase");
-  await expect(showcase).toBeVisible();
-  expect(await showcase.evaluate(element => getComputedStyle(element).backgroundColor)).toBe("rgb(255, 255, 255)");
+  const network = page.locator(".studio-hero figure[aria-labelledby]");
+  await expect(network).toBeVisible();
+  await expect(network.getByRole("link")).toHaveCount(6);
 });
 
 test("dark data sections keep their titles readable and service cards light", async ({ page }) => {

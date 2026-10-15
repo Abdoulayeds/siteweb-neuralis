@@ -1,26 +1,36 @@
+import Image from "next/image";
 import Link from "next/link";
+import styles from "./logo.module.css";
 
-/** The circuit-shaped N follows the mark shown in the NEURALIS brand palette. */
-export function Logo() {
+type LogoProps = {
+  /** Visual size; `md` (default) suits the header and footer. */
+  size?: "sm" | "md" | "lg";
+  className?: string;
+};
+
+/**
+ * Official NEURALIS logo: the glossy ribbon "N" mark (made for dark surfaces)
+ * followed by the live "Neuralis" wordmark with its cyan dot on the "i".
+ */
+export function Logo({ size = "md", className }: LogoProps) {
+  const classes = [styles.logo, size === "md" ? "" : styles[size], className].filter(Boolean).join(" ");
+
   return (
-    <Link href="/" className="group inline-flex items-center gap-3" aria-label="Retour a l'accueil NEURALIS">
-      <svg
-        viewBox="0 0 64 64"
-        fill="none"
-        aria-hidden="true"
-        className="h-12 w-12 shrink-0 text-[#06b6d4] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-[1.04] motion-reduce:transform-none motion-reduce:transition-none"
-      >
-        <g stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 14v36M13 13l39 39M52 14v36M27 27l25 25" />
-          <circle cx="12" cy="10" r="5" fill="white" />
-          <circle cx="52" cy="10" r="5" fill="white" />
-          <circle cx="12" cy="54" r="5" fill="white" />
-          <circle cx="52" cy="54" r="5" fill="white" />
-          <circle cx="26" cy="26" r="5" fill="white" />
-        </g>
-      </svg>
-      <span className="text-[1.55rem] font-medium leading-none tracking-[-0.055em] text-[#0f172a] transition-colors duration-200 group-hover:text-[#08758b] motion-reduce:transition-none">
-        Neuralis
+    <Link href="/" className={classes} aria-label="Retour à l'accueil NEURALIS">
+      <span className={styles.markWrap} aria-hidden="true">
+        <Image
+          src="/brand/neuralis-mark.webp"
+          alt=""
+          width={288}
+          height={288}
+          unoptimized
+          loading="eager"
+          draggable={false}
+          className={styles.mark}
+        />
+      </span>
+      <span className={styles.wordmark} aria-hidden="true">
+        Neural<span className={styles.i}>i</span>s
       </span>
     </Link>
   );

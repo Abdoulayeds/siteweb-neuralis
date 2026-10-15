@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, Check, Compass, Layers3, MoveUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Check, Compass, Layers3 } from "lucide-react";
 import { ButtonLink } from "@/components/button-link";
 import { DetailDialog } from "@/components/detail-dialog";
+import { NeuralNetworkHero } from "@/components/neural-network-hero";
 import { TechVisual } from "@/components/tech-visual";
 import { ProjectTeasers } from "@/components/project-teasers";
 import { VisualServiceCard } from "@/components/visual-service-card";
@@ -33,12 +34,7 @@ export default function Home() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row"><ButtonLink href="/contact">Parlons de votre projet</ButtonLink><ButtonLink href="#expertises" variant="ghost">Voir nos expertises</ButtonLink></div>
             <div className="hero-promises"><span><Check aria-hidden /> Un besoin clarifié avant de construire</span><span><Check aria-hidden /> Des étapes visibles jusqu’à la livraison</span></div>
           </div>
-          <div className="hero-showcase">
-            <div className="showcase-topline"><span>NEURALIS / DIGITAL STUDIO</span><span className="font-semibold text-cyan-800">01 — 08</span></div>
-            <Image src="/images/services/sites-web-technical.svg" alt="Illustration d’un site professionnel avec interfaces ordinateur et mobile" width={1200} height={800} sizes="(max-width: 1023px) 100vw, 50vw" preload className="hero-main-image" />
-            <div className="showcase-caption"><span>Des interfaces pensées pour les personnes qui les utilisent.</span><MoveUpRight className="h-5 w-5 text-cyan-800" aria-hidden /></div>
-            <div className="showcase-mini"><Image src="/images/services/data-technical.svg" alt="Illustration d’un tableau de bord avec graphiques et indicateurs" width={1200} height={800} sizes="96px" className="h-20 w-24 rounded-xl object-cover" /><div><span className="studio-kicker">Voir plus clair</span><p className="mt-2 text-sm font-semibold text-slate-900">Données & décisions</p></div></div>
-          </div>
+          <NeuralNetworkHero />
         </div>
         <a href="#parcours" className="hero-scroll">Trouvez votre point de départ <ArrowDown className="h-4 w-4" aria-hidden /></a>
       </div>
